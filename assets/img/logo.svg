@@ -1,0 +1,12 @@
+<svg width="240" height="340" viewBox="0 0 240 340" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Programação Dinâmica">
+  <!-- navy offset layer (behind, peeks up-left) -->
+  <g stroke="#1E2A4A" stroke-width="30" stroke-linecap="butt" fill="none">
+    <path d="M35 165 V19 H183 V107 H93"/>
+    <path d="M183 153 V299 H35 V211 H125"/>
+  </g>
+  <!-- teal front layer -->
+  <g stroke="#4F9E8A" stroke-width="30" stroke-linecap="butt" fill="none">
+    <path d="M46 176 V30 H194 V118 H104"/>
+    <path d="M194 164 V310 H46 V222 H136"/>
+  </g>
+</svg>
