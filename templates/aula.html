@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import icon %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/pages.css">{% endblock %}
+{% block body_attrs %} class="classroom-body"{% endblock %}
+
+{% block header %}
+<header class="class-bar">
+  <a class="class-brand" href="/" aria-label="{{ site.name }} — início"><img src="/assets/img/logo.svg" width="22" height="32" alt=""></a>
+  <div class="class-course">
+    <a href="{{ course.url }}">{{ course.title }}</a>
+    <span class="class-progress-label"><span id="progressText">0 de {{ course.free_lessons|length }} aulas concluídas</span></span>
+  </div>
+  <div class="class-progress" aria-hidden="true"><span id="progressFill"></span></div>
+  <button type="button" class="class-toggle" id="lessonsToggle" aria-expanded="false" aria-controls="lessonsPanel">Aulas</button>
+  <a class="class-exit" href="{{ course.url }}">Sair da sala</a>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="classroom" data-course="{{ course.slug }}" data-lesson="{{ lesson.slug }}" data-total="{{ course.free_lessons|length }}"{% if lesson.is_locked %} data-locked{% endif %}>
+  <div class="class-main">
+    <div class="player-shell">
+      <div class="player-frame">
+        {% if lesson.is_locked %}
+        <!-- Aula do curso completo: oferta no lugar do vídeo -->
+        <div class="locked-panel">
+          <div class="locked-card">
+            <p class="locked-kicker">{{ icon("lock") }} Exclusivo do {{ (course.upgrade.title if course.upgrade else "curso completo")|lower }}</p>
+            <h2 class="locked-title">{{ lesson.title }}</h2>
+            <div class="locked-text">{{ lesson.html }}</div>
+            {% if course.upgrade %}
+            <ul class="locked-benefits">{% for b in course.upgrade.benefits %}<li>{{ icon("check") }}<span>{{ b }}</span></li>{% endfor %}</ul>
+            {% endif %}
+            <div class="locked-actions">
+              <a class="btn btn-primary" href="{{ course.checkout }}" target="_blank" rel="noopener">Quero o curso completo{% if course.upgrade %} · {{ course.upgrade.price }}{% endif %}</a>
+              {% if next_free %}<a class="btn btn-ghost on-dark" href="{{ next_free.url }}">Continuar nas aulas grátis</a>{% endif %}
+            </div>
+            {% if course.upgrade and course.upgrade.installments %}<p class="locked-note">{{ course.upgrade.installments }} · pagamento seguro</p>{% endif %}
+          </div>
+        </div>
+        {% else %}
+        {% set host = "https://www.youtube.com" if lesson.is_members else "https://www.youtube-nocookie.com" %}
+        <div id="player" data-video="{{ lesson.video_id }}" data-host="{{ host }}"></div>
+        <noscript><iframe src="{{ host }}/embed/{{ lesson.video_id }}?rel=0&amp;modestbranding=1" title="{{ lesson.title }}" allowfullscreen></iframe></noscript>
+        {% if lesson.is_members %}
+        <!-- Gravação para membros: o vídeo só carrega quando a pessoa confirma -->
+        <div class="player-overlay player-gate" id="memberGate">
+          <div class="end-card">
+            <p class="end-kicker">{{ icon("award") }} Gravação exclusiva para membros</p>
+            <p class="end-next-title">{{ lesson.title }}</p>
+            <p class="gate-text">Disponível para membros do canal (Espresso e Capuccino). Para assistir aqui, entre na sua conta do YouTube neste navegador.</p>
+            <div class="end-actions">
+              <button type="button" class="btn btn-primary" id="memberLoad">{{ icon("play") }} Sou membro, carregar a aula</button>
+              <a class="btn btn-ghost on-dark" href="https://www.youtube.com/watch?v={{ lesson.video_id }}" target="_blank" rel="noopener">Assistir no YouTube</a>
+            </div>
+            <p class="gate-join">Ainda não é membro? <a href="{{ site.youtube_join }}" target="_blank" rel="noopener">Seja membro do canal</a> — o material de cada aula fica aberto aqui embaixo.</p>
+          </div>
+        </div>
+        {% endif %}
+        <div class="player-overlay" id="pauseOverlay" hidden>
+          <button type="button" class="overlay-play" id="resumeBtn" aria-label="Continuar a aula">{{ icon("play") }}</button>
+        </div>
+        <div class="player-overlay player-end" id="endOverlay" hidden>
+          <div class="end-card">
+            <p class="end-kicker">{{ icon("check") }} Aula concluída</p>
+            {% if next_lesson and next_lesson.is_locked %}
+            <p class="end-next-label">A próxima aula faz parte do curso completo</p>
+            <p class="end-next-title">{{ next_lesson.title }}</p>
+            <div class="end-actions">
+              <a class="btn btn-primary" href="{{ course.checkout }}" target="_blank" rel="noopener">Quero o curso completo{% if course.upgrade %} · {{ course.upgrade.price }}{% endif %}</a>
+              {% if next_free %}<a class="btn btn-ghost on-dark" href="{{ next_free.url }}">Próxima aula grátis {{ icon("arrow-right") }}</a>{% endif %}
+            </div>
+            {% elif next_lesson %}
+            <p class="end-next-label">Próxima aula</p>
+            <p class="end-next-title">{{ next_lesson.title }}</p>
+            <div class="end-actions">
+              <a class="btn btn-primary" href="{{ next_lesson.url }}">Continuar {{ icon("arrow-right") }}</a>
+              <button type="button" class="btn btn-ghost on-dark" id="replayBtn">Rever aula</button>
+            </div>
+            {% else %}
+            <p class="end-next-title">Você chegou ao fim do curso! 🎉</p>
+            <div class="end-actions">
+              <a class="btn btn-primary" href="{{ course.url }}">Voltar ao curso</a>
+              <button type="button" class="btn btn-ghost on-dark" id="replayBtn">Rever aula</button>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="lesson-head">
+      <p class="lesson-kicker">Aula {{ lesson.number }} de {{ course.lessons|length }}{% if lesson.module %} · {{ lesson.module }}{% endif %}{% if lesson.duration %} · {{ lesson.duration }}{% endif %}</p>
+      <h1 class="lesson-title">{{ lesson.title }}</h1>
+      <div class="lesson-actions">
+        {% if not lesson.is_locked %}<button type="button" class="btn btn-done" id="doneBtn" aria-pressed="false">{{ icon("check") }} <span>Marcar como concluída</span></button>{% else %}<span></span>{% endif %}
+        <div class="lesson-pager">
+          {% if prev_lesson %}<a class="btn btn-ghost on-dark" href="{{ prev_lesson.url }}" title="{{ prev_lesson.title }}">{{ icon("arrow-left") }} Anterior</a>{% endif %}
+          {% if next_lesson %}<a class="btn btn-ghost on-dark" href="{{ next_lesson.url }}" title="{{ next_lesson.title }}">Próxima {{ icon("arrow-right") }}</a>{% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% if not lesson.is_locked %}
+    <div class="lesson-tabs" role="tablist" aria-label="Conteúdo da aula">
+      <button type="button" role="tab" class="tab" id="tab-material" aria-controls="panel-material" aria-selected="true">Material da aula</button>
+      <button type="button" role="tab" class="tab" id="tab-notes" aria-controls="panel-notes" aria-selected="false" tabindex="-1">Minhas anotações</button>
+    </div>
+    <section class="lesson-panel" id="panel-material" role="tabpanel" aria-labelledby="tab-material">
+      {% if lesson.html|striptags|trim %}
+      <div class="prose-light prose-dark lesson-material">{{ lesson.html }}</div>
+      {% else %}
+      <p class="lesson-empty">Esta aula ainda não tem material de apoio.</p>
+      {% endif %}
+    </section>
+    <section class="lesson-panel" id="panel-notes" role="tabpanel" aria-labelledby="tab-notes" hidden>
+      <label class="sr-only" for="notes">Anotações desta aula</label>
+      <textarea id="notes" class="notes" placeholder="Escreva aqui o que aprendeu, dúvidas e trechos de código. Tudo é salvo automaticamente neste navegador."></textarea>
+      <div class="notes-foot">
+        <span id="notesStatus" aria-live="polite"></span>
+        <button type="button" class="btn btn-ghost on-dark" id="notesDownload">Baixar todas as anotações (.md)</button>
+      </div>
+    </section>
+    {% endif %}
+  </div>
+
+  <aside class="class-side" id="lessonsPanel" aria-label="Aulas do curso">
+    {% if course.upgrade %}
+    <div class="side-upgrade">
+      <p class="side-upgrade-kicker">{{ icon("lock") }} {{ course.upgrade.title }}</p>
+      <p class="side-upgrade-title">Destrave tudo por {{ course.upgrade.price }}</p>
+      <ul>{% for b in course.upgrade.benefits %}<li>{{ icon("check") }}<span>{{ b }}</span></li>{% endfor %}</ul>
+      <a class="btn btn-primary" href="{{ course.checkout }}" target="_blank" rel="noopener">Quero o curso completo</a>
+    </div>
+    {% elif course.members_only %}
+    <div class="side-upgrade side-members">
+      <p class="side-upgrade-kicker">{{ icon("award") }} Para membros do canal</p>
+      <p class="side-upgrade-title">Gravações exclusivas para Espresso e Capuccino</p>
+      <a class="btn btn-primary" href="{{ site.youtube_join }}" target="_blank" rel="noopener">Quero ser membro</a>
+    </div>
+    {% endif %}
+    {% for name, lessons in course.modules %}
+    <div class="side-module">
+      <p class="side-module-title"><span>Módulo {{ loop.index }}</span>{{ name }}</p>
+      <ol>
+        {% for l in lessons %}
+        <li data-lesson="{{ l.slug }}" class="{% if l.slug == lesson.slug %}is-current{% endif %}{% if l.is_locked %} is-locked{% endif %}">
+          <a href="{{ l.url }}"{% if l.slug == lesson.slug %} aria-current="page"{% endif %}>
+            <span class="side-check">{{ icon("lock") if l.is_locked else icon("check") }}</span>
+            <span class="side-n">{{ l.number }}</span>
+            <span class="side-title">{{ l.title }}</span>
+            {% if l.duration %}<span class="side-dur">{{ l.duration }}</span>{% endif %}
+          </a>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+    {% endfor %}
+  </aside>
+</div>
+<script type="application/json" id="lessonIndex">{{ course.lessons|map(attribute="slug")|list|tojson }}</script>
+<script type="application/json" id="lessonTitles">{{ course.lessons|map(attribute="title")|list|tojson }}</script>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+{% block scripts %}<script src="/assets/js/classroom.js" defer></script>{% endblock %}

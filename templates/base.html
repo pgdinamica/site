@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% set full_title = (page.title ~ " — " ~ site.name) if page.title else (site.name ~ " — Educação, autonomia e oportunidades") %}
+  {% set desc = (page.description or site.description)|striptags|truncate(200) %}
+  {% set img = page.image or "/assets/img/founders-youtube.jpg" %}
+  <title>{{ full_title }}</title>
+  <meta name="description" content="{{ desc }}">
+  <meta name="theme-color" content="#0a1120">
+  <link rel="canonical" href="{{ site.url ~ page.url }}">
+
+  <meta property="og:type" content="{{ page.type }}">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ page.title or full_title }}">
+  <meta property="og:description" content="{{ desc }}">
+  <meta property="og:url" content="{{ site.url ~ page.url }}">
+  <meta property="og:image" content="{{ img if img.startswith('http') else site.url ~ img }}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Blog do {{ site.name }}" href="/blog/feed.xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  {% block fonts %}{% endblock %}
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  {% block styles %}{% endblock %}
+</head>
+<body{% block body_attrs %}{% endblock %}>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+  {% block header %}{% include "partials/header.html" %}{% endblock %}
+
+  <main id="main">
+{% block content %}{% endblock %}
+  </main>
+
+  {% block footer %}{% include "partials/footer.html" %}{% endblock %}
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/carousel.js" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

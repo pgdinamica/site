@@ -1,0 +1,26 @@
+# Configurações globais do site (usadas no header, footer e metadados de todas as páginas).
+name: Programação Dinâmica
+handle: "@pgdinamica"
+url: https://pgdinamica.com
+description: >-
+  Programação Dinâmica ensina programação, ciência de dados e inteligência artificial de forma
+  prática e acessível. Cursos, conteúdo no YouTube, consultoria e palestras com Kizzy Terra e Hallison Paz.
+email: pgdinamica@brunch.ag
+youtube_subscribe: https://www.youtube.com/programacaodinamica?sub_confirmation=1
+youtube_join: https://www.youtube.com/programacaodinamica/join
+
+# Menu principal. `spy` = id da seção da home destacada ao rolar; `key` = página ativa.
+nav:
+  # Seções da home
+  - { label: Canal, href: "/#canal", spy: canal }
+  - { label: Serviços, href: "/#servicos", spy: servicos }
+  - { label: Mídia, href: "/#imprensa", spy: imprensa, key: imprensa }
+  # Outras páginas
+  - { label: Cursos, href: "/cursos/", key: cursos }
+  - { label: Palestras, href: "/palestras/", key: palestras }
+  - { label: Blog, href: "/blog/", key: blog }
+
+# Quantos itens aparecem nas seções da home.
+home:
+  press_items: 9
+  blog_posts: 3

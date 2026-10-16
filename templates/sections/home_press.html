@@ -1,0 +1,27 @@
+{% from "partials/macros.html" import press_card, outlet_marquee, icon %}
+    <!-- ============================ PRESS / NA MÍDIA ============================ -->
+    <section class="section press" id="imprensa" aria-labelledby="press-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow reveal">O que dizem sobre nós</span>
+          <h2 id="press-title" class="reveal d1">Programação Dinâmica na imprensa</h2>
+        </div>
+
+        {{ outlet_marquee(press.logos) }}
+
+        <ul class="press-wall reveal">
+          {% for item in press["items"][:site.home.press_items] %}
+          {{ press_card(item, featured=loop.first) }}
+          {% endfor %}
+        </ul>
+
+        <div class="press-more reveal">
+          <a class="btn btn-primary btn-lg" href="/imprensa/">
+            Ler todas as {{ press["items"]|length }} menções
+            {{ icon("arrow-right") }}
+          </a>
+        </div>
+      </div>
+    </section>
+

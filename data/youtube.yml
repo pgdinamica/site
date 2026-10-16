@@ -1,0 +1,21 @@
+# Vídeos em destaque na seção do canal (carrossel). Ordem = ordem de exibição.
+# `id` é o código do vídeo no YouTube (o que vem depois de watch?v= ou youtu.be/).
+items:
+  - id: bMLbf10uC0Y
+    badge: "Carreira"
+    title: "Como estudar programação: os segredos de um engenheiro do IME"
+  - id: d5fThrNd26s
+    badge: "Ciência de Dados"
+    title: "O que eu faria para começar do zero na Ciência de Dados hoje"
+  - id: R9dLGLVqK9Q
+    badge: "Python"
+    title: "Como instalar Python e VS Code no Windows — Python do Jeito Certo 2.0"
+  - id: BRPUA0EgS4I
+    badge: "SQL"
+    title: "Por onde começar a fazer consultas com SQL"
+  - id: vR3lGSlLizo
+    badge: "Inteligência Artificial"
+    title: "Baixo investimento deixa o Brasil fora da corrida da IA"
+  - id: fFBi_6ynGCI
+    badge: "Inteligência Artificial"
+    title: "5 mentiras sobre Inteligência Artificial que estão te vendendo"

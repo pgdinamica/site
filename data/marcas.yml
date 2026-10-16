@@ -1,0 +1,41 @@
+# Marcas e instituições com as quais já trabalhamos (carrossel da home e vitrine de publicidade).
+# `tag` opcional: intl, multi…
+items:
+  - { name: "Alura" }
+  - { name: "Hotmart" }
+  - { name: "Telecine" }
+  - { name: "SAP" }
+  - { name: "IBM" }
+  - { name: "Suzano" }
+  - { name: "HostGator" }
+  - { name: "Cambly" }
+  - { name: "Data Sprints" }
+  - { name: "FTD" }
+  - { name: "Cogna" }
+  - { name: "Vivo" }
+  - { name: "Twilio" }
+  - { name: "Loft" }
+  - { name: "Zé Delivery" }
+  - { name: "Infnet" }
+  - { name: "Itaú" }
+  - { name: "DocuSign" }
+  - { name: "EBAC" }
+  - { name: "DIO" }
+  - { name: "Google Cloud" }
+  - { name: "Mercado Pago" }
+  - { name: "Guhan Mandarim" }
+  - { name: "Brunch" }
+  - { name: "Open English" }
+  - { name: "TOTVS" }
+  - { name: "Rede Santa Catarina" }
+  - { name: "Google Gemini" }
+  - { name: "KingHost" }
+  - { name: "Fundação Itaú" }
+  - { name: "YouTube" }
+  - { name: "PretaLab" }
+  - { name: "Sebrae Nacional" }
+  - { name: "Shape Digital" }
+  - { name: "Samsung" }
+  - { name: "TripleTen" }
+  - { name: "TRAE" }
+  - { name: "RubyLabs" }

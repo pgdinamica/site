@@ -1,0 +1,118 @@
+{# ---------- Ícones (SVG inline, herdam a cor do texto) ---------- #}
+{% macro icon(name) -%}
+{%- if name == "youtube" -%}
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg>
+{%- elif name == "arrow-right" -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+{%- elif name == "arrow-left" -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+{%- elif name == "arrow-up-right" -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+{%- elif name == "check" -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+{%- elif name == "play" -%}
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+{%- elif name == "mail" -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+{%- elif name == "clock" -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+{%- elif name == "award" -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M8.2 13 7 22l5-3 5 3-1.2-9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+{%- elif name == "link" -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+{%- elif name == "mic" -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v5a4 4 0 0 0 4 4Z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v4M8 22h8" stroke-linecap="round"/></svg>
+{%- elif name == "lock" -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke-linecap="round"/></svg>
+{%- elif name == "book" -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14Z" stroke-linejoin="round"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5" stroke-linejoin="round"/></svg>
+{%- endif -%}
+{%- endmacro %}
+
+{# ---------- Notícia na imprensa ---------- #}
+{% macro outlet_logo(item, cls="press-logo") -%}
+{% if item.logo %}<img class="{{ cls }}" src="{{ item.logo }}" alt="" width="48" height="48" loading="lazy" decoding="async">
+{%- else %}<span class="{{ cls }} is-mono" aria-hidden="true">{{ item.outlet.split()|map("first")|join("")|upper|truncate(2, true, "") }}</span>{% endif %}
+{%- endmacro %}
+
+{% macro press_card(item, featured=false) %}
+<li class="press-card{% if featured %} is-featured{% endif %}"><a href="{{ item.url }}" target="_blank" rel="noopener"{% if item.color %} style="--outlet: {{ item.color }}"{% endif %}>
+  <span class="press-media{% if not item.image %} is-cover{% endif %}">
+    {% if item.image %}<img src="{{ item.image }}" alt="" loading="lazy" decoding="async">
+    {% if item.credit %}<small class="press-credit">Foto: {{ item.credit }}</small>{% endif %}
+    {% else %}{{ outlet_logo(item, "press-cover-logo") }}{% endif %}
+  </span>
+  <span class="press-body">
+    <span class="press-top">{{ outlet_logo(item) }}<span class="press-outlet">{{ item.outlet }}</span><span class="press-date">{{ item.date }}</span></span>
+    <span class="press-headline">{{ item.title|highlight }}</span>
+  </span>
+  <span class="press-go">{{ icon("arrow-up-right") }}</span>
+</a></li>
+{% endmacro %}
+
+{# Faixa de logos dos veículos que já falaram da gente (rola sozinha; a lista se repete para o laço contínuo) #}
+{% macro outlet_marquee(logos) %}
+<div class="outlet-marquee">
+  <p class="sr-only">Já falaram da gente: {{ logos|map(attribute="name")|join(", ") }}.</p>
+  <ul class="outlet-track" aria-hidden="true">
+    {% for copy in [1, 2] %}{% for o in logos %}
+    <li><img src="{{ o.logo }}" alt="" width="40" height="40" decoding="async"><span>{{ o.name }}</span></li>
+    {% endfor %}{% endfor %}
+  </ul>
+</div>
+{% endmacro %}
+
+{# ---------- Assinatura (autor · data · leitura) ---------- #}
+{% macro byline(post, photo=true) %}
+<p class="byline">
+  {% if photo and post.author.photo %}<img class="byline-photo" src="{{ post.author.photo }}" alt="" width="36" height="36" loading="lazy">{% endif %}
+  <span>Por <a class="byline-author" href="{{ post.author.url }}">{{ post.author.name }}</a></span>
+  <span class="byline-sep" aria-hidden="true">·</span>
+  <time datetime="{{ post.date.isoformat() }}">{{ post.date|date_short }}</time>
+  <span class="byline-sep" aria-hidden="true">·</span>
+  <span>{{ post.minutes }} min de leitura</span>
+</p>
+{% endmacro %}
+
+{# ---------- Linha de publicação, no estilo de revista ---------- #}
+{% macro post_row(post, show_author=true) %}
+<li class="post-row">
+  <div class="post-row-text">
+    {% if post.kicker %}<span class="chapeu">{{ post.kicker }}</span>{% endif %}
+    <h3 class="post-row-title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+    {% if post.description %}<p class="linha-fina">{{ post.description }}</p>{% endif %}
+    {% if show_author %}
+    <p class="byline byline-compact"><a class="byline-author" href="{{ post.author.url }}">{{ post.author.name }}</a><span class="byline-sep" aria-hidden="true">·</span><time datetime="{{ post.date.isoformat() }}">{{ post.date|date_short }}</time><span class="byline-sep" aria-hidden="true">·</span><span>{{ post.minutes }} min</span></p>
+    {% else %}
+    <p class="byline byline-compact"><time datetime="{{ post.date.isoformat() }}">{{ post.date|date_short }}</time><span class="byline-sep" aria-hidden="true">·</span><span>{{ post.minutes }} min de leitura</span></p>
+    {% endif %}
+  </div>
+  {% if post.cover %}<a class="post-row-thumb" href="{{ post.url }}" tabindex="-1" aria-hidden="true"><img src="{{ post.cover }}" alt="" loading="lazy" decoding="async"></a>{% endif %}
+</li>
+{% endmacro %}
+
+{# ---------- Card de curso ---------- #}
+{% macro course_card(course, delay="") %}
+<article class="course-card reveal {{ delay }}">
+  <a class="course-art-wrap" href="{{ course.url }}" tabindex="-1" aria-hidden="true">
+    {% if course.badge %}<span class="tag-badge{% if course.type != 'pago' %} tag-badge-emerald{% endif %}">{{ course.badge }}</span>{% endif %}
+    <div class="course-art"><img loading="lazy" src="{{ course.cover }}" alt="" width="700" height="700"></div>
+  </a>
+  <div class="course-body">
+    <h3><a href="{{ course.url }}">{{ course.title }}</a></h3>
+    <p>{{ course.summary }}</p>
+    <div class="course-foot">
+      <span class="price{% if course.type == 'gratuito' %} free{% endif %}">{{ course.price_label }}</span>
+      <a class="course-link" href="{{ course.url }}">{{ "Começar" if course.type == "gratuito" else "Ver curso" }} {{ icon("arrow-right") }}</a>
+    </div>
+  </div>
+</article>
+{% endmacro %}
+
+{# ---------- Setas de um carrossel horizontal (assets/js/carousel.js) ---------- #}
+{% macro rail_controls(target, dark=false) %}
+<div class="carousel-controls{% if dark %} on-dark{% endif %}">
+  <button type="button" class="carousel-btn" data-dir="-1" data-target="{{ target }}" aria-label="Anteriores">{{ icon("arrow-left") }}</button>
+  <button type="button" class="carousel-btn" data-dir="1" data-target="{{ target }}" aria-label="Próximos">{{ icon("arrow-right") }}</button>
+</div>
+{% endmacro %}

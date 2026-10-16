@@ -1,0 +1,10 @@
+<div class="footer-col">
+          <h4>Cursos e conteúdo</h4>
+          <ul>
+            {% for course in courses %}
+            <li><a href="{{ course.url }}">{{ course.title }}{% if course.type == "gratuito" %} (grátis){% endif %}</a></li>
+            {% endfor %}
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/imprensa/">Na imprensa</a></li>
+          </ul>
+        </div>

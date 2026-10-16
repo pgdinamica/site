@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import press_card, outlet_marquee, icon %}
+{% block content %}
+    <section class="section press press-page" aria-labelledby="press-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <a class="press-back reveal" href="/#imprensa">{{ icon("arrow-left") }} Voltar ao site</a>
+
+        <div class="section-head center">
+          <span class="eyebrow reveal">O que dizem sobre nós?</span>
+          <h1 id="press-title" class="reveal d1">Programação Dinâmica na imprensa</h1>
+        </div>
+
+        {{ outlet_marquee(press.logos) }}
+
+        <ul class="press-wall reveal">
+          {% for item in press["items"] %}
+          {{ press_card(item, featured=loop.first) }}
+          {% endfor %}
+        </ul>
+
+        <div class="press-more reveal">
+          {% if press.updated %}<span class="press-count">Última atualização {{ press.updated }}</span><br><br>{% endif %}
+          <a class="btn btn-ghost on-dark btn-lg" href="/#imprensa">Voltar ao site</a>
+        </div>
+      </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import icon %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/pages.css">{% endblock %}
+{% block content %}
+    {% set hero = talk_photos.hero %}
+    <section class="page-hero{% if hero %} has-photo{% endif %}" aria-labelledby="talks-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap{% if hero %} talks-hero{% endif %}">
+      <div class="page-hero-inner">
+        <a class="press-back reveal" href="/#servicos">{{ icon("arrow-left") }} Serviços</a>
+        <span class="eyebrow on-dark reveal">Palestras e eventos</span>
+        <h1 id="talks-title" class="reveal d1">Temas que provocam e inspiram</h1>
+        <p class="page-lead reveal d2">Contrate uma de nossas palestras ou co-crie com a gente uma versão personalizada para o seu evento. Também cobrimos, mediamos e apresentamos eventos.</p>
+        <div class="hero-actions reveal d3">
+          <a class="btn btn-primary btn-lg" href="mailto:{{ site.email }}?subject={{ 'Palestra para o meu evento'|urlencode }}">{{ icon("mail") }} Solicitar uma palestra</a>
+          <a class="btn btn-ghost on-dark btn-lg" href="/#midia">Onde já participamos</a>
+        </div>
+      </div>
+      {% if hero %}
+      <div class="talks-slider reveal d2" data-slider aria-roledescription="carrossel" aria-label="Fotos das nossas palestras">
+        {% for ph in hero %}
+        <figure class="talks-slide{% if loop.first %} is-active{% endif %}" aria-roledescription="slide" aria-label="{{ loop.index }} de {{ hero|length }}"{% if not loop.first %} aria-hidden="true"{% endif %}>
+          <img src="{{ ph.src }}" alt="{{ ph.alt }}"{% if ph.position %} style="object-position: {{ ph.position }}"{% endif %} decoding="async"{% if loop.first %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
+          {% if ph.caption %}<figcaption>{{ ph.caption }}</figcaption>{% endif %}
+          {% if ph.credit %}<small class="photo-credit">Foto: {{ ph.credit }}</small>{% endif %}
+        </figure>
+        {% endfor %}
+        {% if hero|length > 1 %}
+        <button type="button" class="slider-btn prev" data-slide="-1" aria-label="Foto anterior">{{ icon("arrow-left") }}</button>
+        <button type="button" class="slider-btn next" data-slide="1" aria-label="Próxima foto">{{ icon("arrow-right") }}</button>
+        <div class="slider-dots">
+          {% for ph in hero %}<button type="button" data-to="{{ loop.index0 }}" aria-label="Mostrar foto {{ loop.index }}"{% if loop.first %} aria-current="true"{% endif %}></button>{% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+      </div>
+    </section>
+
+    <section class="section talks" aria-label="Lista de palestras">
+      <div class="wrap">
+        <div class="talk-grid">
+          {% for t in talks %}
+          <article class="talk-card reveal{% if loop.index0 % 3 %} d{{ loop.index0 % 3 }}{% endif %}">
+            <div class="n">{{ "%02d"|format(loop.index) }}</div>
+            <h3>{{ t.title }}</h3>
+            <div class="topic">{{ t.topic }}</div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="section speakers" aria-labelledby="speakers-title">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow reveal">Quem fala</span>
+          <h2 id="speakers-title" class="reveal d1">Ciência, prática e representatividade no palco</h2>
+        </div>
+        <div class="speaker-grid">
+          {% for a in authors.values() %}
+          {% set sp = (talk_photos.speakers or {}).get(a.slug) or {} %}
+          <a class="speaker-card reveal{% if loop.index0 %} d1{% endif %}" href="{{ a.url }}">
+            <span class="speaker-photo">
+              <img src="{{ sp.src or a.photo }}" alt="" width="900" height="1100" loading="lazy">
+              {% if sp.credit %}<small class="photo-credit">Foto: {{ sp.credit }}</small>{% endif %}
+            </span>
+            <div>
+              <h3>{{ a.name }}</h3>
+              <p class="speaker-role">{{ a.role }}</p>
+              <p>{{ a.tagline }}</p>
+              <span class="speaker-link">Ver perfil completo {{ icon("arrow-right") }}</span>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="section page-cta-section">
+      <div class="wrap">
+        <div class="services-cta page-cta reveal">
+          <p>Vamos levar esse papo para o seu evento?</p>
+          <a class="btn btn-primary" href="mailto:{{ site.email }}?subject={{ 'Palestra para o meu evento'|urlencode }}">Solicitar orçamento — {{ site.email }}</a>
+        </div>
+      </div>
+    </section>
+{% endblock %}
+{% block scripts %}<script src="/assets/js/slider.js" defer></script>{% endblock %}

@@ -1,0 +1,53 @@
+# Participações em eventos, podcasts e collabs (carrossel). Ordem = ordem de exibição.
+# `kind` define a cor da etiqueta: podcast, painel, evento, keynote, collab.
+items:
+  - id: YY7DRvLbDDg
+    kind: podcast
+    label: "Podcast"
+    title: "Papinho Tech #137"
+    subtitle: "Hallison Paz, PhD pelo IMPA"
+  - id: RKVQSwso24Q
+    kind: painel
+    label: "Podcast"
+    title: "Substantivo Feminino"
+    subtitle: "IA: gênero, oportunidades e desafios"
+  - id: rfVQmiOUdWw
+    kind: podcast
+    label: "Podcast"
+    title: "IA Trendcast #51"
+    subtitle: "Kizzy Terra: ética, futuro do trabalho e dados"
+  - id: adT-Rf1grTQ
+    kind: evento
+    label: "Evento"
+    title: "2º Seminário Internacional de IA"
+    subtitle: "IA em Educação e Cultura"
+  - id: yfP30_zqNEc
+    kind: evento
+    label: "Evento"
+    title: "Brazil Forum"
+    subtitle: "Regulando a Inteligência Artificial e a pesquisa"
+  - id: 51wUC8Qdqs8
+    kind: podcast
+    label: "Podcast"
+    title: "A matemática das apostas"
+    subtitle: "Como as bets funcionam · Ep. #23"
+  - id: XCHerL2AZLQ
+    kind: podcast
+    label: "Podcast"
+    title: "TecnoTalk"
+    subtitle: "com Kizzy Terra e Bruno Sabino"
+  - id: OHfA0aUNcHQ
+    kind: podcast
+    label: "Podcast"
+    title: "2nd Season"
+    subtitle: "Entrevista com Hallison Paz"
+  - id: P7MAIEBP_zg
+    kind: podcast
+    label: "Podcast"
+    title: "Tem tempo para pergunta? - The Dev Conf"
+    subtitle: "Kizzy Terra — o impacto da educação na transformação"
+  - id: p80us-nLGwk
+    kind: podcast
+    label: "Podcast"
+    title: "Mesa Amarela #26"
+    subtitle: "A inteligência artificial vai roubar o nosso emprego?"

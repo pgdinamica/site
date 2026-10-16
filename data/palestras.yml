@@ -1,0 +1,44 @@
+# Palestras oferecidas. `speakers` é opcional (padrão: Kizzy e Hallison).
+# A ordem aqui é a ordem de exibição na página /palestras/.
+#
+# `photos`: fotos da página. `hero` é o slider do topo; `speakers` troca a foto
+# de perfil de cada pessoa por uma foto no palco.
+# `caption` é opcional (aparece sobre a foto); `credit` é o crédito da foto ("Foto: …");
+# `alt` descreve a foto para leitores de tela.
+photos:
+  # Slider do topo da página (troca sozinho a cada 6 s; `position` ajusta o enquadramento)
+  hero:
+    - src: /assets/img/fotos/forum-rnp-2026.jpg
+      alt: "Kizzy Terra e Hallison Paz no palco do Fórum RNP 2026, apresentando a palestra IA, Pessoas e Futuro"
+      caption: "Fórum RNP 2026 · IA, Pessoas e Futuro"
+      credit: "Fórum RNP 2026"
+      position: "42% 50%"
+    - src: /assets/img/fotos/kizzy-palco.jpg
+      alt: "Kizzy Terra sorrindo no palco, com microfone na mão"
+      position: "40% 30%"
+    - src: /assets/img/fotos/kizzy-painel.jpg
+      alt: "Kizzy Terra falando ao microfone durante um painel"
+      position: "50% 30%"
+  speakers:
+    kizzy-terra: { src: /assets/img/fotos/kizzy-forum-rnp.jpg, credit: "Fórum RNP 2026" }
+    hallison-paz: { src: /assets/img/fotos/hallison-forum-rnp.jpg, credit: "Fórum RNP 2026" }
+
+items:
+  - title: "Futuros (im) prováveis: Entre o que as máquinas preveem e o que a humanidade deseja"
+    topic: "IA & Sociedade"
+  - title: "Futuros (im) prováveis e o jornalismo na era da realidade sintética"
+    topic: "IA & Sociedade"
+  - title: "Inteligência Artificial na Prática: do Conceito à Aplicação"
+    topic: "Inteligência Artificial"
+  - title: "Potencializando a prática docente com Inteligência Artificial"
+    topic: "IA & Educação"
+  - title: "O que vem depois do impossível? Um papo sobre construção de carreira e autoestima na área de tecnologia"
+    topic: "Carreira"
+  - title: "Filtrando o ruído da vida melhor que um modelo de difusão"
+    topic: "Carreira"
+  - title: "A ciência e os dados na construção da autonomia na sociedade dos likes"
+    topic: "Dados & Sociedade"
+  - title: "Além das aparências na carreira tech: Um papo sobre mitos sobre sucesso na carreira de tecnologia"
+    topic: "Carreira"
+  - title: "Por que você deveria se importar com Inteligência Artificial?"
+    topic: "Inteligência Artificial"

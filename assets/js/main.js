@@ -11,6 +11,7 @@
   /* ---- Sticky header background on scroll ---- */
   var header = document.getElementById("siteHeader");
   var onScroll = function () {
+    if (!header) return;
     if (window.scrollY > 24) header.classList.add("scrolled");
     else header.classList.remove("scrolled");
   };
@@ -20,6 +21,7 @@
   /* ---- Mobile navigation ---- */
   var toggle = document.getElementById("navToggle");
   var links = document.getElementById("navLinks");
+  if (toggle && links) {
   var setMenu = function (open) {
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
@@ -38,6 +40,7 @@
       toggle.focus();
     }
   });
+  }
 
   /* ---- Scroll reveal ---- */
   var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
@@ -87,26 +90,30 @@
     }
   }
 
-  /* ---- Active nav link highlighting ---- */
-  var sections = ["sobre", "canal", "midia", "cursos", "servicos", "palestras", "fundadores"]
-    .map(function (id) { return document.getElementById(id); })
-    .filter(Boolean);
-  var navAnchors = {};
-  document.querySelectorAll(".nav-links a").forEach(function (a) {
-    var id = a.getAttribute("href").replace("#", "");
-    navAnchors[id] = a;
-  });
-  if ("IntersectionObserver" in window && sections.length) {
+  /* ---- Active nav link highlighting (home sections, via data-spy) ---- */
+  var spyLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-links a[data-spy]"));
+  var spied = spyLinks
+    .map(function (a) { return { link: a, el: document.getElementById(a.getAttribute("data-spy")) }; })
+    .filter(function (x) { return x.el; });
+  if ("IntersectionObserver" in window && spied.length) {
     var so = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        var a = navAnchors[entry.target.id];
-        if (!a) return;
-        if (entry.isIntersecting) {
-          Object.keys(navAnchors).forEach(function (k) { navAnchors[k].classList.remove("active"); });
-          a.classList.add("active");
-        }
+        if (!entry.isIntersecting) return;
+        spied.forEach(function (x) { x.link.classList.toggle("active", x.el === entry.target); });
       });
     }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
-    sections.forEach(function (s) { so.observe(s); });
+    spied.forEach(function (x) { so.observe(x.el); });
+  }
+
+  /* ---- Profile sub-navigation highlighting ---- */
+  var subLinks = Array.prototype.slice.call(document.querySelectorAll(".profile-nav a[href^='#']"));
+  if ("IntersectionObserver" in window && subLinks.length) {
+    var po = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        subLinks.forEach(function (a) { a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id); });
+      });
+    }, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
+    subLinks.forEach(function (a) { var el = document.querySelector(a.getAttribute("href")); if (el) po.observe(el); });
   }
 })();

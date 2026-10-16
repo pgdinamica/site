@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import icon %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/pages.css">{% endblock %}
+{% block content %}
+    <section class="page-hero" aria-labelledby="authors-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap page-hero-inner">
+        <span class="eyebrow on-dark reveal">Quem somos</span>
+        <h1 id="authors-title" class="reveal d1">As mentes por trás do Programação Dinâmica</h1>
+      </div>
+    </section>
+    <section class="section speakers">
+      <div class="wrap speaker-grid">
+        {% for a in authors.values() %}
+        <a class="speaker-card reveal{% if loop.index0 %} d1{% endif %}" href="{{ a.url }}">
+          <img src="{{ a.photo }}" alt="" width="900" height="1100" loading="lazy">
+          <div>
+            <h2>{{ a.name }}</h2>
+            <p class="speaker-role">{{ a.role }}</p>
+            <p>{{ a.tagline }}</p>
+            <span class="speaker-link">Ver perfil · {{ a.posts|length }} textos {{ icon("arrow-right") }}</span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+{% endblock %}

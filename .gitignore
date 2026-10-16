@@ -1,1 +1,9 @@
+# Site gerado (python build.py)
+_site/
+
+# Ambiente Python local
+.venv/
+__pycache__/
+*.pyc
+
 .DS_Store

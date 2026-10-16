@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import byline, post_row, icon %}
+{% set header_solid = true %}
+{% block fonts %}{% include "partials/editorial_head.html" %}{% endblock %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/blog.css">{% endblock %}
+{% block content %}
+    <div class="reading-progress" aria-hidden="true"><span id="readingBar"></span></div>
+
+    <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+      <header class="post-head">
+        <a class="post-back" href="/blog/">{{ icon("arrow-left") }} Blog</a>
+        {% if post.kicker %}<p class="chapeu">{{ post.kicker }}</p>{% endif %}
+        <h1 class="post-title" itemprop="headline">{{ post.title }}</h1>
+        {% if post.description %}<p class="linha-fina post-linha-fina" itemprop="description">{{ post.description }}</p>{% endif %}
+        <div class="post-meta">
+          {{ byline(post) }}
+          <div class="reader-tools" role="group" aria-label="Ferramentas de leitura">
+            <span class="reader-label">Texto</span>
+            <button type="button" class="reader-btn" data-font="-1" aria-label="Diminuir o tamanho do texto">A<sup>−</sup></button>
+            <button type="button" class="reader-btn" data-font="0" aria-label="Tamanho padrão do texto">A</button>
+            <button type="button" class="reader-btn reader-btn-lg" data-font="1" aria-label="Aumentar o tamanho do texto">A<sup>+</sup></button>
+            <span class="reader-divider" aria-hidden="true"></span>
+            <button type="button" class="reader-btn" data-share="copy" aria-label="Copiar link do texto">{{ icon("link") }}</button>
+            <a class="reader-btn" data-share="whatsapp" href="https://wa.me/?text={{ (post.title ~ ' ' ~ site.url ~ post.url)|urlencode }}" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp">WA</a>
+            <a class="reader-btn" data-share="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url={{ (site.url ~ post.url)|urlencode }}" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn">in</a>
+          </div>
+        </div>
+      </header>
+
+      {% if post.cover %}
+      <figure class="post-cover"><img src="{{ post.cover }}" alt="" decoding="async" itemprop="image"></figure>
+      {% endif %}
+
+      <div class="prose" id="prose" itemprop="articleBody">
+        {{ post.html }}
+      </div>
+
+      <footer class="post-foot">
+        {% if post.tags %}
+        <ul class="post-tags" aria-label="Assuntos">
+          {% for tag in post.tags %}<li>{{ tag|replace("-", " ") }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+
+        <aside class="author-box" aria-label="Sobre o autor">
+          <a href="{{ post.author.url }}" class="author-box-photo" tabindex="-1" aria-hidden="true"><img src="{{ post.author.photo }}" alt="" width="88" height="88" loading="lazy"></a>
+          <div>
+            <p class="chapeu">Quem escreveu</p>
+            <p class="author-box-name"><a href="{{ post.author.url }}">{{ post.author.name }}</a></p>
+            <p class="author-box-role">{{ post.author.role }}</p>
+            <p class="author-box-bio">{{ post.author.tagline }}</p>
+            <a class="author-box-link" href="{{ post.author.url }}">Ver perfil e outros textos {{ icon("arrow-right") }}</a>
+          </div>
+        </aside>
+      </footer>
+    </article>
+
+    {% if more %}
+    <section class="post-more wrap" aria-labelledby="more-title">
+      <h2 id="more-title" class="blog-section-title">Mais de {{ post.author.name }}</h2>
+      <ol class="post-list">
+        {% for p in more %}{{ post_row(p, show_author=false) }}{% endfor %}
+      </ol>
+    </section>
+    {% endif %}
+
+    <nav class="post-pager wrap" aria-label="Navegação entre textos">
+      {% if older %}<a class="pager-link" href="{{ older.url }}"><span>{{ icon("arrow-left") }} Anterior</span><b>{{ older.title }}</b></a>{% else %}<span></span>{% endif %}
+      {% if newer %}<a class="pager-link pager-next" href="{{ newer.url }}"><span>Próximo {{ icon("arrow-right") }}</span><b>{{ newer.title }}</b></a>{% endif %}
+    </nav>
+{% endblock %}
+{% block scripts %}<script src="/assets/js/reader.js" defer></script>{% endblock %}

@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import icon, rail_controls %}
+{% block content %}
+    <span id="top"></span>
+
+    <!-- ============================ HERO ============================ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <span class="hero-badge reveal">
+              <span class="pill">Além do hype</span>
+              Programação, ciência de dados e inteligência artificial
+            </span>
+            <h1 id="hero-title" class="reveal d1">
+              Educação, autonomia e <span class="accent">oportunidades</span>
+            </h1>
+            <p class="lead reveal d2">
+              Criamos conteúdos gratuitos, didáticos e
+              acessíveis para que uma parcela maior e mais plural da população brasileira viva uma
+              mudança de perspectiva e alcance novas oportunidades.
+            </p>
+            <div class="hero-actions reveal d3">
+              <a class="btn btn-primary btn-lg" href="https://www.youtube.com/programacaodinamica?sub_confirmation=1" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg>
+                Assistir no YouTube
+              </a>
+              <a class="btn btn-ghost on-dark btn-lg" href="/cursos/">Conhecer os cursos</a>
+            </div>
+            <p class="hero-note reveal d3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Faça parte da nossa comunidade
+            </p>
+          </div>
+
+          <div class="hero-visual reveal d2">
+            <figure class="hero-photo">
+              <img src="/assets/img/founders-youtube.jpg" width="1200" height="900"
+                   alt="Kizzy Terra e Hallison Paz sentados em frente ao logo do YouTube na sede da empresa.">
+            </figure>
+            <div class="hero-float tl" aria-hidden="true">
+              <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m23 7-9.5 9.5-5-5L1 19" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 7h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div><div class="fig">+230 mil</div><div class="lbl">inscritos<br>no youtube</div></div>
+            </div>
+            <div class="hero-float br" aria-hidden="true">
+              <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m23 7-7 5 7 5V7Z" stroke-linecap="round" stroke-linejoin="round"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
+              <div><div class="fig">+550</div><div class="lbl">vídeos<br>publicados</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="hero-stats reveal" role="list" aria-label="Números do canal">
+          <div class="stat" role="listitem"><div class="num" data-count="550">0<span class="plus">+</span></div><div class="cap">Vídeos publicados</div></div>
+          <div class="stat" role="listitem"><div class="num" data-count="9">0<span class="plus">M+</span></div><div class="cap">Visualizações no YouTube</div></div>
+          <div class="stat" role="listitem"><div class="num" data-count="20">0<span class="plus">k+</span></div><div class="cap">Espectadores por mês</div></div>
+          <div class="stat" role="listitem"><div class="num" data-count="130">0<span class="plus">+</span></div><div class="cap">Membros no YouTube</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ ABOUT / MISSION ============================ -->
+    <section class="section about" id="sobre" aria-labelledby="about-title">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <span class="eyebrow reveal">Nossa missão</span>
+          <h2 id="about-title" class="reveal d1">Educação de qualidade e pensamento crítico</h2>
+          <p class="lead reveal d2">
+            Compartilhamos o que aprendemos em instituições de exclência do Brasil e do exterior simplificando conceitos sem abrir
+            mão da profundidade necessária para discutir ideias complexas.
+          </p>
+          <div class="values">
+            <div class="value reveal d2">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 12v5c3 3 9 3 12 0v-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div><b>Ensino prático</b><p>Exemplos reais e didática que pavimenta o caminho do iniciante ao avançado.</p></div>
+            </div>
+            <div class="value reveal d2">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2M16 3.1a4 4 0 0 1 0 7.8M22 21v-2a4 4 0 0 0-3-3.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div><b>Representatividade</b><p>Um homem negro e uma mulher negra ocupando e abrindo espaços de excelência em tecnologia.</p></div>
+            </div>
+            <div class="value reveal d2">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div><b>Autonomia</b><p>Formamos pessoas capazes de decidir com dados e construir suas próprias oportunidades.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual reveal d1">
+          <div class="code-window" aria-hidden="true">
+            <div class="code-header">
+              <span class="code-dot red"></span>
+              <span class="code-dot yellow"></span>
+              <span class="code-dot green"></span>
+              <span class="code-filename">missao.py</span>
+            </div>
+            <div class="code-body">
+              <div><span class="cm"># Programação Dinâmica</span></div>
+              <div><span class="kw">def</span> <span class="fn">educar</span>(<span class="str">pessoa</span>):</div>
+              <div>&nbsp;&nbsp;<span class="cm">"""Transforma vidas através</span></div>
+              <div>&nbsp;&nbsp;<span class="cm">&nbsp;&nbsp;&nbsp;do conhecimento em dados."""</span></div>
+              <div>&nbsp;&nbsp;<span class="kw">return</span> <span class="str">autonomia</span></div>
+              <div style="margin-top:8px"><span class="kw">for</span> <span class="str">pessoa</span> <span class="kw">in</span> <span class="str">brasil</span>:</div>
+              <div>&nbsp;&nbsp;<span class="fn">educar</span>(pessoa)</div>
+            </div>
+            <div class="code-progress" aria-hidden="true">
+              <span class="code-progress-bar active"></span>
+              <span class="code-progress-bar"></span>
+              <span class="code-progress-bar"></span>
+            </div>
+          </div>
+          <span class="tag">De iniciantes a profissionais experientes do mercado</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ CHANNEL ============================ -->
+    <section class="section channel" id="canal" aria-labelledby="channel-title">
+      <div class="wrap">
+        <div class="channel-head section-head" style="margin-bottom:0">
+          <div>
+            <span class="eyebrow reveal">Programação Dinâmica no YouTube</span>
+            <h2 id="channel-title" class="reveal d1" style="margin-top:.9rem">Conteúdo que já alcançou milhares de espectadores</h2>
+            <p class="reveal d2" style="margin-top:1rem;max-width:40rem">
+              De profissionais experientes a entusiastas que estão começando: histórias de motivação,
+              tutoriais e discussões sobre as tecnologias que estão moldando o futuro do trabalho.
+            </p>
+          </div>
+          <div class="channel-head-actions reveal d2">
+            <a class="btn btn-primary" href="{{ site.youtube_subscribe }}" target="_blank" rel="noopener">{{ icon("youtube") }} Inscreva-se no canal</a>
+            <a class="btn btn-ghost" href="https://www.youtube.com/programacaodinamica" target="_blank" rel="noopener">Assista nossos vídeos</a>
+          </div>
+        </div>
+        <div class="rail-head">{{ rail_controls("rail-canal") }}</div>
+      </div>
+
+      <ul class="rail rail-videos reveal" id="rail-canal" aria-label="Vídeos em destaque do canal">
+        {% for v in youtube_videos %}
+        <li><a class="video-card" href="https://youtu.be/{{ v.id }}" target="_blank" rel="noopener">
+          <div class="video-thumb"><img loading="lazy" src="{{ v.thumb }}" alt="" width="480" height="270"><span class="play" aria-hidden="true">{{ icon("play") }}</span></div>
+          <div class="video-meta"><span class="badge">{{ v.badge }}</span><h3>{{ v.title }}</h3></div>
+        </a></li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <!-- ============================ EVENTS & PODCASTS ============================ -->
+    <section class="section events" id="midia" aria-labelledby="events-title">
+      <div class="events-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="events-head">
+          <div>
+            <span class="eyebrow on-dark reveal">Eventos, podcasts &amp; collabs</span>
+            <h2 id="events-title" class="reveal d1">Nossas participações</h2>
+            <p class="reveal d2">Keynotes, painéis, podcasts e colaborações: somos convidados para falar sobre tecnologia, dados, IA, carreira e diversidade — no Brasil e no exterior.</p>
+          </div>
+          <a class="btn btn-ghost on-dark reveal d2" href="https://youtube.com/playlist?list=PLLVg3XaIyZBc" target="_blank" rel="noopener">Ver playlist completa</a>
+        </div>
+        <div class="rail-head">{{ rail_controls("rail-midia", dark=true) }}</div>
+      </div>
+
+      <ul class="rail rail-events reveal" id="rail-midia" aria-label="Participações em eventos e podcasts">
+        {% for e in participacoes %}
+        <li><a class="event-card" href="https://youtu.be/{{ e.id }}" target="_blank" rel="noopener">
+          <div class="event-thumb"><img loading="lazy" src="{{ e.thumb }}" alt="" width="480" height="270"><span class="play" aria-hidden="true">{{ icon("play") }}</span></div>
+          <div class="event-meta"><span class="event-tag {{ e.kind }}">{{ e.label }}</span><h3>{{ e.title }}</h3>{% if e.subtitle %}<p>{{ e.subtitle }}</p>{% endif %}</div>
+        </a></li>
+        {% endfor %}
+      </ul>
+
+      <div class="wrap">
+        <p class="events-foot reveal">Quer o Programação Dinâmica no seu evento ou podcast? <a href="mailto:{{ site.email }}">Fale com a gente</a>.</p>
+      </div>
+    </section>
+
+    {% include "sections/home_blog.html" %}
+
+    <!-- ============================ SERVICES ============================ -->
+    <section class="section services" id="servicos" aria-labelledby="services-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow on-dark reveal">Vamos construir algo juntos?</span>
+          <h2 id="services-title" class="reveal d1">Contrate o Programação Dinâmica</h2>
+          <p class="reveal d2">Levamos didática, técnica e alcance para marcas, instituições e times que querem comunicar tecnologia com clareza.</p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card reveal">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M10 9l4 3-4 3V9z" fill="currentColor" stroke="none"/></svg></span>
+            <h3>Produção de conteúdo e cursos</h3>
+            <p>Vídeos, cursos e materiais didáticos sobre programação, ciência de dados e inteligência artificial, feitos sob medida.</p>
+          </article>
+          <article class="service-card reveal d1">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2Z" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 22h6" stroke-linecap="round"/></svg></span>
+            <h3>Consultoria</h3>
+            <p>Orientação para seus estudos ou para projetos de ciência de dados e inteligência artificial, do planejamento à execução.</p>
+          </article>
+          <article class="service-card reveal d2">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-6v14L3 13v-2Z" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 12v6a2 2 0 0 0 2 2h1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>Publicidade</h3>
+            <p>Impulsione sua marca empregadora ou produto com conteúdos exclusivos nas nossas mídias — YouTube, Instagram, LinkedIn e Twitter.</p>
+            <a class="service-link" href="/publicidade/">Ver vitrine de publicidade <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+          <article class="service-card reveal d3">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v5a4 4 0 0 0 4 4Z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v4M8 22h8" stroke-linecap="round"/></svg></span>
+            <h3>Palestras e eventos</h3>
+            <p>Contrate Kizzy Terra e Hallison Paz para palestrar, cobrir ou apresentar o seu evento com autoridade e carisma.</p>
+            <a class="service-link" href="/palestras/">Saiba mais sobre as palestras <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+        </div>
+
+        <div class="services-cta reveal">
+          <p>Gostou? Solicite um orçamento por e-mail.</p>
+          <a class="btn btn-primary" href="mailto:{{ site.email }}">Solicitar orçamento — <span class="email" style="margin-left:.3rem">{{ site.email }}</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ BRANDS ============================ -->
+    <section class="section brands" aria-label="Marcas com as quais o Programação Dinâmica já trabalhou">
+      <div class="wrap">
+        <p class="kicker reveal">Instituições com as quais já trabalhamos</p>
+      </div>
+
+      <div class="brand-marquee reveal d1" aria-hidden="true">
+        {% set half = (marcas["items"]|length + 1) // 2 %}
+        {% for row in [marcas["items"][:half], marcas["items"][half:]] %}
+        <div class="marquee-row{% if loop.index == 2 %} reverse{% endif %}">
+          {% for copy in [1, 2] %}
+          <div class="marquee-track"{% if copy == 2 %} aria-hidden="true"{% endif %}>
+            {% for b in row %}<span class="brand-chip">{{ b.name }}{% if b.tag %}<i class="chip-tag">{{ b.tag }}</i>{% endif %}</span>{% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+      <p class="sr-only">Marcas: {{ marcas["items"]|map(attribute="name")|join(", ") }}.</p>
+
+      <p class="brand-count wrap reveal d2">Mais de <b>35 organizações</b> — de startups a empresas multinacionais, no Brasil e no exterior.</p>
+    </section>
+
+    <!-- ============================ FOUNDERS ============================ -->
+    <section class="section founders" id="fundadores" aria-labelledby="founders-title">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow reveal">Quem somos</span>
+          <h2 id="founders-title" class="reveal d1">As mentes por trás do Programação Dinâmica</h2>
+          <p class="reveal d2">Dois engenheiros de computação do IME que decidiram democratizar o conhecimento que conquistaram.</p>
+        </div>
+
+        <div class="founder-grid">
+          <article class="founder-card reveal">
+            <div class="founder-photo"><img loading="lazy" src="/assets/img/kizzy-web.jpg" alt="Retrato de Kizzy Terra." width="900" height="1100"></div>
+            <div class="founder-info">
+              <h3>Kizzy Terra</h3>
+              <div class="role">Cientista de Dados · Co-fundadora</div>
+              <p>Engenheira de Computação pelo Instituto Militar de Engenharia (IME), mestre em Matemática Aplicada pela FGV-RJ, Doutoranda na PUCSP. Já atuou como analista de dados de utilidade pública na FGV-RJ e no IPEA, e como cientista de dados sênior na Cyberlabs.</p>
+              <div class="founder-tags">
+                <span>PUC-SP</span><span>FGV-RJ</span><span>IME</span>
+              </div>
+              <div class="founder-award">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M8.2 13 7 22l5-3 5 3-1.2-9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Youtube Vozes Negras
+              </div>
+              <div class="founder-award">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M8.2 13 7 22l5-3 5 3-1.2-9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Linkedin Top Voice
+              </div>
+              <a class="founder-link" href="/autores/kizzy-terra/">Conheça a Kizzy <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+
+          <article class="founder-card reveal d1">
+            <div class="founder-photo"><img loading="lazy" src="/assets/img/hallison-web.jpg" alt="Retrato de Hallison Paz." width="900" height="1100"></div>
+            <div class="founder-info">
+              <h3>Hallison Paz</h3>
+              <div class="role">Pesquisador em Computação Visual · Co-fundador</div>
+              <p>Engenheiro de Computação pelo IME, mestre e doutor em Matemática pelo Instituto de Matemática Pura e Aplicada (IMPA). É membro do laboratório de Visão e Computação Gráfica do IMPA (VISGRAF) e trabalhou como engenheiro de inteligência artificial na Cyberlabs.</p>
+              <div class="founder-tags">
+                <span>HandTalk</span><span>IMPA</span><span>IME</span>
+              </div>
+              <div class="founder-award">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M8.2 13 7 22l5-3 5 3-1.2-9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Youtube Vozes Negras
+              </div>
+              <!-- <div class="founder-award">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6M12 8a4 4 0 0 0-4 4v8h8v-8a4 4 0 0 0-4-4Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Pesquisa em IA e Computação Visual
+              </div> -->
+              <a class="founder-link" href="/autores/hallison-paz/">Conheça o Hallison <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    {% include "sections/home_press.html" %}
+{% endblock %}

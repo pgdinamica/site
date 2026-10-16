@@ -1,0 +1,18 @@
+{% from "partials/macros.html" import course_card %}
+    <!-- ============================ COURSES ============================ -->
+    <section class="section courses" id="cursos" aria-labelledby="courses-title">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow reveal">Cursos</span>
+          <h2 id="courses-title" class="reveal d1">Aprenda com trilhas completas e diretas ao ponto</h2>
+          <p class="reveal d2">Do fundamento matemático à análise de dados no mercado — no seu ritmo, com projetos reais.</p>
+        </div>
+
+        <div class="course-grid">
+          {% for course in courses %}
+          {{ course_card(course, ["", "d1", "d2", "d3"][loop.index0 % 4]) }}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+

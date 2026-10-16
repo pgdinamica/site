@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/pages.css">{% endblock %}
+{% block content %}
+    <section class="page-hero page-404" aria-labelledby="nf-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap page-hero-inner">
+        <span class="eyebrow on-dark">Erro 404</span>
+        <h1 id="nf-title">Esta página não foi encontrada</h1>
+        <p class="page-lead">O endereço pode ter mudado. Que tal começar por aqui?</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="/">Ir para o início</a>
+          <a class="btn btn-ghost on-dark btn-lg" href="/blog/">Ler o blog</a>
+          <a class="btn btn-ghost on-dark btn-lg" href="/#cursos">Ver cursos</a>
+        </div>
+      </div>
+    </section>
+{% endblock %}

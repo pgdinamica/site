@@ -1,0 +1,24 @@
+{% from "partials/macros.html" import icon %}
+<header class="site-header{% if header_solid is defined and header_solid %} is-solid{% endif %}" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="{{ site.name }} — início">
+      <img src="/assets/img/logo.svg" width="28" height="40" alt="">
+      <span class="brand-name">
+        <b>{{ site.name }}</b>
+        <span>{{ site.handle }}</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
+      {% for item in site.nav %}
+      {% set is_active = item.get("key") and item.get("key") == page.active %}
+      <a href="{{ item.href }}"{% if item.get("spy") and page.active == "home" %} data-spy="{{ item.spy }}"{% endif %}{% if is_active %} class="active" aria-current="page"{% endif %}>{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="{{ site.youtube_subscribe }}" target="_blank" rel="noopener">{{ icon("youtube") }} Inscreva-se</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+    </div>
+  </div>
+</header>

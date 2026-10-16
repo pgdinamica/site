@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import icon %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/pages.css">{% endblock %}
+
+{% macro carousel(network, title, items, ratio) %}
+<section class="showcase showcase-{{ network }}" aria-labelledby="sc-{{ network }}">
+  <div class="wrap showcase-head">
+    <h2 id="sc-{{ network }}" class="reveal">{{ title }} <span class="showcase-count">{{ items|length }}</span></h2>
+    <div class="carousel-controls" aria-hidden="true">
+      <button type="button" class="carousel-btn" data-dir="-1" data-target="track-{{ network }}">{{ icon("arrow-left") }}</button>
+      <button type="button" class="carousel-btn" data-dir="1" data-target="track-{{ network }}">{{ icon("arrow-right") }}</button>
+    </div>
+  </div>
+  <ul class="carousel-track carousel-{{ ratio }}" id="track-{{ network }}" aria-label="{{ title }}">
+    {% for item in items %}
+    <li class="showcase-item">
+      <div class="showcase-embed">
+        <iframe src="{{ item.embed }}" title="{{ item.title or item.brand or title }}" loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      {% if item.brand or item.title %}
+      <p class="showcase-caption">{% if item.brand %}<b>{{ item.brand }}</b>{% endif %}{% if item.title %}<span>{{ item.title }}</span>{% endif %}</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endmacro %}
+
+{% block content %}
+    <section class="page-hero" aria-labelledby="ads-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap page-hero-inner">
+        <a class="press-back reveal" href="/#servicos">{{ icon("arrow-left") }} Serviços</a>
+        <span class="eyebrow on-dark reveal">Publicidade</span>
+        <h1 id="ads-title" class="reveal d1">Sua marca com a didática do Programação Dinâmica</h1>
+        <div class="page-lead prose-dark reveal d2">{{ ads.intro }}</div>
+        <dl class="ads-audience reveal d3">
+          {% for a in ads.audience or [] %}<div><dd>{{ a.value }}</dd><dt>{{ a.label }}</dt></div>{% endfor %}
+        </dl>
+      </div>
+    </section>
+
+    {% if ads.youtube or ads.instagram or ads.linkedin %}
+    <div class="showcases">
+      <div class="wrap">
+        <span class="eyebrow reveal">Vitrine</span>
+        <h2 class="showcases-title reveal d1">Campanhas que já fizemos</h2>
+      </div>
+      {% if ads.youtube %}{{ carousel("youtube", "Vídeos no YouTube", ads.youtube, "wide") }}{% endif %}
+      {% if ads.instagram %}{{ carousel("instagram", "Posts no Instagram", ads.instagram, "tall") }}{% endif %}
+      {% if ads.linkedin %}{{ carousel("linkedin", "Posts no LinkedIn", ads.linkedin, "tall") }}{% endif %}
+    </div>
+    {% endif %}
+
+    <section class="section ads-formats" aria-labelledby="formats-title">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow reveal">Formatos</span>
+          <h2 id="formats-title" class="reveal d1">Como podemos trabalhar juntos</h2>
+        </div>
+        <div class="formats-grid">
+          {% for f in ads.formats or [] %}
+          <article class="format-card reveal{% if loop.index0 %} d{{ loop.index0 }}{% endif %}">
+            <span class="ic">{{ icon(f.icon or "play") }}</span>
+            <h3>{{ f.title }}</h3>
+            <p>{{ f.text }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="section brands" aria-label="Marcas com as quais já trabalhamos">
+      <div class="wrap">
+        <p class="kicker reveal">Marcas e instituições com as quais já trabalhamos</p>
+        <ul class="brand-cloud reveal d1">
+          {% for b in marcas["items"] %}<li class="brand-chip">{{ b.name }}{% if b.tag %}<i class="chip-tag">{{ b.tag }}</i>{% endif %}</li>{% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section page-cta-section">
+      <div class="wrap">
+        <div class="services-cta page-cta reveal">
+          <p>Quer anunciar com a gente? Conte sobre a sua campanha.</p>
+          <a class="btn btn-primary" href="mailto:{{ site.email }}?subject={{ 'Publicidade no Programação Dinâmica'|urlencode }}">Solicitar orçamento — {{ site.email }}</a>
+        </div>
+      </div>
+    </section>
+{% endblock %}
+

@@ -1,0 +1,27 @@
+{% from "partials/macros.html" import icon %}
+    <!-- ============================ BLOG ============================ -->
+    <section class="section home-blog" id="blog" aria-labelledby="blog-title">
+      <div class="wrap">
+        <div class="home-blog-head">
+          <div>
+            <span class="eyebrow reveal">Blog</span>
+            <h2 id="blog-title" class="reveal d1">Ensino, programação e informação a partir de dados</h2>
+            <p class="reveal d2">Textos sobre carreira, pesquisa e inteligência artificial — escritos por quem vive a tecnologia por dentro.</p>
+          </div>
+          <a class="btn btn-ghost reveal d2" href="/blog/">Ver todas as publicações {{ icon("arrow-right") }}</a>
+        </div>
+
+        <div class="home-blog-grid">
+          {% for post in posts[:site.home.blog_posts] %}
+          <article class="home-post reveal{% if loop.index0 %} d{{ loop.index0 }}{% endif %}">
+            {% if post.cover %}<a class="home-post-img" href="{{ post.url }}" tabindex="-1" aria-hidden="true"><img src="{{ post.cover }}" alt="" loading="lazy" decoding="async"></a>{% endif %}
+            <div class="home-post-body">
+              {% if post.kicker %}<span class="chapeu">{{ post.kicker }}</span>{% endif %}
+              <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+              <p class="home-post-meta"><a href="{{ post.author.url }}">{{ post.author.name }}</a> · {{ post.date|date_short }} · {{ post.minutes }} min</p>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import byline, post_row, icon %}
+{% set header_solid = true %}
+{% block fonts %}{% include "partials/editorial_head.html" %}{% endblock %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/blog.css">{% endblock %}
+{% block content %}
+    <div class="blog-page">
+      <header class="blog-masthead wrap">
+        <p class="chapeu">Blog do Programação Dinâmica</p>
+        <h1 class="blog-title">Ensino, programação e informação a partir de dados</h1>
+        <div class="blog-authors" aria-label="Autores">
+          <span>Escrito por</span>
+          {% for author in authors.values() %}
+          <a class="author-pill" href="{{ author.url }}">
+            <img src="{{ author.photo }}" alt="" width="32" height="32" loading="lazy">
+            <span>{{ author.name }}</span>
+          </a>
+          {% endfor %}
+          <a class="blog-rss" href="/blog/feed.xml" title="Assinar o feed RSS">RSS</a>
+        </div>
+      </header>
+
+      {% if posts %}
+      {% set lead = posts[0] %}
+      <article class="blog-lead wrap">
+        {% if lead.cover %}<a class="blog-lead-img" href="{{ lead.url }}" tabindex="-1" aria-hidden="true"><img src="{{ lead.cover }}" alt="" decoding="async"></a>{% endif %}
+        <div class="blog-lead-text">
+          {% if lead.kicker %}<span class="chapeu">{{ lead.kicker }}</span>{% endif %}
+          <h2 class="blog-lead-title"><a href="{{ lead.url }}">{{ lead.title }}</a></h2>
+          {% if lead.description %}<p class="linha-fina">{{ lead.description }}</p>{% endif %}
+          {{ byline(lead) }}
+        </div>
+      </article>
+
+      <section class="wrap blog-list-wrap" aria-labelledby="all-posts">
+        <h2 id="all-posts" class="blog-section-title">Últimas publicações</h2>
+        <ol class="post-list">
+          {% for post in posts[1:] %}
+          {{ post_row(post) }}
+          {% endfor %}
+        </ol>
+      </section>
+      {% else %}
+      <p class="wrap">Nenhuma publicação ainda.</p>
+      {% endif %}
+    </div>
+{% endblock %}

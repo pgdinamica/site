@@ -1,0 +1,42 @@
+<footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="/" aria-label="Programação Dinâmica — início">
+            <img src="/assets/img/logo.svg" width="28" height="40" alt="">
+            <span class="brand-name"><b>Programação Dinâmica</b><span>@pgdinamica</span></span>
+          </a>
+          <p>Ampliando o acesso à educação de qualidade em programação, ciência de dados e inteligência artificial.</p>
+          <div class="footer-contact">
+            <a href="mailto:{{ site.email }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6" stroke-linecap="round" stroke-linejoin="round"/></svg>{{ site.email }}</a>
+          </div>
+        </div>
+
+        <nav class="footer-col" aria-label="Navegação do rodapé">
+          <h4>Navegar</h4>
+          <ul>
+            <li><a href="/#sobre">Sobre</a></li>
+            <li><a href="/#canal">Canal no YouTube</a></li>
+            <li><a href="/#cursos">Cursos</a></li>
+            <li><a href="/#servicos">Serviços</a></li>
+            <li><a href="/#palestras">Palestras</a></li>
+            <li><a href="/#fundadores">Fundadores</a></li>
+          </ul>
+        </nav>
+
+        {% include "partials/footer_courses.html" %}
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year">2025</span> Programação Dinâmica. Todos os direitos reservados.</p>
+        <div class="socials">
+          <a href="https://www.youtube.com/programacaodinamica" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg></a>
+          <a href="https://www.instagram.com/pgdinamica" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.linkedin.com/company/programacaodinamica/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.2 8.3h4.5V24H.2V8.3Zm7.5 0h4.3v2.1h.06c.6-1.1 2-2.3 4.2-2.3 4.5 0 5.3 3 5.3 6.8V24h-4.5v-6.9c0-1.6 0-3.8-2.3-3.8s-2.6 1.8-2.6 3.6V24H7.7V8.3Z"/></svg></a>
+          <a href="https://www.twitter.com/pgdinamica" target="_blank" rel="noopener" aria-label="Twitter / X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.3 8.3L23 22h-6.8l-5.3-6.9L4.8 22H1.7l7.8-8.9L1 2h7l4.8 6.3L18.9 2Zm-1.2 18h1.7L7.4 3.8H5.6L17.7 20Z"/></svg></a>
+          <a href="https://www.facebook.com/pgdinamica" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7v-3.5h3.1V9.4c0-3 1.8-4.7 4.6-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9v2.2h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12Z"/></svg></a>
+          <a href="https://br.pinterest.com/pgdinamica/" target="_blank" rel="noopener" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 0 0-4.4 23.2c-.1-.9-.2-2.4 0-3.4l1.4-6s-.3-.7-.3-1.8c0-1.7 1-3 2.2-3 1 0 1.6.8 1.6 1.7 0 1-.7 2.6-1 4-.3 1.2.6 2.2 1.8 2.2 2.1 0 3.6-2.7 3.6-6 0-2.5-1.7-4.3-4.7-4.3a5.4 5.4 0 0 0-5.7 5.5c0 1 .3 1.8.8 2.3.2.3.3.4.2.7l-.3 1.2c-.1.4-.4.5-.8.3-1.4-.6-2.1-2.2-2.1-4C4.8 7.6 7.4 4 12.4 4c4 0 6.7 2.9 6.7 6 0 4.1-2.3 7.2-5.6 7.2-1.1 0-2.2-.6-2.6-1.3l-.7 2.8c-.3 1-.9 2.2-1.4 3A12 12 0 1 0 12 0Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>

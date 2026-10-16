@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import icon %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/pages.css">{% endblock %}
+{% set free = course.type == "gratuito" %}
+{% set has_room = course.lessons|length > 0 %}
+{% set in_room = free or course.members_only %}
+{% set cta_url = course.classroom_url if in_room else course.checkout %}
+{% set cta_ext = not in_room %}
+{% macro cta_button(size="btn-lg") -%}
+<a class="btn btn-primary {{ size }}" href="{{ cta_url }}"{% if cta_ext %} target="_blank" rel="noopener"{% endif %}{% if in_room %} data-resume-course="{{ course.slug }}"{% endif %}>{{ course.cta or "Quero começar" }} {{ icon("arrow-right") }}</a>
+{%- endmacro %}
+
+{% block content %}
+    <!-- HERO -->
+    <section class="course-hero{% if course.backdrop %} has-backdrop{% endif %}" aria-labelledby="course-title">
+      {% if course.backdrop %}
+      <img class="course-hero-backdrop" src="{{ course.backdrop }}" alt="" width="1920" height="1080" decoding="async">
+      <div class="course-hero-shade" aria-hidden="true"></div>
+      {% else %}
+      <div class="hero-bg" aria-hidden="true"></div>
+      {% endif %}
+      <div class="wrap course-hero-inner">
+        <div class="course-hero-copy">
+          <a class="press-back reveal" href="/cursos/">{{ icon("arrow-left") }} Todos os cursos</a>
+          <p class="course-hero-kicker reveal">
+            {% if course.badge %}<span class="pill">{{ course.badge }}</span>{% endif %}
+            {{ course.title }}{% if course.edition %} {{ course.edition }}{% endif %}
+          </p>
+          <h1 id="course-title" class="reveal d1">{{ course.headline or course.title }}</h1>
+          {% if course.subheadline %}<p class="lead reveal d2">{{ course.subheadline }}</p>{% endif %}
+          <div class="hero-actions reveal d3">
+            {{ cta_button() }}
+            {% if course.preview and course.classroom_url %}<a class="btn btn-glass btn-lg" href="{{ course.classroom_url }}" data-resume-course="{{ course.slug }}">{{ icon("play") }} {{ course.preview_cta or "Assistir grátis" }}</a>{% endif %}
+            {% if course.secondary %}<a class="btn btn-ghost on-dark btn-lg" href="{{ course.secondary.url }}" target="_blank" rel="noopener">{{ course.secondary.label }}</a>{% endif %}
+          </div>
+          {% if course.perks %}
+          <ul class="perks reveal d3">{% for p in course.perks %}<li>{{ icon("check") }}{{ p }}</li>{% endfor %}</ul>
+          {% endif %}
+        </div>
+        <div class="course-hero-art reveal d2">
+          <img src="{{ course.cover }}" alt="Capa do curso {{ course.title }}" width="700" height="700">
+          {% if free and course.lessons %}
+          <div class="hero-float br"><span class="dot">{{ icon("play") }}</span><div><div class="fig">{{ course.lessons|length }} aulas</div><div class="lbl">≈ {{ (course.total_minutes / 60)|round|int }} horas de conteúdo</div></div></div>
+          {% elif course.price_label %}
+          <div class="hero-float br"><div><div class="fig">{{ course.price_label }}</div><div class="lbl">{{ course.pricing.installments if course.pricing and course.pricing.installments else "investimento" }}</div></div></div>
+          {% endif %}
+        </div>
+      </div>
+      {% if course.stats %}
+      <div class="wrap"><div class="hero-stats course-stats reveal">
+        {% for s in course.stats %}<div class="stat"><div class="num">{{ s.value }}</div><div class="cap">{{ s.label }}</div></div>{% endfor %}
+      </div></div>
+      {% endif %}
+    </section>
+
+    {% if has_room %}
+    <div class="resume-bar" id="resumeBar" data-course="{{ course.slug }}" data-total="{{ course.free_lessons|length }}" hidden>
+      <div class="wrap resume-inner">
+        <div><b>Bem-vindo(a) de volta!</b> <span id="resumeText"></span></div>
+        <div class="resume-progress" aria-hidden="true"><span id="resumeFill"></span></div>
+        <a class="btn btn-primary" id="resumeLink" href="{{ course.classroom_url }}">Continuar de onde parei {{ icon("arrow-right") }}</a>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if course.pains %}
+    <section class="section c-pains" aria-labelledby="pains-h">
+      <div class="wrap c-pains-grid">
+        <div>
+          <span class="eyebrow reveal">Para você</span>
+          <h2 id="pains-h" class="reveal d1">{{ course.pains.title }}</h2>
+          {% if course.pains.answer %}<div class="c-answer reveal d2">{{ course.pains.answer|md }}</div>{% endif %}
+        </div>
+        <ul class="pain-list">
+          {% for p in course.pains["items"] %}<li class="reveal{% if loop.index0 %} d{{ loop.index0 }}{% endif %}">“{{ p }}”</li>{% endfor %}
+        </ul>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if course.html|striptags|trim %}
+    <section class="section c-about" aria-labelledby="about-h">
+      <div class="wrap c-narrow">
+        <span class="eyebrow reveal">Sobre o curso</span>
+        <h2 id="about-h" class="reveal d1">O que você vai encontrar</h2>
+        <div class="prose-light reveal d2">{{ course.html }}</div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if course.pillars %}
+    <section class="section c-pillars" aria-labelledby="pillars-h">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow reveal">Diferenciais</span>
+          <h2 id="pillars-h" class="reveal d1">{{ course.pillars.title }}</h2>
+          {% if course.pillars.intro %}<p class="reveal d2">{{ course.pillars.intro }}</p>{% endif %}
+        </div>
+        <div class="pillar-grid">
+          {% for p in course.pillars["items"] %}
+          <article class="pillar reveal{% if loop.index0 %} d{{ loop.index0 }}{% endif %}">
+            <span class="pillar-n">{{ "%02d"|format(loop.index) }}</span>
+            <h3>{{ p.title }}</h3><p>{{ p.text }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if course.audience %}
+    <section class="section c-audience" aria-label="Para quem é o curso">
+      <div class="wrap audience-grid">
+        <article class="audience-card yes reveal"><h3>Para quem é</h3><p>{{ course.audience.for }}</p></article>
+        <article class="audience-card no reveal d1"><h3>Para quem não é</h3><p>{{ course.audience.not_for }}</p></article>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- CONTEÚDO -->
+    {% if has_room %}
+    {% set n_locked = course.lessons|length - course.free_lessons|length %}
+    <section class="section c-modules" id="conteudo" aria-labelledby="modules-h">
+      <div class="wrap c-narrow">
+        <span class="eyebrow reveal">Conteúdo</span>
+        <h2 id="modules-h" class="reveal d1">{% if n_locked %}{{ course.free_lessons|length }} aulas abertas + {{ n_locked }} exclusivas do curso completo{% else %}{{ course.lessons|length }} aulas em {{ course.modules|length }} módulos{% endif %}</h2>
+        {% if course.members_only %}<p class="c-intro reveal d2">{{ icon("award") }} As gravações são exclusivas para membros do canal. O roteiro, o notebook e a referência de cada aula ficam abertos a todos.</p>{% endif %}
+        <div class="modules" data-progress-list="{{ course.slug }}">
+          {% for name, lessons in course.modules %}
+          <details class="module reveal"{% if loop.first %} open{% endif %}>
+            <summary><span class="module-n">Módulo {{ loop.index }}</span><span class="module-title">{{ name }}</span><span class="module-count">{{ lessons|length }} aulas</span></summary>
+            <ol class="module-lessons">
+              {% for l in lessons %}
+              <li data-lesson="{{ l.slug }}"{% if l.is_locked %} class="is-locked"{% endif %}><a href="{{ l.url }}"><span class="ml-check">{{ icon("lock") if l.is_locked else icon("check") }}</span><span class="ml-n">{{ l.number }}</span><span class="ml-title">{{ l.title }}</span>{% if l.is_locked %}<span class="ml-tag">Curso completo</span>{% elif l.is_members %}<span class="ml-tag ml-tag-members">Membros</span>{% endif %}{% if l.duration %}<span class="ml-dur">{{ l.duration }}</span>{% endif %}</a></li>
+              {% endfor %}
+            </ol>
+          </details>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+    {% if course.preview and course.upgrade %}
+    <section class="section c-compare" aria-labelledby="cmp-h">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow reveal">Grátis ou completo?</span>
+          <h2 id="cmp-h" class="reveal d1">Comece de graça. Vá além no curso completo.</h2>
+        </div>
+        <div class="compare-grid">
+          <article class="compare-card reveal">
+            <h3>Aulas abertas</h3>
+            <p class="compare-price">Grátis</p>
+            <ul>
+              <li class="yes">{{ icon("check") }} {{ course.free_lessons|length }} aulas em vídeo</li>
+              <li class="yes">{{ icon("check") }} Material de apoio de cada aula</li>
+              <li class="yes">{{ icon("check") }} Sala de estudo com progresso e anotações</li>
+              {% for b in course.upgrade.benefits %}<li class="no">{{ icon("lock") }} {{ b }}</li>{% endfor %}
+            </ul>
+            <a class="btn btn-ghost btn-block" href="{{ course.classroom_url }}" data-resume-course="{{ course.slug }}">{{ course.preview_cta or "Assistir grátis" }}</a>
+          </article>
+          <article class="compare-card is-featured reveal d1">
+            <span class="compare-flag">Recomendado</span>
+            <h3>{{ course.upgrade.title }}</h3>
+            <p class="compare-price">{{ course.upgrade.price }}{% if course.upgrade.installments %}<small>{{ course.upgrade.installments }}</small>{% endif %}</p>
+            <ul>
+              <li class="yes">{{ icon("check") }} Todas as {{ course.free_lessons|length }} aulas abertas</li>
+              <li class="yes">{{ icon("check") }} Material de apoio e sala de estudo</li>
+              {% for b in course.upgrade.benefits %}<li class="yes is-plus">{{ icon("check") }} {{ b }}</li>{% endfor %}
+            </ul>
+            <a class="btn btn-primary btn-block" href="{{ course.checkout }}" target="_blank" rel="noopener">{{ course.cta or "Quero o curso completo" }}</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% set mods = course.meta.get("modules") %}
+    {% if mods %}
+    <section class="section c-modules" id="conteudo" aria-labelledby="modules-h">
+      <div class="wrap c-narrow">
+        <span class="eyebrow reveal">Conteúdo</span>
+        <h2 id="modules-h" class="reveal d1">{{ mods.title }}</h2>
+        {% if mods.intro %}<p class="c-intro reveal d2">{{ mods.intro }}</p>{% endif %}
+        <div class="modules">
+          {% for m in mods["items"] %}
+          <details class="module reveal"{% if loop.first %} open{% endif %}>
+            <summary><span class="module-title">{{ m.title }}</span>{% if m.tag %}<span class="module-tag">{{ m.tag }}</span>{% endif %}{% if m.lessons %}<span class="module-count">{{ m.lessons|length }} itens</span>{% endif %}</summary>
+            {% if m.text %}<p class="module-text">{{ m.text }}</p>{% endif %}
+            {% if m.lessons %}<ol class="module-lessons static">{% for l in m.lessons %}<li><span class="ml-n">{{ loop.index }}</span><span class="ml-title">{{ l }}</span></li>{% endfor %}</ol>{% endif %}
+          </details>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if course.includes %}
+    <section class="section c-includes" aria-labelledby="inc-h">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow on-dark reveal">Incluso</span>
+          <h2 id="inc-h" class="reveal d1">{{ course.includes.title }}</h2>
+          {% if course.includes.intro %}<p class="reveal d2">{{ course.includes.intro }}</p>{% endif %}
+        </div>
+        <div class="formats-grid">
+          {% for i in course.includes["items"] %}
+          <article class="format-card on-dark reveal{% if loop.index0 %} d{{ loop.index0 }}{% endif %}"><span class="ic">{{ icon("check") }}</span><h3>{{ i.title }}</h3><p>{{ i.text }}</p></article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if course.careers %}
+    <section class="section c-careers" aria-labelledby="car-h">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow reveal">Carreira</span>
+          <h2 id="car-h" class="reveal d1">{{ course.careers.title }}</h2>
+          {% if course.careers.intro %}<p class="reveal d2">{{ course.careers.intro }}</p>{% endif %}
+        </div>
+        <div class="pillar-grid">
+          {% for c in course.careers["items"] %}<article class="pillar reveal{% if loop.index0 %} d{{ loop.index0 }}{% endif %}"><h3>{{ c.title }}</h3><p>{{ c.text }}</p></article>{% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% for inst in course.instructors %}
+    <section class="section c-instructor" aria-labelledby="inst-h-{{ loop.index }}">
+      <div class="wrap instructor-card reveal">
+        <a class="instructor-photo" href="{{ inst.url }}" tabindex="-1" aria-hidden="true"><img src="{{ inst.photo }}" alt="" width="900" height="1100" loading="lazy"></a>
+        <div>
+          <span class="eyebrow">{{ "Sua professora" if inst.slug == "kizzy-terra" else "Seu professor" }}</span>
+          <h2 id="inst-h-{{ loop.index }}"><a href="{{ inst.url }}">{{ inst.name }}</a></h2>
+          <p class="instructor-role">{{ inst.role }}</p>
+          <p>{{ course.instructor_message or inst.tagline }}</p>
+          {% if inst.awards %}<ul class="chips">{% for a in inst.awards[:3] %}<li>{{ a }}</li>{% endfor %}</ul>{% endif %}
+          <a class="founder-link" href="{{ inst.url }}">Conheça a trajetória completa {{ icon("arrow-right") }}</a>
+        </div>
+      </div>
+    </section>
+    {% endfor %}
+
+    {% if course.pricing %}
+    <section class="section c-pricing" id="inscricao" aria-labelledby="price-h">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="pricing-card reveal">
+          <h2 id="price-h">{{ course.pricing.title or "Investimento" }}</h2>
+          <p class="pricing-price">{{ course.pricing.price }}</p>
+          {% if course.pricing.installments %}<p class="pricing-inst">{{ course.pricing.installments }}</p>{% endif %}
+          {{ cta_button() }}
+          {% if course.pricing.note %}<p class="pricing-note">{{ course.pricing.note }}</p>{% endif %}
+          {% if course.pricing.guarantee %}<p class="pricing-guarantee">{{ icon("check") }} {{ course.pricing.guarantee }}</p>{% endif %}
+        </div>
+      </div>
+    </section>
+    {% elif free %}
+    <section class="section c-pricing" aria-label="Comece agora">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="pricing-card reveal">
+          <h2>Pronto(a) para começar?</h2>
+          <p class="pricing-price">Grátis</p>
+          <p class="pricing-inst">Sem cadastro. Seu progresso fica salvo neste navegador.</p>
+          {{ cta_button() }}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if course.faq %}
+    <section class="section c-faq" aria-labelledby="faq-h">
+      <div class="wrap c-narrow">
+        <span class="eyebrow reveal">Dúvidas</span>
+        <h2 id="faq-h" class="reveal d1">Perguntas frequentes</h2>
+        <div class="faq">
+          {% for f in course.faq %}
+          <details class="faq-item reveal"><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+{% endblock %}
+{% block scripts %}{% if has_room %}<script src="/assets/js/classroom.js" defer></script>{% endif %}{% endblock %}

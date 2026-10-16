@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import icon, rail_controls %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/stream.css">{% endblock %}
+{% block body_attrs %} class="stream-body"{% endblock %}
+
+{# Linha de informações de um curso: preço · instrutor · tamanho · nível #}
+{% macro meta_line(c) -%}
+<span class="sm-price{% if c.type == 'gratuito' %} is-free{% endif %}">{{ c.price_label }}</span>
+{% if c.instructors %}<span>com {{ c.instructors|map(attribute="name")|join(" e ") }}</span>{% endif %}
+{% if c.lessons %}<span>{% if c.preview %}{{ c.free_lessons|length }} aulas grátis{% else %}{{ c.lessons|length }} aulas{% endif %}{% if c.total_minutes %} · ≈ {{ (c.total_minutes / 60)|round|int }}h{% endif %}</span>
+{% elif c.meta.get("modules") %}<span>{{ c.meta.modules["items"]|length }} módulos</span>{% endif %}
+{% if c.level %}<span>{{ c.level }}</span>{% endif %}
+{%- endmacro %}
+
+{% macro primary_action(c, size="") -%}
+{% if c.classroom_url %}
+<a class="btn btn-play {{ size }}" href="{{ c.classroom_url }}" data-resume-course="{{ c.slug }}">{{ icon("play") }} <span>{{ "Assistir grátis" if c.preview else "Assistir agora" }}</span></a>
+{% else %}
+<a class="btn btn-play {{ size }}" href="{{ c.url }}">{{ icon("play") }} <span>Conhecer o curso</span></a>
+{% endif %}
+{%- endmacro %}
+
+{% block content %}
+    <h1 class="sr-only">Cursos do Programação Dinâmica</h1>
+
+    <!-- ============ DESTAQUE (billboard) ============ -->
+    <section class="billboard" id="billboard" aria-roledescription="carrossel" aria-label="Cursos em destaque">
+      {% for c in courses %}
+      <article class="bb-slide{% if loop.first %} is-active{% endif %}" id="bb-{{ loop.index }}" role="group"
+               aria-roledescription="slide" aria-label="{{ loop.index }} de {{ courses|length }}: {{ c.title }}"{% if not loop.first %} hidden{% endif %}>
+        <img class="bb-art" src="{{ c.backdrop or c.cover }}" alt="" width="1920" height="1080"{% if not loop.first %} loading="lazy"{% endif %} decoding="async">
+        <div class="bb-shade" aria-hidden="true"></div>
+        <div class="wrap bb-content">
+          <p class="bb-kicker"><img src="/assets/img/logo.svg" width="14" height="20" alt=""> <span>Curso</span>{% if c.badge %}<span class="bb-badge">{{ c.badge }}</span>{% endif %}</p>
+          <h2 class="bb-title">{{ c.title }}</h2>
+          <p class="stream-meta">{{ meta_line(c) }}</p>
+          <p class="bb-synopsis">{{ c.subheadline or c.summary }}</p>
+          <div class="bb-actions">
+            {{ primary_action(c, "btn-lg") }}
+            <a class="btn btn-glass btn-lg" href="{{ c.url }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01" stroke-linecap="round"/></svg> Mais informações</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+      <div class="wrap bb-dots-wrap">
+        <div class="bb-dots" role="tablist" aria-label="Escolher curso em destaque">
+          {% for c in courses %}
+          <button type="button" class="bb-dot" role="tab" aria-controls="bb-{{ loop.index }}" aria-selected="{{ 'true' if loop.first else 'false' }}" aria-label="{{ c.title }}"><span></span></button>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <div class="stream-rows">
+      <!-- ============ CONTINUAR ASSISTINDO (preenchido pelo stream.js) ============ -->
+      <section class="stream-row" id="rowContinue" aria-labelledby="row-continue-title" hidden>
+        <div class="wrap row-head">
+          <h2 id="row-continue-title">Continuar assistindo</h2>
+          {{ rail_controls("rail-continue", dark=true) }}
+        </div>
+        <ul class="rail rail-episodes" id="rail-continue"></ul>
+      </section>
+
+      <!-- ============ TODOS OS CURSOS ============ -->
+      <section class="stream-row" aria-labelledby="row-all-title">
+        <div class="wrap row-head">
+          <h2 id="row-all-title">Todos os cursos</h2>
+          {{ rail_controls("rail-all", dark=true) }}
+        </div>
+        <ul class="rail rail-titles" id="rail-all">
+          {% for c in courses %}
+          <li>
+            <a class="title-card" href="{{ c.url }}">
+              <img src="{{ c.thumb or c.cover }}" alt="" width="960" height="540" loading="lazy" decoding="async">
+              {% if c.badge %}<span class="tc-badge{% if c.type != 'pago' %} is-green{% endif %}">{{ c.badge }}</span>{% endif %}
+              <span class="tc-body">
+                <span class="tc-title">{{ c.title }}</span>
+                <span class="tc-more">
+                  <span class="stream-meta">{{ meta_line(c) }}</span>
+                  <span class="tc-summary">{{ c.summary }}</span>
+                </span>
+              </span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <!-- ============ EPISÓDIOS DOS CURSOS ABERTOS ============ -->
+      {% for c in courses if c.lessons %}
+      <section class="stream-row" aria-labelledby="row-ep-{{ c.slug }}">
+        <div class="wrap row-head">
+          <h2 id="row-ep-{{ c.slug }}"><span class="row-kicker{% if c.members_only %} is-gold{% endif %}">{% if c.members_only %}Para membros do canal{% elif c.preview %}Aulas abertas + curso completo{% else %}Grátis · comece agora{% endif %}</span>{{ c.title }}</h2>
+          {{ rail_controls("rail-ep-" ~ c.slug, dark=true) }}
+        </div>
+        <ol class="rail rail-episodes" id="rail-ep-{{ c.slug }}" data-progress-list="{{ c.slug }}">
+          {% for l in c.lessons %}
+          <li data-lesson="{{ l.slug }}"{% if l.is_locked %} class="is-locked"{% endif %}>
+            <a class="ep-card" href="{{ l.url }}">
+              <span class="ep-thumb">
+                <img src="{{ l.thumb }}" alt="" width="320" height="180" loading="lazy" decoding="async">
+                {% if l.is_locked %}<span class="ep-lock">{{ icon("lock") }} Curso completo</span>{% elif l.is_members %}<span class="ep-members">Membros</span>{% endif %}
+                <span class="ep-play" aria-hidden="true">{{ icon("lock") if l.is_locked else icon("play") }}</span>
+                {% if l.duration %}<span class="ep-dur">{{ l.duration }}</span>{% endif %}
+                <span class="ep-done" aria-hidden="true">{{ icon("check") }} Concluída</span>
+              </span>
+              <span class="ep-text"><span class="ep-n">Aula {{ l.number }}</span><span class="ep-title">{{ l.title }}</span></span>
+            </a>
+          </li>
+          {% endfor %}
+        </ol>
+      </section>
+      {% endfor %}
+
+      <!-- ============ PROFESSORES ============ -->
+      <section class="stream-row" aria-labelledby="row-teachers-title">
+        <div class="wrap row-head"><h2 id="row-teachers-title">Quem ensina</h2></div>
+        <ul class="rail rail-people" id="rail-people">
+          {% for a in authors.values() if a.courses %}
+          <li>
+            <a class="person-card" href="{{ a.url }}">
+              <img src="{{ a.photo }}" alt="" width="600" height="800" loading="lazy" decoding="async">
+              <span class="pc-body"><span class="pc-name">{{ a.name }}</span><span class="pc-role">{{ a.courses|length }} {{ "curso" if a.courses|length == 1 else "cursos" }} · {{ a.role.split("·")[0]|trim }}</span></span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+    </div>
+
+    <script type="application/json" id="streamData">{{ courses|selectattr("lessons")|map(attribute="stream_data")|list|tojson }}</script>
+{% endblock %}
+{% block scripts %}<script src="/assets/js/stream.js" defer></script>{% endblock %}
