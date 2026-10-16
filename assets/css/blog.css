@@ -1,9 +1,9 @@
 /* ==========================================================================
    Blog, posts e perfis — camada editorial (inspirada em revistas impressas)
-   Serif de leitura: Newsreader · Chapéus e datas: Barlow Condensed
+   Texto corrido: Inter (a mesma do site), ajustada para leitura longa · Títulos: Space Grotesk
    ========================================================================== */
 :root {
-  --serif: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --reading: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --condensed: var(--font-display);  /* rótulos: mesma família dos títulos do site */
   --rule: #d9dee7;
   --reading-scale: 1;
@@ -66,7 +66,8 @@
 .reading-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--emerald), var(--gold)); transition: width 0.1s linear; }
 
 .post { background: var(--paper); padding: calc(74px + clamp(2rem, 5vw, 3.5rem)) var(--gutter) 2rem; }
-.post-head, .post-cover, .prose, .post-foot { max-width: 720px; margin-inline: auto; }
+.post-head, .post-cover, .post-foot { max-width: 720px; margin-inline: auto; }
+.prose { max-width: 680px; margin-inline: auto; }   /* ~70 caracteres por linha */
 .post-back { display: flex; width: fit-content; align-items: center; gap: 0.4rem; font-family: var(--condensed); font-size: 0.95rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.6rem; }
 .post-back svg { width: 1rem; }
 .post-back:hover { color: var(--emerald); }
@@ -90,20 +91,28 @@
 .post-cover img { width: 100%; border-radius: 4px; }
 
 /* Corpo do texto — escala controlada pelo botão A−/A+ */
-.prose { overflow-wrap: break-word; font-family: var(--serif); font-size: calc(1.2rem * var(--reading-scale)); line-height: 1.7; color: #1d2433; padding-top: 1.6rem; }
-.prose > * + * { margin-top: 1.15em; }
-.prose h2, .prose h3, .prose h4 { font-family: var(--font-display); font-weight: 600; color: var(--text-strong); letter-spacing: -0.01em; line-height: 1.2; margin-top: 1.9em; }
-.prose h2 { font-size: 1.55em; }
-.prose h3 { font-size: 1.3em; }
+.prose {
+  overflow-wrap: break-word; font-family: var(--reading); font-optical-sizing: auto;
+  font-size: calc(1.125rem * var(--reading-scale)); line-height: 1.78; letter-spacing: -0.003em;
+  color: #2a3140; padding-top: 1.6rem; text-wrap: pretty;
+  font-feature-settings: "cv11" 1, "ss03" 1;   /* "a" de um andar e "g" simples: lembram a Space Grotesk dos títulos */
+}
+.prose > * + * { margin-top: 1.2em; }
+.prose > p:first-of-type { font-size: 1.08em; color: var(--text-strong); }   /* primeiro parágrafo como abertura */
+.prose h2, .prose h3, .prose h4 { font-family: var(--font-display); font-weight: 600; color: var(--text-strong); letter-spacing: -0.015em; line-height: 1.22; margin-top: 2em; text-wrap: balance; }
+.prose :is(h2, h3, h4) + * { margin-top: 0.65em; }
+.prose h2 { font-size: 1.5em; }
+.prose h3 { font-size: 1.25em; }
 .prose h4 { font-size: 1.1em; }
 .prose a { color: #0a7a57; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .prose a:hover { color: var(--emerald); }
-.prose strong { color: var(--text-strong); }
+.prose strong { color: var(--text-strong); font-weight: 600; }
 .prose ul, .prose ol { padding-left: 1.4em; }
 .prose ul { list-style: disc; }
 .prose ol { list-style: decimal; }
 .prose li + li { margin-top: 0.4em; }
-.prose blockquote { border-left: 3px solid var(--emerald); padding: 0.2em 0 0.2em 1.1em; font-style: italic; color: var(--text); font-size: 1.08em; }
+.prose blockquote { border-left: 3px solid var(--emerald); padding: 0.15em 0 0.15em 1.1em; font-family: var(--font-display); font-weight: 500; color: var(--text-strong); font-size: 1.15em; line-height: 1.5; letter-spacing: -0.01em; }
+.prose blockquote em { font-style: normal; }
 .prose img { border-radius: 4px; margin-inline: auto; }
 .prose p:has(> img) + p > em:only-child { display: block; text-align: center; font-size: 0.82em; color: var(--text-muted); margin-top: -0.6em; }
 .prose hr { border: 0; text-align: center; margin: 2.2em 0; }
@@ -176,7 +185,8 @@ body:has(.post) { background: var(--paper); }
 .profile-about { background: var(--paper); }
 .profile-about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
 .profile-about h2, .profile-career h2, .profile-posts h2, .courses h2 { font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.6rem); margin-top: 0.8rem; }
-.prose-profile { --reading-scale: 0.92; padding-top: 1.2rem; }
+.prose-profile { --reading-scale: 0.95; padding-top: 1.2rem; max-width: 640px; margin-inline: 0; }
+.prose-profile > p:first-of-type { font-size: 1em; color: inherit; }
 .profile-aside { background: var(--paper-2); border: 1px solid var(--paper-line); border-radius: var(--radius); padding: 1.6rem; position: sticky; top: 140px; }
 .profile-aside h3 { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
 .profile-aside h3 + * { margin-top: 0.9rem; }
@@ -211,6 +221,9 @@ body:has(.post) { background: var(--paper); }
 .profile-section-head .btn svg { width: 1em; }
 .talks .profile-section-head h2 { color: #fff; font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.6rem); margin-top: 0.8rem; }
 .talks-more { margin-top: 1.6rem; text-align: center; }
+.talks-lead { color: var(--on-dark-muted); margin-top: -0.6rem; }
+.talks .rail-head { margin-top: 1rem; }
+.talks .rail-events { margin-top: 0.4rem; }
 .talks-more a { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--emerald-bright); font-family: var(--font-display); font-weight: 600; }
 .talks-more svg { width: 1em; }
 .press h2 { color: #fff; font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.6rem); margin-top: 0.8rem; }

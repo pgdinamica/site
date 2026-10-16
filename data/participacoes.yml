@@ -1,53 +1,76 @@
 # Participações em eventos, podcasts e collabs (carrossel). Ordem = ordem de exibição.
 # `kind` define a cor da etiqueta: podcast, painel, evento, keynote, collab.
+# `people` liga a participação ao perfil de quem participou (aparece em "Leve … para o seu evento").
 items:
   - id: YY7DRvLbDDg
     kind: podcast
     label: "Podcast"
     title: "Papinho Tech #137"
     subtitle: "Hallison Paz, PhD pelo IMPA"
+    people: [hallison-paz]
   - id: RKVQSwso24Q
     kind: painel
     label: "Podcast"
     title: "Substantivo Feminino"
     subtitle: "IA: gênero, oportunidades e desafios"
+    people: [kizzy-terra]
   - id: rfVQmiOUdWw
     kind: podcast
     label: "Podcast"
     title: "IA Trendcast #51"
     subtitle: "Kizzy Terra: ética, futuro do trabalho e dados"
+    people: [kizzy-terra]
   - id: adT-Rf1grTQ
     kind: evento
     label: "Evento"
     title: "2º Seminário Internacional de IA"
     subtitle: "IA em Educação e Cultura"
+    people: [kizzy-terra]
   - id: yfP30_zqNEc
     kind: evento
     label: "Evento"
     title: "Brazil Forum"
     subtitle: "Regulando a Inteligência Artificial e a pesquisa"
+    people: [kizzy-terra]
   - id: 51wUC8Qdqs8
     kind: podcast
     label: "Podcast"
     title: "A matemática das apostas"
     subtitle: "Como as bets funcionam · Ep. #23"
+    people: [hallison-paz]
   - id: XCHerL2AZLQ
     kind: podcast
     label: "Podcast"
     title: "TecnoTalk"
     subtitle: "com Kizzy Terra e Bruno Sabino"
+    people: [kizzy-terra]
   - id: OHfA0aUNcHQ
     kind: podcast
     label: "Podcast"
     title: "2nd Season"
     subtitle: "Entrevista com Hallison Paz"
+    people: [hallison-paz]
   - id: P7MAIEBP_zg
     kind: podcast
     label: "Podcast"
     title: "Tem tempo para pergunta? - The Dev Conf"
     subtitle: "Kizzy Terra — o impacto da educação na transformação"
+    people: [kizzy-terra]
   - id: p80us-nLGwk
     kind: podcast
     label: "Podcast"
     title: "Mesa Amarela #26"
     subtitle: "A inteligência artificial vai roubar o nosso emprego?"
+    people: [kizzy-terra]
+  - id: X01dE5MmAjk
+    kind: keynote
+    label: "Palestra"
+    title: "32ª SECComp"
+    subtitle: "Filtrando o ruído da vida melhor que um modelo de difusão"
+    people: [hallison-paz]
+  - id: 00rJPgQkLdM
+    kind: keynote
+    label: "Palestra"
+    title: "Itaú Festival de Produtos"
+    subtitle: "Vieses e inteligência artificial"
+    people: [kizzy-terra, hallison-paz]

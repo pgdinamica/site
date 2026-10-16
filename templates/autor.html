@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "partials/macros.html" import post_row, press_card, course_card, icon %}
+{% from "partials/macros.html" import post_row, press_card, course_card, icon, rail_controls %}
 {% block fonts %}{% include "partials/editorial_head.html" %}{% endblock %}
 {% block styles %}<link rel="stylesheet" href="/assets/css/blog.css">{% endblock %}
 {% block content %}
@@ -32,10 +32,10 @@
       <div class="wrap">
         <a href="#sobre">Sobre</a>
         <a href="#trajetoria">Trajetória</a>
-        {% if author.courses %}<a href="#cursos">Cursos</a>{% endif %}
-        {% if author.posts %}<a href="#textos">Textos <span>{{ author.posts|length }}</span></a>{% endif %}
         <a href="#palestras">Palestras</a>
+        {% if author.posts %}<a href="#textos">Textos <span>{{ author.posts|length }}</span></a>{% endif %}
         {% if author.press %}<a href="#imprensa">Na mídia <span>{{ author.press|length }}</span></a>{% endif %}
+        {% if author.courses %}<a href="#cursos">Cursos</a>{% endif %}
       </div>
     </nav>
 
@@ -92,7 +92,7 @@
               {% for x in author.education %}
               <li>
                 <p class="timeline-role">{{ x.degree }}{% if x.status %} <span class="status">{{ x.status }}</span>{% endif %}</p>
-                <p class="timeline-org">{{ x.school }}</p>
+                <p class="timeline-org">{{ x.school }}{% if x.period %} · {{ x.period }}{% endif %}</p>
               </li>
               {% endfor %}
             </ol>
@@ -101,35 +101,6 @@
         </div>
       </div>
     </section>
-
-    {% if author.courses %}
-    <section class="section courses" id="cursos" aria-labelledby="courses-h">
-      <div class="wrap">
-        <span class="eyebrow reveal">Cursos</span>
-        <h2 id="courses-h" class="reveal d1">Aprenda com {{ author.first_name }}</h2>
-        <div class="course-grid profile-courses">
-          {% for c in author.courses %}{{ course_card(c) }}{% endfor %}
-        </div>
-      </div>
-    </section>
-    {% endif %}
-
-    {% if author.posts %}
-    <section class="section profile-posts" id="textos" aria-labelledby="posts-h">
-      <div class="wrap">
-        <div class="profile-section-head">
-          <div>
-            <span class="eyebrow reveal">Textos</span>
-            <h2 id="posts-h" class="reveal d1">Publicações de {{ author.first_name }}</h2>
-          </div>
-          <a class="btn btn-ghost reveal" href="/blog/">Todo o blog {{ icon("arrow-right") }}</a>
-        </div>
-        <ol class="post-list">
-          {% for p in author.posts %}{{ post_row(p, show_author=false) }}{% endfor %}
-        </ol>
-      </div>
-    </section>
-    {% endif %}
 
     {% set my_talks = talks|selectattr("speakers", "contains_author", author)|list %}
     <section class="section talks" id="palestras" aria-labelledby="talks-h">
@@ -141,6 +112,21 @@
           </div>
           <a class="btn btn-primary reveal" href="mailto:{{ site.email }}?subject={{ ('Palestra — ' ~ author.name)|urlencode }}">Solicitar palestra</a>
         </div>
+        {% set my_events = participacoes|selectattr("people", "contains_author", author.slug)|list %}
+        {% if my_events %}
+        <p class="talks-lead reveal d1">Algumas participações em podcasts, painéis e eventos.</p>
+        <div class="rail-head">{{ rail_controls("rail-events-" ~ author.slug, dark=true) }}</div>
+      </div>
+      <ul class="rail rail-events reveal" id="rail-events-{{ author.slug }}" aria-label="Participações de {{ author.name }} em eventos e podcasts">
+        {% for e in my_events %}
+        <li><a class="event-card" href="https://youtu.be/{{ e.id }}" target="_blank" rel="noopener">
+          <div class="event-thumb"><img loading="lazy" src="{{ e.thumb }}" alt="" width="480" height="270"><span class="play" aria-hidden="true">{{ icon("play") }}</span></div>
+          <div class="event-meta"><span class="event-tag {{ e.kind }}">{{ e.label }}</span><h3>{{ e.title }}</h3>{% if e.subtitle %}<p>{{ e.subtitle }}</p>{% endif %}</div>
+        </a></li>
+        {% endfor %}
+      </ul>
+      <div class="wrap">
+        {% else %}
         <div class="talk-grid">
           {% for t in my_talks[:6] %}
           <article class="talk-card reveal{% if loop.index0 % 3 %} d{{ loop.index0 % 3 }}{% endif %}">
@@ -150,9 +136,27 @@
           </article>
           {% endfor %}
         </div>
-        {% if my_talks|length > 6 %}<p class="talks-more"><a href="/palestras/">Ver todas as {{ my_talks|length }} palestras {{ icon("arrow-right") }}</a></p>{% endif %}
+        {% endif %}
+        <p class="talks-more"><a href="/palestras/">Conheça os temas das palestras {{ icon("arrow-right") }}</a></p>
       </div>
     </section>
+
+    {% if author.posts %}
+    <section class="section profile-posts" id="textos" aria-labelledby="posts-h">
+      <div class="wrap">
+        <div class="profile-section-head">
+          <div>
+            <span class="eyebrow reveal">Textos</span>
+            <h2 id="posts-h" class="reveal d1">Últimas publicações de {{ author.first_name }}</h2>
+          </div>
+          <a class="btn btn-ghost reveal" href="/blog/">Todo o blog {{ icon("arrow-right") }}</a>
+        </div>
+        <ol class="post-list">
+          {% for p in author.posts[:5] %}{{ post_row(p, show_author=false) }}{% endfor %}
+        </ol>
+      </div>
+    </section>
+    {% endif %}
 
     {% if author.press %}
     <section class="section press" id="imprensa" aria-labelledby="press-h">
@@ -161,9 +165,21 @@
         <span class="eyebrow reveal">Na mídia</span>
         <h2 id="press-h" class="reveal d1">{{ author.name }} na imprensa</h2>
         <ul class="press-wall reveal" style="margin-top:2rem">
-          {% for item in author.press %}{{ press_card(item) }}{% endfor %}
+          {% for item in author.press[:6] %}{{ press_card(item) }}{% endfor %}
         </ul>
         <div class="press-more reveal"><a class="btn btn-ghost on-dark" href="/imprensa/">Todas as menções ao Programação Dinâmica</a></div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if author.courses %}
+    <section class="section courses" id="cursos" aria-labelledby="courses-h">
+      <div class="wrap">
+        <span class="eyebrow reveal">Cursos</span>
+        <h2 id="courses-h" class="reveal d1">Aprenda com {{ author.first_name }}</h2>
+        <div class="course-grid profile-courses">
+          {% for c in author.courses %}{{ course_card(c) }}{% endfor %}
+        </div>
       </div>
     </section>
     {% endif %}
