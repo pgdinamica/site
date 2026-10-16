@@ -444,6 +444,8 @@ def build() -> int:
     else:
         OUT.mkdir()
     shutil.copytree(ASSETS, OUT / "assets")
+    # Domínio próprio no GitHub Pages (vem de `url:` em data/site.yml)
+    (OUT / "CNAME").write_text(urlparse(site["url"]).netloc + "\n", encoding="utf-8")
     pages: list[str] = []
 
     def render(template: str, url: str, sitemap: bool = True, **ctx):

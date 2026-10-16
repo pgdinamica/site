@@ -10,9 +10,9 @@ Entender porcentagem é essencial para uma interpretação coerente do mundo. No
 
 Fontes:
 
-1. [Nexo Jornal](https://www.nexojornal.com.br/expresso/2021/03/23/A-pressão-sobre-o-governo-no-Brasil-de-3.251-mortos-num-dia)
+1. [Nexo Jornal](https://www.nexojornal.com.br/expresso/2021/03/23/a-pressao-sobre-o-governo-no-brasil-de-3-251-mortos-num-dia)
 2. [Folha Dirigida](https://folhadirigida.com.br/mais/noticias/mercado/mulheres-na-tecnologia-como-inclui-las-nesse-mercado)
-3. [INEP](http://portal.inep.gov.br/artigo/-/asset_publisher/B4AQV9zFY7Bv/content/no-ensino-medio-67-dos-estudantes-tem-desempenho-critico-em-matematica/21206)
+3. [O Globo](https://oglobo.globo.com/brasil/educacao/mais-de-70-dos-concluintes-do-ensino-medio-tem-desempenho-insuficiente-em-portugues-matematica-23023735)
 
 ## Nesta aula
 1. Porcentagem como “frações” de base 100

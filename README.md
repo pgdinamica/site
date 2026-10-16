@@ -61,9 +61,16 @@ _site/         Site gerado (não versionado)
 
 ## Publicar
 
-Qualquer hospedagem de site estático que rode um comando de build serve — por exemplo
-**Netlify**, **Cloudflare Pages** ou **GitHub Pages** (este último exige repositório público
-no plano gratuito). Configuração:
+O site é publicado no **GitHub Pages**, em **https://pgdinamica.com**, automaticamente a cada
+envio para a `main`: o workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
+roda `python build.py` e publica a pasta `_site/`. O andamento aparece na aba **Actions** do
+repositório (dá para rodar de novo à mão em *Actions → Publicar site → Run workflow*).
+
+- O domínio vem de `url:` em `data/site.yml`; o build grava o arquivo `_site/CNAME` com ele.
+- Os links internos começam com `/`, então o site precisa ficar na raiz de um domínio
+  (não funciona em `programacaodinamica.github.io/site/`).
+
+Para usar outra hospedagem de site estático (Netlify, Cloudflare Pages…):
 
 - **Comando de build:** `pip install -r requirements.txt && python build.py`
 - **Pasta publicada:** `_site`
