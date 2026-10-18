@@ -7,6 +7,7 @@ cover: /assets/img/cursos/matematica-elementar-para-computacao-square.jpg   # ca
 backdrop: /assets/img/cursos/matematica-elementar-para-computacao-backdrop.jpg   # capa horizontal 16:9 (destaque)
 thumb: /assets/img/cursos/matematica-elementar-para-computacao-thumb.jpg         # capa horizontal 16:9 (cards)
 topics: ["Matemática"]   # temas (filtros da página /cursos/)
+billboard: 3   # aparece no destaque do topo de /cursos/ (nesta ordem)
 level: "Fundamentos"
 format: "Gravações das lives · sala de estudo"
 summary: A base matemática que sustenta a programação e a ciência de dados, sem medo.

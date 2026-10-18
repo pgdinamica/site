@@ -7,6 +7,7 @@ cover: /assets/img/cursos/sql-para-analise-de-dados-square.jpg   # capa quadrada
 backdrop: /assets/img/cursos/sql-para-analise-de-dados-backdrop.jpg   # capa horizontal 16:9 (destaque)
 thumb: /assets/img/cursos/sql-para-analise-de-dados-thumb.jpg         # capa horizontal 16:9 (cards)
 topics: ["Dados", "SQL"]   # temas (filtros da página /cursos/)
+billboard: 2   # aparece no destaque do topo de /cursos/ (nesta ordem)
 level: "Do zero"
 format: "Gravado · encontros ao vivo gravados"
 summary: Consulte, cruze e transforme dados com SQL — a linguagem essencial de quem trabalha com dados.

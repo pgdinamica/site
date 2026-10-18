@@ -23,15 +23,17 @@
 {% block content %}
     {# Catálogo em ordem alfabética (sem considerar acentos) e a lista de temas para os filtros #}
     {% set catalog = courses|sort(attribute="sort_key") %}
+    {# Destaque do topo: só os cursos com `billboard:` (na ordem do número); sem nenhum, mostra todos #}
+    {% set bb = catalog|selectattr("billboard")|sort(attribute="billboard")|list or catalog %}
     {% set tp = namespace(names=[]) %}
     {% for c in catalog %}{% for t in c.topics or [] %}{% if t not in tp.names %}{% set tp.names = tp.names + [t] %}{% endif %}{% endfor %}{% endfor %}
     <h1 class="sr-only">Cursos do Programação Dinâmica</h1>
 
     <!-- ============ DESTAQUE (billboard) ============ -->
     <section class="billboard" id="billboard" aria-roledescription="carrossel" aria-label="Cursos em destaque">
-      {% for c in catalog %}
+      {% for c in bb %}
       <article class="bb-slide{% if loop.first %} is-active{% endif %}" id="bb-{{ loop.index }}" role="group"
-               aria-roledescription="slide" aria-label="{{ loop.index }} de {{ catalog|length }}: {{ c.title }}"{% if not loop.first %} hidden{% endif %}>
+               aria-roledescription="slide" aria-label="{{ loop.index }} de {{ bb|length }}: {{ c.title }}"{% if not loop.first %} hidden{% endif %}>
         <img class="bb-art" src="{{ c.backdrop or c.cover }}" alt="" width="1920" height="1080"{% if not loop.first %} loading="lazy"{% endif %} decoding="async">
         <div class="bb-shade" aria-hidden="true"></div>
         <div class="wrap bb-content">
@@ -48,7 +50,7 @@
       {% endfor %}
       <div class="wrap bb-dots-wrap">
         <div class="bb-dots" role="tablist" aria-label="Escolher curso em destaque">
-          {% for c in catalog %}
+          {% for c in bb %}
           <button type="button" class="bb-dot" role="tab" aria-controls="bb-{{ loop.index }}" aria-selected="{{ 'true' if loop.first else 'false' }}" aria-label="{{ c.title }}"><span></span></button>
           {% endfor %}
         </div>

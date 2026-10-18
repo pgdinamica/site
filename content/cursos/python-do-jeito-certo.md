@@ -8,6 +8,7 @@ cover: /assets/img/cursos/python-do-jeito-certo-square.jpg   # capa quadrada (ca
 backdrop: /assets/img/cursos/python-do-jeito-certo-backdrop.jpg   # capa horizontal 16:9 (destaque)
 thumb: /assets/img/cursos/python-do-jeito-certo-thumb.jpg         # capa horizontal 16:9 (cards)
 topics: ["Programação"]   # temas (filtros da página /cursos/)
+billboard: 1   # aparece no destaque do topo de /cursos/ (nesta ordem)
 pinned: true   # aparece primeiro em "Todos os cursos" (os demais seguem a ordem alfabética)
 level: "Do zero"
 format: "Gravado · com suporte do professor"
