@@ -1,34 +1,31 @@
-/* Leitura de posts: tamanho do texto (A−/A/A+), barra de progresso e copiar link. */
+/* Leitura de posts: tamanho do texto (slider), barra de progresso e copiar link. */
 (function () {
   "use strict";
   var KEY = "pd-reading-scale";
-  var STEPS = [0.88, 1, 1.12, 1.26, 1.42];
+  var MIN = 0.85, MAX = 1.45;
   var root = document.documentElement;
 
   var read = function () { try { return parseFloat(localStorage.getItem(KEY)); } catch (e) { return NaN; } };
   var save = function (v) { try { localStorage.setItem(KEY, String(v)); } catch (e) { /* modo privado */ } };
+  var clamp = function (v) { return Math.min(MAX, Math.max(MIN, v)); };
 
-  var scale = STEPS.indexOf(read()) >= 0 ? read() : 1;
-  var buttons = Array.prototype.slice.call(document.querySelectorAll("[data-font]"));
+  /* Tamanho do texto: slider contínuo (salvo neste navegador). Duplo clique volta ao padrão. */
+  var saved = read();
+  var scale = isNaN(saved) ? 1 : clamp(saved);
+  var slider = document.getElementById("readerSize");
   var apply = function () {
-    root.style.setProperty("--reading-scale", scale);
-    var i = STEPS.indexOf(scale);
-    buttons.forEach(function (b) {
-      var d = parseInt(b.getAttribute("data-font"), 10);
-      if (d === 0) b.classList.toggle("is-active", scale === 1);
-      if (d === -1) b.disabled = i <= 0;
-      if (d === 1) b.disabled = i >= STEPS.length - 1;
-    });
+    root.style.setProperty("--reading-user", scale.toFixed(2));
+    if (slider) {
+      slider.value = scale;
+      slider.setAttribute("aria-valuetext", Math.round(scale * 100) + "%");
+      slider.style.setProperty("--fill", ((scale - MIN) / (MAX - MIN) * 100).toFixed(1) + "%");
+    }
   };
-  buttons.forEach(function (b) {
-    b.addEventListener("click", function () {
-      var d = parseInt(b.getAttribute("data-font"), 10);
-      var i = STEPS.indexOf(scale);
-      scale = d === 0 ? 1 : STEPS[Math.max(0, Math.min(STEPS.length - 1, i + d))];
-      save(scale);
-      apply();
-    });
-  });
+  if (slider) {
+    slider.addEventListener("input", function () { scale = clamp(parseFloat(slider.value)); apply(); });
+    slider.addEventListener("change", function () { save(scale); });
+    slider.addEventListener("dblclick", function () { scale = 1; apply(); save(scale); });
+  }
   apply();
 
   /* Barra de progresso de leitura */

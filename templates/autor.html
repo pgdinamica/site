@@ -2,6 +2,7 @@
 {% from "partials/macros.html" import post_row, press_card, course_card, icon, rail_controls %}
 {% block fonts %}{% include "partials/editorial_head.html" %}{% endblock %}
 {% block styles %}<link rel="stylesheet" href="/assets/css/blog.css">{% endblock %}
+{% block body_attrs %} class="profile-page"{% endblock %}
 {% block content %}
     <section class="profile-hero" aria-labelledby="profile-name">
       <div class="hero-bg" aria-hidden="true"></div>
@@ -14,9 +15,11 @@
           <h1 id="profile-name" class="reveal d1">{{ author.name }}</h1>
           <p class="profile-tagline reveal d2">{{ author.tagline }}</p>
           <div class="profile-actions reveal d3">
-            <a class="btn btn-primary" href="mailto:{{ author.email or site.email }}">{{ icon("mail") }} Email</a>
+            <a class="btn btn-primary" href="mailto:{{ author.email or site.email }}" aria-label="Email" title="Email">{{ icon("mail") }}<span class="btn-label">Email</span></a>
             {% for link in author.links or [] %}
-            <a class="btn btn-ghost on-dark" href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>
+            {% set u = link.url|lower %}
+            {% set ic = link.icon or ("linkedin" if "linkedin" in u else "instagram" if "instagram" in u else "x" if ("twitter.com" in u or "x.com" in u) else "twitch" if "twitch" in u else "github" if "github" in u else "youtube" if "youtube" in u else "link") %}
+            <a class="btn btn-ghost on-dark" href="{{ link.url }}" target="_blank" rel="noopener" aria-label="{{ link.label }}" title="{{ link.label }}">{{ icon(ic) }}<span class="btn-label">{{ link.label }}</span></a>
             {% endfor %}
           </div>
           {% if author.stats %}

@@ -13,6 +13,10 @@ photos:
       caption: "Fórum RNP 2026 · IA, Pessoas e Futuro"
       credit: "Fórum RNP 2026"
       position: "42% 50%"
+    - src: /assets/img/fotos/hallison-forum-rnp.jpg
+      alt: "Hallison Paz falando ao microfone no palco do Fórum RNP 2026"
+      credit: "Fórum RNP 2026"
+      position: "55% 30%"
     - src: /assets/img/fotos/kizzy-palco.jpg
       alt: "Kizzy Terra sorrindo no palco, com microfone na mão"
       position: "40% 30%"

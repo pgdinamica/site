@@ -2,7 +2,8 @@
 {% from "partials/macros.html" import byline, post_row, icon %}
 {% set header_solid = true %}
 {% block fonts %}{% include "partials/editorial_head.html" %}{% endblock %}
-{% block styles %}<link rel="stylesheet" href="/assets/css/blog.css">{% endblock %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/blog.css">{% include "partials/blog_theme_head.html" %}{% endblock %}
+{% block body_attrs %} class="blog-body"{% endblock %}
 {% block content %}
     <div class="blog-page">
       <header class="blog-masthead wrap">
@@ -17,6 +18,7 @@
           </a>
           {% endfor %}
           <a class="blog-rss" href="/blog/feed.xml" title="Assinar o feed RSS">RSS</a>
+          <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Ativar modo escuro" title="Modo claro/escuro"><span class="theme-ic-moon">{{ icon("moon") }}</span><span class="theme-ic-sun">{{ icon("sun") }}</span></button>
         </div>
       </header>
 
@@ -45,3 +47,4 @@
       {% endif %}
     </div>
 {% endblock %}
+{% block scripts %}<script src="/assets/js/blog-theme.js" defer></script>{% endblock %}

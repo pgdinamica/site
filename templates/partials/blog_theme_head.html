@@ -1,0 +1,3 @@
+{# Modo claro/escuro do blog: aplica antes de desenhar a página para não "piscar".
+   Sem escolha salva, segue a preferência do sistema. #}
+<script>(function(){try{var t=localStorage.getItem("pd-blog-theme");if(t!=="dark"&&t!=="light"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-blog-theme",t);}catch(e){}})();</script>

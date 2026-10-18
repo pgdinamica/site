@@ -743,7 +743,16 @@ h1, h2, h3, h4 {
    ========================================================================== */
 @media (max-width: 1024px) {
   .hero-inner { grid-template-columns: 1fr; }
-  .hero-visual { display: none; }
+  /* No celular e no tablet, a foto entra logo abaixo do título: o bloco de texto "se desfaz"
+     no grid e cada item ganha uma ordem */
+  .hero-inner { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .hero-copy { display: contents; }
+  .hero-badge { order: 1; align-self: flex-start; }
+  .hero h1 { order: 2; }
+  .hero-visual { order: 3; max-width: 560px; width: 100%; margin: 1.6rem auto 0; }
+  .hero p.lead { order: 4; }
+  .hero-actions { order: 5; }
+  .hero-note { order: 6; }
   .founder-grid { grid-template-columns: 1fr; }
   .course-grid { grid-template-columns: repeat(2, 1fr); }
   .service-grid { grid-template-columns: repeat(2, 1fr); }
@@ -892,4 +901,105 @@ h1, h2, h3, h4 {
 @media (max-width: 560px) {
   .hero-actions, .bb-actions { flex-direction: column; align-items: stretch; gap: 0.7rem; }
   .hero-actions .btn, .bb-actions .btn { flex: none; width: 100%; justify-content: center; white-space: nowrap; }
+}
+
+/* Foto do topo da home no celular: os selos (+230 mil, +550) ficam dentro da foto */
+@media (max-width: 600px) {
+  .hero-float { padding: 0.55rem 0.7rem; gap: 0.5rem; }
+  .hero-float.tl { top: 0.7rem; left: 0.7rem; }
+  .hero-float.br { bottom: 0.7rem; right: 0.7rem; }
+  .hero-float .fig { font-size: 1.1rem; }
+  .hero-float .dot { width: 28px; height: 28px; }
+}
+
+/* Topo no celular: sem o botão "Inscreva-se" (fica só o menu) */
+@media (max-width: 600px) {
+  .nav-cta .btn-primary { display: none; }
+}
+
+/* ==========================================================================
+   Home no celular — texto do corpo a 16 px, títulos proporcionais, toque ≥ 44 px
+   e blocos compactos (ícone ou foto ao lado do texto) para caber mais por tela.
+   ========================================================================== */
+@media (max-width: 600px) {
+  /* Seções e títulos */
+  .home-page .section { padding-block: 2.4rem; }
+  .home-page .section-head { margin-bottom: 1.3rem; }
+  .home-page .section-head h2, .home-page .events-head h2 { font-size: 1.5rem; line-height: 1.2; }
+  .home-page .section-head p, .home-page .events-head p { font-size: 0.95rem; line-height: 1.5; margin-top: 0.6rem; }
+  .home-page .eyebrow { font-size: 0.68rem; }
+
+  /* Topo */
+  .home-page .hero { padding-top: calc(64px + 1.2rem); padding-bottom: 2rem; }
+  .home-page .hero-badge { font-size: 0.74rem; margin-bottom: 1rem; padding: 0.35rem 0.5rem 0.35rem 0.7rem; }
+  .home-page .hero h1 { font-size: 2.15rem; }
+  .home-page .hero p.lead { font-size: 1rem; line-height: 1.55; margin-top: 1rem; }
+  .home-page .hero-visual { margin-top: 1.2rem; }
+  .home-page .hero-actions { margin-top: 1.3rem; }
+  .home-page .hero-actions .btn { min-height: 48px; padding-block: 0.7rem; font-size: 0.95rem; }
+  .home-page .hero-note { margin-top: 0.9rem; font-size: 0.8rem; }
+  .home-page .hero-stats { margin-top: 1.6rem; grid-template-columns: 1fr 1fr; }
+  .home-page .hero-stats .stat { padding: 0.9rem 0.85rem; }
+  .home-page .hero-stats .stat .num { font-size: 1.55rem; }
+  .home-page .hero-stats .stat .cap { font-size: 0.72rem; margin-top: 0.25rem; }
+
+  /* Missão */
+  .home-page .about-grid { gap: 1.4rem; }
+  .home-page .about .lead { font-size: 1rem; line-height: 1.55; }
+  .home-page .values { gap: 0.75rem; margin-top: 1.2rem; }
+  .home-page .value .ic { width: 36px; height: 36px; }
+  .home-page .value p { font-size: 0.88rem; line-height: 1.45; }
+  .home-page .code-body { padding: 14px 16px; font-size: 11.5px; line-height: 1.75; }
+
+  /* Conteúdo e participações: cartões mais estreitos, deixando ver o próximo */
+  .home-page .rail-videos > li { flex-basis: 72vw; }
+  .home-page .rail-events > li { flex-basis: 64vw; }
+  .home-page .event-meta, .home-page .video-meta { padding: 0.75rem 0.85rem 0.9rem; }
+  .home-page .event-meta h3, .home-page .video-meta h3 { font-size: 0.95rem; }
+  .home-page .event-meta p { font-size: 0.8rem; }
+
+  /* Serviços: ícone ao lado do texto */
+  .home-page .service-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+  .home-page .service-card { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 0.85rem; padding: 1rem 1.05rem; }
+  .home-page .service-card .ic { grid-row: 1 / span 3; width: 40px; height: 40px; margin: 0; border-radius: 11px; }
+  .home-page .service-card .ic svg { width: 20px; height: 20px; }
+  .home-page .service-card h3 { font-size: 1.02rem; }
+  .home-page .service-card p { font-size: 0.88rem; line-height: 1.45; margin-top: 0.25rem; }
+  .home-page .service-card .service-link { padding-top: 0.5rem; font-size: 0.86rem; min-height: 32px; display: inline-flex; align-items: center; }
+  .home-page .services-cta { margin-top: 1rem; padding: 1.1rem; gap: 0.8rem; }
+
+  /* Instituições */
+  .home-page .brands .kicker { font-size: 0.7rem; }
+  .home-page .brand-chip { font-size: 0.85rem; padding: 0.55rem 1rem; }
+  .home-page .brand-count { margin-top: 1.2rem; font-size: 0.88rem; }
+
+  /* As mentes por trás: foto pequena ao lado do nome; bio, selos e link na largura toda */
+  .home-page .founder-grid { gap: 0.8rem; }
+  .home-page .founder-card { grid-template-columns: 88px minmax(0, 1fr); column-gap: 0.9rem; padding: 1rem 1.05rem 1.1rem; align-items: center; }
+  .home-page .founder-info { display: contents; }
+  .home-page .founder-photo { grid-column: 1; grid-row: 1 / span 2; min-height: 0; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; }
+  .home-page .founder-info h3 { grid-column: 2; grid-row: 1; align-self: end; font-size: 1.2rem; }
+  .home-page .founder-info .role { grid-column: 2; grid-row: 2; align-self: start; font-size: 0.8rem; line-height: 1.35; }
+  .home-page .founder-info > p, .home-page .founder-tags, .home-page .founder-award, .home-page .founder-link { grid-column: 1 / -1; }
+  .home-page .founder-info > p { font-size: 0.92rem; line-height: 1.5; margin-top: 0.8rem; }
+  .home-page .founder-tags { margin-top: 0.6rem; gap: 0.35rem; }
+  .home-page .founder-tags span { font-size: 0.72rem; }
+  .home-page .founder-award { font-size: 0.8rem; margin-top: 0.45rem; justify-self: start; }
+  .home-page .founder-link { justify-self: start; display: inline-flex; align-items: center; min-height: 40px; font-size: 0.88rem; margin-top: 0.3rem; }
+
+  /* Imprensa: a primeira em destaque; as demais em linhas com miniatura à esquerda */
+  .home-page .press-wall { gap: 0.6rem; }
+  .home-page .press-card.is-featured .press-headline { font-size: 1.1rem; line-height: 1.3; }
+  .home-page .press-card:not(.is-featured) a { flex-direction: row; align-items: stretch; }
+  .home-page .press-card:not(.is-featured) .press-media { width: 104px; aspect-ratio: auto; min-height: 92px; }
+  .home-page .press-card:not(.is-featured) .press-media .press-cover-logo { width: 40px; height: 40px; border-radius: 11px; }
+  .home-page .press-card:not(.is-featured) .press-credit { display: none; }
+  .home-page .press-card:not(.is-featured) .press-body { padding: 0.65rem 0.8rem; gap: 0.35rem; min-width: 0; }
+  .home-page .press-card:not(.is-featured) .press-logo { width: 20px; height: 20px; border-radius: 5px; }
+  .home-page .press-card:not(.is-featured) .press-outlet { font-size: 0.76rem; }
+  .home-page .press-card:not(.is-featured) .press-date { font-size: 0.6rem; }
+  .home-page .press-card:not(.is-featured) .press-headline { font-size: 0.86rem; line-height: 1.35; padding-right: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .home-page .press-go { display: none; }
+  .home-page .outlet-marquee { margin-bottom: 1.2rem; }
+  .home-page .press-more { margin-top: 1.4rem; }
 }

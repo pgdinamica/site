@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "partials/macros.html" import icon %}
 {% block styles %}<link rel="stylesheet" href="/assets/css/pages.css">{% endblock %}
+{% block body_attrs %} class="talks-page"{% endblock %}
 {% block content %}
     {% set hero = talk_photos.hero %}
     <section class="page-hero{% if hero %} has-photo{% endif %}" aria-labelledby="talks-title">

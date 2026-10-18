@@ -1,6 +1,6 @@
 ---
 name: Hallison Paz
-role: Pesquisador em Aprendizado de Máquina Adversarial e Visão Computacional · Co-fundador do Programação Dinâmica
+role: Pesquisador em IA · Co-fundador do Programação Dinâmica
 tagline: Engenheiro de computação e doutor em matemática pelo IMPA, hoje pesquisador de pós-doutorado na École Polytechnique, na França. Pesquiso a segurança e a robustez de modelos de IA — e ensino programação do jeito certo.
 email: hallison@pgdinamica.com
 photo: /assets/img/hallison-web.jpg
@@ -39,4 +39,4 @@ Hallison Paz é pesquisador de pós-doutorado no Centre de Mathématiques Appliq
 
 Antes da França, liderou na **Hand Talk by Sorenson** a pesquisa aplicada em modelos fundacionais multimodais para tradução bidirecional de língua de sinais (Libras e ASL). Na **Meta**, em Pittsburgh (EUA), integrou o projeto Codec Avatars, desenvolvendo modelos generativos 3D para avatares humanos fotorrealistas — trabalho que resultou em publicação no SIGGRAPH Asia 2024. Sua base técnica une aprendizado de representações, modelagem generativa e visão computacional, sempre com a preocupação de levar a pesquisa para sistemas que funcionam de verdade.
 
-É co-criador do **Programação Dinâmica**, o maior canal do YouTube no Brasil dedicado a IA e ciência de dados, e fundador da **ALFORRIAH**, que oferece mentoria para quem quer construir carreira em inteligência artificial e ciência de dados. Com mais de 14 anos de experiência em Computação, criou o curso **Python do Jeito Certo**, que já formou mais de mil alunos, e o projeto **Matemática Elementar para Computação**, com aulas ao vivo na Twitch.
+É co-criador do **Programação Dinâmica**, o maior canal do YouTube no Brasil dedicado a IA e ciência de dados, e fundador da **ALFORRIAH**, que oferece mentoria para quem quer construir carreira em inteligência artificial e ciência de dados. Com mais de 15 anos de experiência em Computação, criou o curso **Python do Jeito Certo**, que já formou mais de mil alunos, e o projeto **Matemática Elementar para Computação**, com aulas ao vivo na Twitch.

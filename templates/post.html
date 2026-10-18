@@ -2,7 +2,8 @@
 {% from "partials/macros.html" import byline, post_row, icon %}
 {% set header_solid = true %}
 {% block fonts %}{% include "partials/editorial_head.html" %}{% endblock %}
-{% block styles %}<link rel="stylesheet" href="/assets/css/blog.css">{% endblock %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/blog.css">{% include "partials/blog_theme_head.html" %}{% endblock %}
+{% block body_attrs %} class="blog-body"{% endblock %}
 {% block content %}
     <div class="reading-progress" aria-hidden="true"><span id="readingBar"></span></div>
 
@@ -16,9 +17,12 @@
           {{ byline(post) }}
           <div class="reader-tools" role="group" aria-label="Ferramentas de leitura">
             <span class="reader-label">Texto</span>
-            <button type="button" class="reader-btn" data-font="-1" aria-label="Diminuir o tamanho do texto">A<sup>−</sup></button>
-            <button type="button" class="reader-btn" data-font="0" aria-label="Tamanho padrão do texto">A</button>
-            <button type="button" class="reader-btn reader-btn-lg" data-font="1" aria-label="Aumentar o tamanho do texto">A<sup>+</sup></button>
+            <label class="reader-size" title="Tamanho do texto (toque duas vezes no slider para voltar ao padrão)">
+              <span class="reader-size-a sm" aria-hidden="true">A</span>
+              <input type="range" id="readerSize" min="0.85" max="1.45" step="0.01" value="1" aria-label="Tamanho do texto" aria-valuetext="100%">
+              <span class="reader-size-a lg" aria-hidden="true">A</span>
+            </label>
+            <button type="button" class="reader-btn theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Ativar modo escuro" title="Modo claro/escuro"><span class="theme-ic-moon">{{ icon("moon") }}</span><span class="theme-ic-sun">{{ icon("sun") }}</span></button>
             <span class="reader-divider" aria-hidden="true"></span>
             <button type="button" class="reader-btn" data-share="copy" aria-label="Copiar link do texto">{{ icon("link") }}</button>
             <a class="reader-btn" data-share="whatsapp" href="https://wa.me/?text={{ (post.title ~ ' ' ~ site.url ~ post.url)|urlencode }}" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp">WA</a>
@@ -69,4 +73,4 @@
       {% if newer %}<a class="pager-link pager-next" href="{{ newer.url }}"><span>Próximo {{ icon("arrow-right") }}</span><b>{{ newer.title }}</b></a>{% endif %}
     </nav>
 {% endblock %}
-{% block scripts %}<script src="/assets/js/reader.js" defer></script>{% endblock %}
+{% block scripts %}<script src="/assets/js/reader.js" defer></script><script src="/assets/js/blog-theme.js" defer></script>{% endblock %}

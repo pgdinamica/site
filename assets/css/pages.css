@@ -435,3 +435,147 @@
 .class-side li.is-members .side-check { border-color: transparent; color: var(--gold); }
 .class-side li.is-members.is-done .side-check { background: var(--emerald); border-color: var(--emerald); color: #04170f; }
 .side-open { flex: none; align-self: flex-start; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.1rem 0.4rem; border-radius: 5px; background: rgba(16,185,129,0.18); color: var(--emerald-bright); margin-top: 0.15rem; }
+
+/* ==========================================================================
+   Página de curso no celular — mesmos princípios do perfil: texto a 16 px no corpo,
+   títulos proporcionais, toque ≥ 44 px e blocos compactos (ícone ao lado do texto)
+   para caber mais conteúdo por tela.
+   ========================================================================== */
+@media (max-width: 600px) {
+  /* Topo */
+  .course-page .course-hero-backdrop { aspect-ratio: 16 / 10; }
+  .course-page .course-hero-shade { aspect-ratio: 16 / 10; }
+  .course-page .course-hero.has-backdrop .course-hero-inner { margin-top: -2.2rem; }
+  .course-page .course-hero { padding-bottom: 1.8rem; }
+  .course-page .course-hero .press-back { margin-bottom: 0.8rem; font-size: 0.84rem; }
+  .course-page .course-hero-kicker { font-size: 0.8rem; gap: 0.45rem; }
+  .course-page .course-hero h1 { font-size: 1.75rem; line-height: 1.1; margin-top: 0.6rem; }
+  .course-page .course-hero .lead { font-size: 0.98rem; line-height: 1.5; margin-top: 0.8rem; }
+  .course-page .course-hero .hero-actions { margin-top: 1.2rem; gap: 0.55rem; }
+  .course-page .course-hero .hero-actions .btn { min-height: 48px; padding-block: 0.7rem; font-size: 0.95rem; }
+  .course-page .open-strip { margin-top: 1rem; font-size: 0.86rem; padding: 0.5rem 0.8rem 0.5rem 0.5rem; }
+  .course-page .open-strip-ic { width: 30px; height: 30px; }
+  .course-page .perks { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem 0.8rem; margin-top: 1.1rem; }
+  .course-page .perks li { font-size: 0.8rem; line-height: 1.35; align-items: flex-start; }
+  .course-page .perks svg { width: 0.95rem; margin-top: 0.1rem; }
+  .course-page .course-stats { margin-top: 1.2rem; }
+  .course-page .course-stats .stat { padding: 0.8rem 0.7rem; }
+  .course-page .course-stats .num { font-size: 1.15rem; }
+  .course-page .course-stats .cap { font-size: 0.72rem; margin-top: 0.25rem; }
+
+  /* Barra "continuar de onde parei" */
+  .course-page .resume-inner { gap: 0.4rem 0.8rem; padding-block: 0.55rem; }
+  .course-page .resume-inner > div:first-child { min-width: 0; font-size: 0.84rem; }
+  .course-page .resume-inner { flex-wrap: nowrap; }
+  .course-page .resume-inner > div:first-child b { display: none; }   /* sem o "Bem-vindo(a) de volta!": só o progresso */
+  .course-page .resume-progress { display: none; }
+  .course-page .resume-inner > div:first-child { flex: 1; font-size: 0.8rem; line-height: 1.25; }
+  .course-page .resume-bar .btn-primary { padding: 0.5rem 0.9rem; font-size: 0.82rem; min-height: 40px; }
+
+  /* Seções */
+  .course-page .section { padding-block: 2.3rem; }
+  .course-page .section-head { margin-bottom: 1.3rem; }
+  .course-page .section h2, .course-page .c-pains h2, .course-page .c-about h2, .course-page .c-modules h2, .course-page .c-faq h2 { font-size: 1.45rem; line-height: 1.2; margin-top: 0.45rem; }
+  .course-page .section-head p, .course-page .c-intro, .course-page .c-answer { font-size: 0.95rem; line-height: 1.5; }
+  .course-page .eyebrow { font-size: 0.68rem; }
+  .course-page .c-about .prose, .course-page .c-about p { font-size: 1rem; }
+
+  /* Para quem é / não é */
+  .course-page .audience-grid { grid-template-columns: 1fr; gap: 0.7rem; }
+  .course-page .audience-card { padding: 1rem 1.1rem; }
+  .course-page .audience-card h3 { font-size: 1rem; }
+  .course-page .audience-card p { font-size: 0.9rem; line-height: 1.5; margin-top: 0.4rem; }
+
+  /* Conteúdo (módulos e aulas) */
+  .course-page .modules { margin-top: 1.2rem; gap: 0.5rem; }
+  .course-page .module summary { padding: 0.8rem 0.95rem; gap: 0.2rem 0.6rem; min-height: 48px; }
+  .course-page .module-title { font-size: 0.98rem; }
+  .course-page .module-lessons { padding: 0 0.35rem 0.5rem; }
+  .course-page .module-lessons li a { padding: 0.5rem 0.55rem; gap: 0.55rem; font-size: 0.9rem; line-height: 1.35; min-height: 44px; }
+  .course-page .ml-n { width: 1.3rem; font-size: 0.72rem; }
+  .course-page .ml-dur { font-size: 0.7rem; }
+  .course-page .ml-tag { font-size: 0.6rem; padding: 0.1rem 0.4rem; }
+  .course-page .access-legend { gap: 0.55rem; margin-top: 1rem; }
+  .course-page .access-item { padding: 0.75rem 0.85rem; gap: 0.6rem; }
+  .course-page .access-item p { font-size: 0.86rem; }
+
+  /* Grátis ou completo */
+  .course-page .compare-grid { gap: 1.2rem; }
+  .course-page .compare-card { padding: 1.3rem 1.15rem 1.15rem; }
+  .course-page .compare-card h3 { font-size: 1.05rem; }
+  .course-page .compare-price { font-size: 1.75rem; }
+  .course-page .compare-card ul { margin: 0.9rem 0 1.1rem; gap: 0.4rem; }
+  .course-page .compare-card li { font-size: 0.88rem; line-height: 1.4; }
+
+  /* O que está incluso, carreira e pilares: ícone/título ao lado, texto curto */
+  .course-page .formats-grid, .course-page .c-includes .formats-grid { grid-template-columns: 1fr; gap: 0.55rem; }
+  .course-page .format-card { display: grid; grid-template-columns: 36px minmax(0, 1fr); column-gap: 0.8rem; padding: 0.85rem 0.95rem; }
+  .course-page .format-card .ic { grid-row: 1 / span 2; width: 36px; height: 36px; border-radius: 10px; margin: 0; }
+  .course-page .format-card .ic svg { width: 18px; height: 18px; }
+  .course-page .format-card h3 { font-size: 0.98rem; }
+  .course-page .format-card p { font-size: 0.86rem; line-height: 1.45; margin-top: 0.15rem; }
+  .course-page .pillar-grid { grid-template-columns: 1fr; gap: 0.55rem; }
+  .course-page .pillar { padding: 0.9rem 1rem; }
+  .course-page .pillar-n { font-size: 1.3rem; }
+  .course-page .pillar h3 { font-size: 0.98rem; margin-top: 0.3rem; }
+  .course-page .pillar p { font-size: 0.86rem; line-height: 1.45; margin-top: 0.25rem; }
+
+  /* Professor(a): foto pequena ao lado do nome */
+  .course-page .instructor-card { grid-template-columns: 96px minmax(0, 1fr); gap: 0.4rem 1rem; align-items: start; }
+  .course-page .instructor-card > div { display: contents; }
+  .course-page .instructor-photo { grid-column: 1; grid-row: 1 / span 3; }
+  .course-page .instructor-photo img { border-radius: 16px; }
+  .course-page .instructor-card .eyebrow { grid-column: 2; font-size: 0.66rem; }
+  .course-page .instructor-card h2 { grid-column: 2; font-size: 1.35rem; margin-top: 0; }
+  .course-page .instructor-role { grid-column: 2; font-size: 0.8rem; margin: 0; line-height: 1.35; }
+  .course-page .instructor-card > div > p:not(.instructor-role), .course-page .instructor-card .chips, .course-page .instructor-card .founder-link { grid-column: 1 / -1; }
+  .course-page .instructor-card > div > p:not(.instructor-role) { font-size: 0.95rem; line-height: 1.5; margin-top: 0.6rem; }
+  .course-page .instructor-card .chips { margin-top: 0.4rem; }
+  .course-page .instructor-card .chips li { font-size: 0.74rem; padding: 0.25rem 0.55rem; }
+
+  /* Preço e perguntas */
+  .course-page .pricing-card { padding: 1.4rem 1.2rem; }
+  .course-page .pricing-price { font-size: 2.3rem; }
+  .course-page .pricing-inst { margin: 0.3rem 0 1.1rem; font-size: 0.9rem; }
+  .course-page .pricing-note { font-size: 0.84rem; margin-top: 0.9rem; }
+  .course-page .faq { margin-top: 1rem; gap: 0; }
+  .course-page .faq-item summary { padding: 0.85rem 0; font-size: 0.96rem; min-height: 44px; align-items: center; }
+  .course-page .faq-item p { font-size: 0.9rem; line-height: 1.5; padding-bottom: 0.9rem; }
+}
+
+/* ==========================================================================
+   Palestras no celular — temas em linhas compactas (número ao lado do título)
+   e quem fala com a foto pequena ao lado do nome.
+   ========================================================================== */
+@media (max-width: 600px) {
+  .talks-page .page-hero { padding-bottom: 2rem; }
+  .talks-page .page-hero h1 { font-size: 2rem; line-height: 1.1; margin-top: 0.6rem; }
+  .talks-page .page-lead { font-size: 1rem; line-height: 1.55; margin-top: 0.9rem; }
+  .talks-page .page-hero .press-back { margin-bottom: 0.9rem; font-size: 0.84rem; }
+  .talks-page .page-hero .hero-actions { margin-top: 1.3rem; }
+  .talks-page .talks-hero { gap: 1.4rem; }
+  .talks-page .section { padding-block: 2.3rem; }
+  .talks-page .section-head { margin-bottom: 1.3rem; }
+  .talks-page .section-head h2 { font-size: 1.45rem; line-height: 1.2; }
+
+  /* Temas das palestras */
+  .talks-page .talk-grid { grid-template-columns: 1fr; gap: 0.55rem; }
+  .talks-page .talk-card { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); column-gap: 0.7rem; padding: 0.9rem 1rem; }
+  .talks-page .talk-card .n { grid-row: 1 / span 2; font-size: 1.35rem; color: rgba(255,255,255,0.28); line-height: 1.15; }
+  .talks-page .talk-card h3 { font-size: 0.98rem; line-height: 1.35; margin-top: 0; }
+  .talks-page .talk-card .topic { margin-top: 0.35rem; font-size: 0.68rem; }
+
+  /* Quem fala */
+  .talks-page .speaker-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+  .talks-page .speaker-card { grid-template-columns: 96px minmax(0, 1fr); column-gap: 0.9rem; padding: 1rem 1.05rem 1.1rem; align-items: center; }
+  .talks-page .speaker-card > div { display: contents; }
+  .talks-page .speaker-photo { grid-column: 1; grid-row: 1 / span 2; min-height: 0; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; }
+  .talks-page .speaker-photo .photo-credit { display: none; }
+  .talks-page .speaker-card h3 { grid-column: 2; grid-row: 1; align-self: end; font-size: 1.2rem; }
+  .talks-page .speaker-role { grid-column: 2; grid-row: 2; align-self: start; font-size: 0.8rem; line-height: 1.35; margin: 0.15rem 0 0; }
+  .talks-page .speaker-card p:not(.speaker-role), .talks-page .speaker-link { grid-column: 1 / -1; }
+  .talks-page .speaker-card p:not(.speaker-role) { font-size: 0.92rem; line-height: 1.5; margin-top: 0.8rem; }
+  .talks-page .speaker-link { padding-top: 0.5rem; min-height: 40px; font-size: 0.88rem; }
+
+  .talks-page .page-cta { padding: 1.2rem; }
+}

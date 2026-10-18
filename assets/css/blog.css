@@ -93,7 +93,7 @@
 /* Corpo do texto — escala controlada pelo botão A−/A+ */
 .prose {
   overflow-wrap: break-word; font-family: var(--reading); font-optical-sizing: auto;
-  font-size: calc(1.125rem * var(--reading-scale)); line-height: 1.78; letter-spacing: -0.003em;
+  font-size: calc(1.125rem * var(--reading-scale) * var(--reading-user, 1));   /* base da tela × escolha do leitor */ line-height: 1.78; letter-spacing: -0.003em;
   color: #2a3140; padding-top: 1.6rem; text-wrap: pretty;
   font-feature-settings: "cv11" 1, "ss03" 1;   /* "a" de um andar e "g" simples: lembram a Space Grotesk dos títulos */
 }
@@ -169,7 +169,11 @@ body:has(.post) { background: var(--paper); }
 .profile-intro h1 { color: #fff; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.025em; font-size: clamp(2.6rem, 1.6rem + 4vw, 4.6rem); line-height: 1; margin-top: 0.8rem; }
 .profile-tagline { color: var(--on-dark-muted); font-family: var(--font-body); font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem); line-height: 1.5; margin-top: 1.1rem; max-width: 38rem; }
 .profile-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.8rem; }
-.profile-actions .btn { padding: 0.65rem 1.15rem; font-size: 0.9rem; }
+/* Botões do perfil só com ícone (o nome fica no aria-label e na dica ao passar o mouse) */
+.profile-actions { gap: 0.6rem; }
+.profile-actions .btn { width: 48px; height: 48px; padding: 0; justify-content: center; border-radius: 50%; flex: none; }
+.profile-actions .btn svg { width: 20px; height: 20px; margin: 0; flex: none; }
+.profile-actions .btn-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .profile-stats { display: flex; flex-wrap: wrap; gap: 0.8rem 2.4rem; margin-top: 2rem; padding-top: 1.6rem; border-top: 1px solid var(--ink-line); }
 .profile-stats div { display: flex; flex-direction: column-reverse; }
 .profile-stats dd { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; color: #fff; }
@@ -234,3 +238,207 @@ body:has(.post) { background: var(--paper); }
   .profile-about-grid, .career-grid { grid-template-columns: 1fr; }
   .profile-aside { position: static; }
 }
+
+/* ==========================================================================
+   Perfil no celular — padrões de app: cabeçalho compacto (foto pequena ao lado do nome),
+   texto a 16 px, áreas de toque ≥ 40 px e listas em linhas compactas (miniatura + texto)
+   para caber mais conteúdo por tela.
+   ========================================================================== */
+@media (max-width: 600px) {
+  /* Cabeçalho */
+  .profile-hero { padding: calc(74px + 1.1rem) 0 1.5rem; }
+  .profile-hero-inner { grid-template-columns: 132px minmax(0, 1fr); column-gap: 1rem; row-gap: 0; align-items: start; }
+  .profile-intro { display: contents; }
+  .profile-photo { grid-column: 1; grid-row: 1 / span 3; max-width: none; width: 132px; aspect-ratio: 4 / 5; border-radius: 18px; align-self: start; }
+  .profile-intro > .eyebrow { grid-column: 2; grid-row: 1; align-self: start; font-size: 0.6rem; letter-spacing: 0.07em; line-height: 1.35; margin: 0; }
+  .profile-intro > .eyebrow::before { display: none; }
+  .profile-intro h1 { grid-column: 2; grid-row: 2; align-self: start; font-size: 1.6rem; margin-top: 0.3rem; line-height: 1.05; }
+  .profile-tagline { grid-column: 2; grid-row: 3; font-size: 0.86rem; line-height: 1.45; margin-top: 0.5rem; }
+  .profile-actions { grid-column: 1 / -1; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; }
+  .profile-actions .btn { width: 44px; height: 44px; }
+  .profile-actions .btn svg { width: 19px; height: 19px; }
+  .profile-stats { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.8rem 1.6rem; margin-top: 1.1rem; padding-top: 1rem; }
+  .profile-stats div { min-width: 0; }
+  .profile-stats dd { font-size: 1.05rem; line-height: 1.15; }
+  .profile-stats dt { font-size: 0.7rem; line-height: 1.3; margin-top: 0.15rem; }
+
+  /* Menu de seções */
+  .profile-nav { top: 64px; }
+  .profile-nav a { padding: 0.75rem 0.7rem; font-size: 0.84rem; }
+  .profile-hero ~ .section { scroll-margin-top: 112px; }
+
+  /* Seções mais próximas */
+  .profile-page .section { padding-block: 2.2rem; }
+  .profile-page .section h2, .profile-about h2, .profile-career h2, .profile-posts h2, .profile-page .courses h2,
+  .talks .profile-section-head h2, .profile-page .press h2 { font-size: 1.4rem; line-height: 1.2; margin-top: 0.45rem; }
+  .profile-page .eyebrow { font-size: 0.68rem; }
+  .profile-section-head { margin-bottom: 1rem; gap: 0.8rem; }
+  .profile-section-head .btn { min-height: 40px; padding: 0.5rem 0.95rem; font-size: 0.84rem; }
+
+  /* Sobre */
+  .prose-profile { --reading-scale: 0.89; padding-top: 0.8rem; }   /* 16 px */
+  .prose-profile > * + * { margin-top: 0.9em; }
+  .profile-about-grid { gap: 1.4rem; }
+  .profile-aside { padding: 1.1rem; }
+  .profile-aside * + h3 { margin-top: 1.2rem; }
+  .profile-page .chips li { font-size: 0.76rem; padding: 0.25rem 0.6rem; }
+  .profile-page .awards li { font-size: 0.88rem; }
+  .award-photo { aspect-ratio: 3 / 2; }
+  .award-photo img { object-position: 50% 45%; }
+
+  /* Trajetória */
+  .career-grid { margin-top: 1.2rem; gap: 1.6rem; }
+  .career-col-title { margin-bottom: 0.8rem; font-size: 0.72rem; }
+  .timeline li { padding: 0 0 1rem 1.2rem; }
+  .timeline-role { font-size: 0.96rem; }
+  .timeline-org { font-size: 0.84rem; }
+  .timeline-text { font-size: 0.86rem; line-height: 1.45; }
+
+  /* Palestras: cartões menores no carrossel */
+  .profile-page .rail-events > li { flex-basis: 64vw; }
+  .profile-page .event-meta { padding: 0.75rem 0.85rem 0.9rem; }
+  .profile-page .event-meta h3 { font-size: 0.95rem; }
+  .profile-page .event-meta p { font-size: 0.8rem; }
+  .talks-lead { font-size: 0.92rem; }
+
+  /* Textos: linhas compactas */
+  .profile-page .post-row { grid-template-columns: minmax(0, 1fr) 96px; gap: 0.8rem; padding: 0.85rem 0; }
+  .profile-page .post-row-title { font-size: 1rem; line-height: 1.3; margin: 0.15rem 0 0.25rem; }
+  .profile-page .post-row .linha-fina { font-size: 0.86rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .profile-page .post-row .chapeu { display: none; }
+  .profile-page .post-row .byline { font-size: 0.76rem; }
+  .profile-page .post-row .linha-fina { -webkit-line-clamp: 2; }
+  .profile-page .post-row-title { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .profile-page .post-row .byline { margin-top: 0.3rem; }
+
+  /* Imprensa: linhas com miniatura à esquerda */
+  .profile-page .press-wall { gap: 0.6rem; margin-top: 1.1rem !important; }
+  .profile-page .press-card a { flex-direction: row; align-items: stretch; }
+  .profile-page .press-media { width: 104px; aspect-ratio: auto; min-height: 92px; }
+  .profile-page .press-media .press-cover-logo { width: 40px; height: 40px; border-radius: 11px; }
+  .profile-page .press-credit { display: none; }
+  .profile-page .press-body { padding: 0.65rem 0.8rem; gap: 0.35rem; min-width: 0; }
+  .profile-page .press-logo { width: 20px; height: 20px; border-radius: 5px; }
+  .profile-page .press-outlet { font-size: 0.76rem; }
+  .profile-page .press-date { font-size: 0.6rem; }
+  .profile-page .press-headline { font-size: 0.86rem; line-height: 1.35; padding-right: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .profile-page .press-go { display: none; }
+  .profile-page .press-more { margin-top: 1.2rem; }
+
+  /* Cursos: linhas com a capa pequena */
+  .profile-courses { grid-template-columns: 1fr; gap: 0.6rem; margin-top: 1.1rem; }
+  .profile-courses .course-card { display: grid; grid-template-columns: 92px minmax(0, 1fr); }
+  .profile-courses .course-art-wrap { grid-row: 1; }
+  .profile-courses .course-art { height: 100%; aspect-ratio: auto; min-height: 92px; }
+  .profile-courses .tag-badge { display: none; }
+  .profile-courses .course-body { padding: 0.7rem 0.85rem; }
+  .profile-courses .course-body h3 { font-size: 0.96rem; }
+  .profile-courses .course-body p { font-size: 0.82rem; line-height: 1.4; margin-top: 0.2rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .profile-courses .course-foot { margin-top: 0.45rem; font-size: 0.82rem; }
+}
+
+/* ==========================================================================
+   Blog no celular — lista em linhas compactas (título + resumo curto + miniatura),
+   texto do artigo a 17 px e cabeçalho/rodapé do artigo enxutos.
+   ========================================================================== */
+@media (max-width: 600px) {
+  /* Página inicial do blog */
+  .blog-page { padding-top: calc(64px + 1.2rem); padding-bottom: 2.4rem; }
+  .blog-masthead { padding-bottom: 1.2rem; }
+  .blog-title { font-size: 1.85rem; line-height: 1.1; }
+  .blog-authors { margin-top: 0.8rem; font-size: 0.86rem; gap: 0.45rem; }
+  .blog-lead { gap: 0.8rem; padding-bottom: 1.4rem; }
+  .blog-lead-title { font-size: 1.35rem; line-height: 1.2; margin: 0.3rem 0 0.5rem; }
+  .blog-lead .linha-fina { font-size: 0.92rem; line-height: 1.45; margin-bottom: 0.6rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .blog-section-title { font-size: 0.82rem; margin-bottom: 0.2rem; }
+
+  /* Linhas de texto (blog, "Mais de…" e perfis) */
+  .post-list .post-row { grid-template-columns: minmax(0, 1fr) 104px; gap: 0.8rem; padding: 0.9rem 0; }
+  .post-list .post-row .chapeu { font-size: 0.6rem; letter-spacing: 0.1em; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .post-list .post-row-title { font-size: 1rem; line-height: 1.3; margin: 0.2rem 0 0.25rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .post-list .post-row .linha-fina { font-size: 0.85rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .post-list .post-row .byline { font-size: 0.74rem; margin-top: 0.35rem; }
+  .post-list .post-row-thumb { border-radius: 6px; }
+
+  /* Artigo */
+  .post { padding-top: calc(64px + 1.2rem); }
+  .post-back { margin-bottom: 1rem; font-size: 0.82rem; }
+  .post-title { font-size: 1.75rem; line-height: 1.12; margin: 0.4rem 0 0.7rem; }
+  .post-linha-fina { font-size: 1rem; line-height: 1.45; }
+  .post-meta { margin-top: 1rem; padding: 0.7rem 0; gap: 0.6rem; }
+  .post-meta .byline { font-size: 0.82rem; }
+  .reader-btn { min-width: 40px; height: 40px; }
+  .post-cover { margin-top: 1.2rem; }
+  .prose { --reading-scale: 0.945; padding-top: 1.2rem; }      /* 17 px no corpo do texto */
+  .prose > * + * { margin-top: 1.05em; }
+  .prose h2 { font-size: 1.35em; }
+  .prose h3 { font-size: 1.15em; }
+  .prose > p:first-of-type { font-size: 1.04em; }
+
+  /* Rodapé do artigo */
+  .post-foot { margin-top: 1.6rem; }
+  .post-tags li { font-size: 0.78rem; }
+  .author-box { grid-template-columns: 64px minmax(0, 1fr); gap: 0.2rem 0.9rem; margin-top: 1.4rem; padding: 1rem; align-items: center; }
+  .author-box > div { display: contents; }
+  .author-box-photo { grid-column: 1; grid-row: 1 / span 3; align-self: start; }
+  .author-box-photo img { width: 64px; height: 64px; }
+  .author-box .chapeu, .author-box-name, .author-box-role { grid-column: 2; }
+  .author-box .chapeu { font-size: 0.62rem; }
+  .author-box-name { font-size: 1.15rem; margin: 0; }
+  .author-box-role { font-size: 0.78rem; line-height: 1.35; }
+  .author-box-bio, .author-box-link { grid-column: 1 / -1; }
+  .author-box-bio { font-size: 0.9rem; line-height: 1.5; margin-top: 0.6rem; }
+  .author-box-link { min-height: 40px; margin-top: 0.2rem; }
+  .post-more { padding-top: 0.6rem; }
+  .post-more .blog-section-title { margin-bottom: 0; }
+  .post-pager { gap: 0.6rem; padding-block: 1.2rem 2.4rem; }
+  .pager-link { padding: 0.8rem 0.95rem; }
+  .pager-link b { font-size: 0.95rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+}
+
+/* ==========================================================================
+   Modo escuro do blog (botão sol/lua). Só vale nas páginas com body.blog-body.
+   ========================================================================== */
+.theme-toggle { display: inline-grid; place-items: center; cursor: pointer; }
+.theme-toggle svg { width: 17px; height: 17px; }
+.theme-toggle .theme-ic-sun { display: none; }
+html[data-blog-theme="dark"] .theme-toggle .theme-ic-sun { display: inline; }
+html[data-blog-theme="dark"] .theme-toggle .theme-ic-moon { display: none; }
+.blog-masthead .theme-toggle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--paper-line); background: var(--paper); color: var(--text-strong); margin-left: 0.4rem; transition: border-color 0.2s var(--ease), color 0.2s var(--ease); }
+.blog-masthead .theme-toggle:hover { border-color: var(--emerald); color: var(--emerald); }
+
+html[data-blog-theme="dark"] body.blog-body {
+  --paper: #0d1422;
+  --paper-2: #121b2c;
+  --paper-3: #18233a;
+  --paper-line: #253149;
+  --rule: #253149;
+  --text: #c8d2e1;
+  --text-strong: #f2f5fa;
+  --text-muted: #94a3b9;
+  background: var(--paper);
+  color-scheme: dark;
+}
+html[data-blog-theme="dark"] .blog-body .prose { color: #d3dbe7; }
+html[data-blog-theme="dark"] .blog-body .prose a { color: var(--emerald-bright); }
+html[data-blog-theme="dark"] .blog-body .prose code { background: var(--paper-3); border-color: var(--paper-line); color: #e6ecf5; }
+html[data-blog-theme="dark"] .blog-body .prose pre { background: #070c17; border: 1px solid var(--paper-line); }
+html[data-blog-theme="dark"] .blog-body .prose img { opacity: 0.94; }
+html[data-blog-theme="dark"] .blog-body .reader-btn.is-active { background: #f2f5fa; border-color: #f2f5fa; color: #0d1422; }
+html[data-blog-theme="dark"] .blog-body .chapeu, html[data-blog-theme="dark"] .blog-body .author-box-role, html[data-blog-theme="dark"] .blog-body .author-box-link { color: var(--emerald-bright); }
+html[data-blog-theme="dark"] .blog-body .author-pill { background: var(--paper-2); }
+
+/* Slider do tamanho do texto */
+.reader-size { display: inline-flex; align-items: center; gap: 0.5rem; height: 40px; padding: 0 0.7rem; border: 1px solid var(--paper-line); border-radius: 999px; background: var(--paper); cursor: pointer; }
+.reader-size-a { font-family: var(--font-display); font-weight: 600; color: var(--text-strong); line-height: 1; user-select: none; }
+.reader-size-a.sm { font-size: 0.78rem; }
+.reader-size-a.lg { font-size: 1.15rem; }
+.reader-size input[type="range"] { -webkit-appearance: none; appearance: none; width: 108px; height: 24px; background: transparent; cursor: pointer; margin: 0; }
+.reader-size input[type="range"]:focus { outline: none; }
+.reader-size input[type="range"]::-webkit-slider-runnable-track { height: 4px; border-radius: 999px; background: linear-gradient(90deg, var(--emerald) var(--fill, 25%), var(--paper-line) var(--fill, 25%)); }
+.reader-size input[type="range"]::-moz-range-track { height: 4px; border-radius: 999px; background: var(--paper-line); }
+.reader-size input[type="range"]::-moz-range-progress { height: 4px; border-radius: 999px; background: var(--emerald); }
+.reader-size input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; margin-top: -7px; border-radius: 50%; background: var(--paper); border: 2px solid var(--emerald); box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+.reader-size input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--paper); border: 2px solid var(--emerald); }
+.reader-size:focus-within { border-color: var(--emerald); }
+@media (max-width: 600px) { .reader-size input[type="range"] { width: 92px; } }
