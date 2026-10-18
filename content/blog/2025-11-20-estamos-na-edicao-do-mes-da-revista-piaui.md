@@ -26,4 +26,8 @@ A gente não ganha nada ficando isolados em meio a poucas pessoas negras no merc
 
 Tenho certeza que dentre as mais de 138 milhões de impressões de algum dos nossos conteúdos no YouTube, há pessoas que, conscientemente ou não, nunca clicaram em nossas carinhas pretas por não acharem que teríamos algo relevante a dizer ou ensinar. Afinal de contas, quando o assunto é tecnologia, elas só vêem (e aprendem a confiar em) pessoas brancas. Para muitos, antes de ser pesquisador em IA, [doutor pelo Instituto de Matemática Pura e Aplicada](https://youtu.be/C2XCaim3CX4) (IMPA), e engenheiro formado pelo rigoroso [Instituto Militar de Engenharia](https://youtube.com/playlist?list=PL5TJqBvpXQv75QuBRacjav2S8-aUmN3fk) (IME), eu sou “só mais um neguin”.
 
+> 🎶 “É, só mais um neguin  
+> Também disseram isso pra LeBron, JAY-Z, Obama e Ronaldin”  
+> – Djonga & Cesar MC.
+
 🗣️ Que tal listar e marcar outros criadores de conteúdo negros na tecnologia nos comentários do [texto original no Medium](https://medium.com/programacaodinamica/estamos-na-edi%C3%A7%C3%A3o-do-m%C3%AAs-da-revista-piau%C3%AD-1288c618910b)? Fiz uma pesquisa para produzir um conteúdo, mas é possível que alguém tenha ficado de fora. Meu conteúdo vai focar no YouTube, mas, para fins de visibilidade, fiquem à vontade para listar criadores de quaisquer redes.
