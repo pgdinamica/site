@@ -61,6 +61,12 @@ items:
     title: "YouTube Brasil estreia a 3ª temporada do videocast Substantivo Feminino"
     url: "https://telaviva.com.br/12/12/2025/youtube-brasil-estreia-terceira-temporada-do-videocast-substantivo-feminino/"
     image: /assets/img/imprensa/telaviva-youtube-brasil-estreia-terceira-tempora.jpg
+  - outlet: "Revista piauí"
+    date: "nov 2025"
+    title: "O Programação Dinâmica na edição de novembro da Revista piauí"
+    url: "/blog/estamos-na-edicao-do-mes-da-revista-piaui/"
+    image: /assets/img/imprensa/piaui-edicao-novembro-2025.jpg
+    people: [kizzy-terra, hallison-paz]
   - outlet: "Agência Sebrae"
     date: "dez 2025"
     title: "Cerca de 5 mil pequenos negócios fazem imersão sobre inteligência artificial com o Sebrae"
@@ -151,10 +157,6 @@ items:
     url: "https://nosmulheresdaperiferia.com.br/kizzy-terra-precisamos-de-mais-mulheres-negras-na-tecnologia/"
     image: /assets/img/imprensa/nosmulheresdaperiferia-kizzy-terra-precisamos-de.jpg
     people: [kizzy-terra]
-  - outlet: "Revista piauí"
-    date: "2021"
-    title: "O Programação Dinâmica na edição do mês da Revista piauí"
-    url: "https://medium.com/programacaodinamica/estamos-na-edi%C3%A7%C3%A3o-do-m%C3%AAs-da-revista-piau%C3%AD-1288c618910b"
   - outlet: "IMPA"
     date: "set 2020"
     title: "Doutorando do IMPA tem canal premiado em competição"

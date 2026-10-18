@@ -52,7 +52,7 @@
 {%- endmacro %}
 
 {% macro press_card(item, featured=false) %}
-<li class="press-card{% if featured %} is-featured{% endif %}"><a href="{{ item.url }}" target="_blank" rel="noopener"{% if item.color %} style="--outlet: {{ item.color }}"{% endif %}>
+<li class="press-card{% if featured %} is-featured{% endif %}"><a href="{{ item.url }}"{% if not item.url.startswith("/") %} target="_blank" rel="noopener"{% endif %}{% if item.color %} style="--outlet: {{ item.color }}"{% endif %}>
   <span class="press-media{% if not item.image %} is-cover{% endif %}">
     {% if item.image %}<img src="{{ item.image }}" alt="" loading="lazy" decoding="async">
     {% if item.credit %}<small class="press-credit">Foto: {{ item.credit }}</small>{% endif %}
