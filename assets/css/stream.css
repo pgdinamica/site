@@ -139,7 +139,6 @@ li.is-locked .ep-play { display: none; }
 
 /* ---------- Filtro por tema ---------- */
 .topic-filter-wrap { margin-top: clamp(2.4rem, 5vw, 3.4rem); margin-bottom: 0.4rem; padding-top: clamp(1.6rem, 3vw, 2.2rem); border-top: 1px solid rgba(255,255,255,0.08); }
-.topic-filter-title { color: #fff; font-size: clamp(1.15rem, 1rem + 0.6vw, 1.45rem); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.9rem; }
 .topic-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
 .topic-filter-label { font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-dark-muted); margin-right: 0.3rem; }
 .topic-chip { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--on-dark); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); padding: 0.45rem 0.95rem; border-radius: 999px; cursor: pointer; transition: background 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease); }
