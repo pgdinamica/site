@@ -490,6 +490,14 @@ h1, h2, h3, h4 {
 }
 .services-cta p { color: var(--on-dark); font-family: var(--font-display); font-weight: 500; }
 .services-cta a.email { color: var(--emerald-bright); font-weight: 600; }
+/* Botão "Solicitar orçamento — e-mail": numa linha no computador, em duas no celular */
+.btn-quote { flex-wrap: wrap; justify-content: center; column-gap: 0.4rem; text-align: center; }
+.btn-quote-email::before { content: "— "; }
+@media (max-width: 600px) {
+  .btn-quote { flex-direction: column; row-gap: 0.15rem; white-space: normal; padding-block: 0.85rem; border-radius: 18px; }
+  .btn-quote-email { font-size: 0.86em; font-weight: 500; opacity: 0.85; }
+  .btn-quote-email::before { content: none; }
+}
 
 /* Talks */
 .talks { background: var(--ink-2); color: var(--on-dark); }
@@ -872,4 +880,16 @@ h1, h2, h3, h4 {
 @media (max-width: 560px) {
   .rail > li { flex-basis: 80vw; }
   .rail-head { display: none; }
+}
+
+/* Botão translúcido (sobre fotos e fundos escuros); a página /cursos/ tem uma variante própria */
+.btn-glass { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.btn-glass:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.35); }
+.btn-glass svg { width: 1.05em; height: 1.05em; }
+
+/* Botões do topo das páginas (home, cursos, palestras…) no celular:
+   empilhados, ocupando a largura toda, com o texto numa linha */
+@media (max-width: 560px) {
+  .hero-actions, .bb-actions { flex-direction: column; align-items: stretch; gap: 0.7rem; }
+  .hero-actions .btn, .bb-actions .btn { flex: none; width: 100%; justify-content: center; white-space: nowrap; }
 }
