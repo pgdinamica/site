@@ -4,15 +4,12 @@ video: https://www.youtube.com/watch?v=TRatkPjzHNE
 module: "Primeiros passos com Pandas"
 duration: "10:53"
 ---
-
 ## Sobre esta aula
 
-Nesse quarto vídeo da série de análise de dados em Python, continuamos a análise exploratória do nosso dataset (conjunto de dados) do Enem utilizando os métodos do Pandas. Aprendemos utilizar o objeto GroupBy do Pandas e gerar um histograma desse objeto utilizando Matplotlib. Tudo isso no Jupyter Notebook :)
+Nesta aula, continuamos a análise exploratória do ENEM com uma das ferramentas mais poderosas do Pandas: o **`groupby`**. Você vai agrupar os dados por categorias, calcular estatísticas para cada grupo e visualizar o resultado em histogramas com o Matplotlib.
 
-Gostou do vídeo? Dá uma conferida na nossa playlist de análise de dados: <https://www.youtube.com/playlist?list=PL5TJqBvpXQv5N3iV68bGBkea0HjMk98lR>
+## O que você vai aprender
 
-[Curta o Programação Dinâmica no Facebook](https://www.facebook.com/programacaodinamica/)
-
-*Instagram: @dinamicaprogramacao @kizzy_terra @ hallpaz
-
-*Twitter: @pgdinamica @kizzyterra @hallpaz
+- Como funciona o objeto `GroupBy` do Pandas
+- Como calcular estatísticas por grupo
+- Como visualizar dados agrupados

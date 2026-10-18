@@ -14,7 +14,7 @@ expertise:
 stats:
   - { value: "École Polytechnique", label: "pesquisador de pós-doutorado · França" }
   - { value: "IMPA", label: "doutor em Matemática" }
-  - { value: "+14 anos", label: "de experiência em Computação" }
+  - { value: "+15 anos", label: "de experiência em Computação" }
 links:
   - { label: LinkedIn, url: "https://www.linkedin.com/in/hallisonpaz" }
   - { label: Twitch, url: "https://www.twitch.tv/hallpaz" }

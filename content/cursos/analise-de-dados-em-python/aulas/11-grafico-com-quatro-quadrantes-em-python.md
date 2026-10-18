@@ -4,13 +4,6 @@ video: https://www.youtube.com/watch?v=AugVEge2C9E
 module: "Visualização e combinação de dados"
 duration: "18:29"
 ---
-
 ## Sobre esta aula
 
-Oi gente! Mais um vídeo no ar e mais uma possibilidade de aprendermos sobre gráficos \o/
-
-Nesse vídeo, nos aprofundamos nos gráficos de dispersão e aprendemos a criar um gráfico de quadrantes. Ficou top!
-
-*Instagram: @dinamicaprogramacao @kizzy_terra @ hallpaz
-
-*Twitter: @pgdinamica @kizzyterra @hallpaz
+Nesta aula, você vai se aprofundar nos gráficos de dispersão e aprender a criar um **gráfico de quadrantes**, que divide os pontos em quatro regiões e ajuda a enxergar grupos e padrões nos dados.

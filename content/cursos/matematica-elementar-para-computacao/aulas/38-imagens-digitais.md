@@ -4,14 +4,13 @@ module: "Aplicações na computação"
 video: https://www.youtube.com/watch?v=T9V_axU6jU8
 open: true            # vídeo aberto a todos
 ---
-### O que é uma IMAGEM?
+## Sobre esta aula
 
-Nesse vídeo, iniciamos o estudo sobre imagens no canal refletindo sobre essa questão. Existem muitas respostas diferentes e complementares para essa pergunta, pois tudo depende da perspectiva sob a qual precisamos entender uma imagem. No momento, damos uma ênfase maior à representação de imagens digitais no computador, discutindo conceitos como pixels e cores.
+O que é uma imagem? Nesta aula, você vai entender a **representação de imagens digitais** no computador, com os conceitos de pixel e cor — a base de áreas como o processamento de imagens, a visão computacional e a computação gráfica.
 
-### Como fazer CHROMA KEY Programando?
+Como aplicação, você vai ver como funciona o **chroma key**, a técnica do cinema que substitui um fundo verde por outra imagem — e o desafio de identificar, matematicamente, quais pixels são verdes.
 
-O Chroma Key é uma técnica muito importante dentro da indústria cinematográfica e, de certa forma, no audiovisual como um todo. A técnica consiste em filmar com um fundo bastante destacado do restante da cena, geralmente na cor verde, de modo que seja mais fácil de segmentar o fundo dos demais componentes da cena e, consequentemente, substituí-lo. Aqui no canal, na série de Processamento de Imagens, já estudamos bastante sobre representação de imagens, pixels e cores, inclusive, implementamos filtros de borramento e detecção de arestas. Contudo, como seria possível identificar os pixels que são verdes?
+## Material de apoio
 
-## Vídeos relacionados
-
-- [Como fazer CHROMA KEY Programando? | Processamento de Imagens #8](https://www.youtube.com/watch?v=6PMHKXXhRXc)
+- [Curso: Processamento de Imagens](/cursos/processamento-de-imagens/)
+- [Aula: como fazer chroma key programando](/cursos/processamento-de-imagens/aulas/como-fazer-chroma-key-programando/)

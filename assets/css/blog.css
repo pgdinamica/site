@@ -34,7 +34,7 @@
 .blog-rss:hover { color: var(--emerald); }
 
 .blog-lead { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(1.4rem, 4vw, 3rem); align-items: center; padding-bottom: clamp(2rem, 4vw, 3rem); border-bottom: 1px solid var(--rule); }
-.blog-lead-img { display: block; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 4px; background: var(--paper-3); }
+.blog-lead-img { display: block; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 4px; background: var(--paper-3); }
 .blog-lead-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
 .blog-lead:hover .blog-lead-img img { transform: scale(1.03); }
 .blog-lead-title { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.015em; font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.9rem); line-height: 1.08; margin: 0.6rem 0 0.9rem; }
@@ -44,18 +44,18 @@
 .blog-section-title { font-family: var(--condensed); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-strong); padding: 2rem 0 0.6rem; border-bottom: 1px solid var(--text-strong); }
 
 .post-list { list-style: none; padding: 0; }
-.post-row { display: grid; grid-template-columns: 1fr 168px; gap: clamp(1rem, 3vw, 2rem); align-items: start; padding: 1.5rem 0; border-bottom: 1px solid var(--rule); }
+.post-row { display: grid; grid-template-columns: 1fr 220px; gap: clamp(1rem, 3vw, 2rem); align-items: start; padding: 1.5rem 0; border-bottom: 1px solid var(--rule); }
 .post-row:not(:has(.post-row-thumb)) { grid-template-columns: 1fr; }
 .post-row-title { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem); line-height: 1.2; margin: 0.3rem 0 0.4rem; }
 .post-row-title a:hover { color: var(--emerald); }
 .post-row .linha-fina { font-size: 1.02rem; color: var(--text-muted); }
-.post-row-thumb { display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 3px; background: var(--paper-3); }
+.post-row-thumb { display: block; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 3px; background: var(--paper-3); }
 .post-row-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
 .post-row:hover .post-row-thumb img { transform: scale(1.05); }
 
 @media (max-width: 860px) {
   .blog-lead { grid-template-columns: 1fr; }
-  .post-row { grid-template-columns: 1fr 104px; }
+  .post-row { grid-template-columns: 1fr 120px; }
   .post-row .linha-fina { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 }
 

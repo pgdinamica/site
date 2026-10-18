@@ -4,25 +4,18 @@ video: https://www.youtube.com/watch?v=Itin6sBj49k
 module: "Projetos com dados reais"
 duration: "14:49"
 ---
-
 ## Sobre esta aula
 
-Quando lidamos com dados brutos, frequentemente nos deparamos com valores ausentes. Dados que por alguma razão estão faltantes no conjunto de dados. O que devemos fazer?
+Quando trabalhamos com dados brutos, é comum encontrar **valores ausentes**. Devemos eliminar as linhas ou substituir os dados? A resposta depende da análise e do contexto. Nesta aula, você vai fazer essa investigação na prática com os microdados do ENEM 2019 no Google Colab — onde os valores ausentes podem vir de candidatos que faltaram às provas ou de itens não obrigatórios da inscrição.
 
-Eliminar as linhas correspondentes ou substituir os dados? Como tomamos essa decisão? Analisando os dados e seu contexto! Nesse vídeo, a Kizzy fez uma análise de valores ausentes na prática com os Microdados do ENEM 2019.
+## O que você vai aprender
 
-No cado do ENEM, os valores ausentes podem ser de alunos que faltaram as provas (incluindo os famosos atrasados do ENEM 😅) ou de itens não obrigatórios no preenchimento da inscrição.
-
-Confira também:
-
-[✅ Análise de dados em Python](https://www.youtube.com/playlist?list=PL5TJqBvpXQv5N3iV68bGBkea0HjMk98lR)
-
-[✅ Dicas de Pandas](https://www.youtube.com/playlist?list=PL5TJqBvpXQv6SSsEgQrNwpOLTupXPuiMQ)
-
-Veja também: pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html
-
-enem 2020, enem 2019, enem 2018, análise de dados, dados abertos, inep
+- Como identificar e contar valores ausentes
+- Como entender a origem dos dados faltantes
+- Como decidir entre eliminar ou substituir valores
 
 ## Material de apoio
 
-- [✅ VARIÁVEIS CATEGÓRICAS no Pandas,, dataset GRANDE, dados AUSENTES, bins | Dica de Pandas #6](https://youtu.be/Sp9oqlVBgJc)
+- [Documentação do Pandas: dados ausentes](https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html)
+- [Vídeo: variáveis categóricas, datasets grandes e dados ausentes no Pandas](https://youtu.be/Sp9oqlVBgJc)
+- [Playlist de dicas de Pandas](https://www.youtube.com/playlist?list=PL5TJqBvpXQv6SSsEgQrNwpOLTupXPuiMQ)

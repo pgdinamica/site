@@ -6,6 +6,7 @@ badge: Gratuito
 cover: /assets/img/cursos/analise-de-dados-em-python-square.jpg   # capa quadrada (cards)
 backdrop: /assets/img/cursos/analise-de-dados-em-python-backdrop.jpg   # capa horizontal 16:9 (destaque)
 thumb: /assets/img/cursos/analise-de-dados-em-python-thumb.jpg         # capa horizontal 16:9 (cards)
+topics: ["Dados", "Programação"]   # temas (filtros da página /cursos/)
 level: "Noções de Python"
 format: "Gravado · na sala de estudo"
 summary: Colete, limpe e visualize dados para tirar conclusões reais — uma série completa e gratuita.

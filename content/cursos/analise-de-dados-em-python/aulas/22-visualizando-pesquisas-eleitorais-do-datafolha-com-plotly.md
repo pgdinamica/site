@@ -4,29 +4,20 @@ video: https://www.youtube.com/watch?v=jw1QfvMagPc
 module: "Projetos com dados reais"
 duration: "14:12"
 ---
-
 ## Sobre esta aula
 
-As eleições 2022  estão muito próximas. No dia 02 de outubro os eleitores brasileiro irão às urnas e querendo ou não, o voto é nosso dever enquanto cidadãos. Nesse contexto, a Kizzy decidiu construir gráficos de tendências das pesquisas eleitorais para o cargo de presidente. Há certamente, muito a se explorar e esse vídeo pode te inspirar a fazer suas próprias análises utilizando Python, Pandas e Plotly.
+Nesta aula, você vai construir **gráficos de tendência das pesquisas eleitorais** para presidente nas eleições de 2022, usando os microdados de pesquisas e as bibliotecas Pandas e Plotly. Também comparamos com pesquisas de eleições anteriores.
 
-Links mencionados no vídeo:
+## O que você vai aprender
 
-Intenção de voto para presidente - 1994
-
-<https://media.folha.uol.com.br/datafolha/2022/09/01/intencao_de_voto_e_rejeicao_para_presidente_94.pdf>
-
-Intenção do Voto para Presidente (Dois Primeiros Colocados): Abril a Setembro de 1998
-
-<https://www.scielo.br/j/rbcsoc/a/FTBsLWSLmJhYCD6KYSxLjYJ/?lang=pt&format=pdf>
-
-Assista também:
-
-Análise de DADOS ELEITORAIS por onde começar? | Dados Eleições 2020 | Handshake - <https://youtu.be/gkfiZIGYllY>
-
-Visualizando DADOS de Eleições Americanas Presidenciais | Dados Eleitorais - <https://youtu.be/DsvDY2GaJcA>
-
-Análise de DADOS ELEITORAIS com Python | Resultado Eleições 2020 vs Eleições 2016 - <https://youtu.be/ZZMEUFyKqpE>
+- Como preparar os microdados de pesquisas eleitorais
+- Como criar gráficos de linhas interativos com o Plotly
+- Como comparar tendências entre candidatos
 
 ## Material de apoio
 
-- [Dados utilizados: Microdados Pesquisas Eleitorais](https://basedosdados.org/dataset/br-poder360-pesquisas?bdm_table=microdados)
+- [Microdados de pesquisas eleitorais (Base dos Dados)](https://basedosdados.org/dataset/br-poder360-pesquisas?bdm_table=microdados)
+- [Intenção de voto para presidente em 1994 (Datafolha)](https://media.folha.uol.com.br/datafolha/2022/09/01/intencao_de_voto_e_rejeicao_para_presidente_94.pdf)
+- [Intenção de voto para presidente em 1998 (SciELO)](https://www.scielo.br/j/rbcsoc/a/FTBsLWSLmJhYCD6KYSxLjYJ/?lang=pt&format=pdf)
+- [Aula: dados eleitorais, eleições 2020 vs. 2016](/cursos/analise-de-dados-em-python/aulas/dados-eleitorais-eleicoes-2020-vs-2016/)
+- [Vídeo: visualizando dados das eleições presidenciais americanas](https://youtu.be/DsvDY2GaJcA)

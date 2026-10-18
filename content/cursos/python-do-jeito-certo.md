@@ -7,6 +7,8 @@ badge: Mais popular
 cover: /assets/img/cursos/python-do-jeito-certo-square.jpg   # capa quadrada (cards)
 backdrop: /assets/img/cursos/python-do-jeito-certo-backdrop.jpg   # capa horizontal 16:9 (destaque)
 thumb: /assets/img/cursos/python-do-jeito-certo-thumb.jpg         # capa horizontal 16:9 (cards)
+topics: ["Programação"]   # temas (filtros da página /cursos/)
+pinned: true   # aparece primeiro em "Todos os cursos" (os demais seguem a ordem alfabética)
 level: "Do zero"
 format: "Gravado · com suporte do professor"
 summary: Fundamentos sólidos de programação em Python, do zero à lógica que você usa no dia a dia.

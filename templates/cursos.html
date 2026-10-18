@@ -21,13 +21,17 @@
 {%- endmacro %}
 
 {% block content %}
+    {# Catálogo em ordem alfabética (sem considerar acentos) e a lista de temas para os filtros #}
+    {% set catalog = courses|sort(attribute="sort_key") %}
+    {% set tp = namespace(names=[]) %}
+    {% for c in catalog %}{% for t in c.topics or [] %}{% if t not in tp.names %}{% set tp.names = tp.names + [t] %}{% endif %}{% endfor %}{% endfor %}
     <h1 class="sr-only">Cursos do Programação Dinâmica</h1>
 
     <!-- ============ DESTAQUE (billboard) ============ -->
     <section class="billboard" id="billboard" aria-roledescription="carrossel" aria-label="Cursos em destaque">
-      {% for c in courses %}
+      {% for c in catalog %}
       <article class="bb-slide{% if loop.first %} is-active{% endif %}" id="bb-{{ loop.index }}" role="group"
-               aria-roledescription="slide" aria-label="{{ loop.index }} de {{ courses|length }}: {{ c.title }}"{% if not loop.first %} hidden{% endif %}>
+               aria-roledescription="slide" aria-label="{{ loop.index }} de {{ catalog|length }}: {{ c.title }}"{% if not loop.first %} hidden{% endif %}>
         <img class="bb-art" src="{{ c.backdrop or c.cover }}" alt="" width="1920" height="1080"{% if not loop.first %} loading="lazy"{% endif %} decoding="async">
         <div class="bb-shade" aria-hidden="true"></div>
         <div class="wrap bb-content">
@@ -44,7 +48,7 @@
       {% endfor %}
       <div class="wrap bb-dots-wrap">
         <div class="bb-dots" role="tablist" aria-label="Escolher curso em destaque">
-          {% for c in courses %}
+          {% for c in catalog %}
           <button type="button" class="bb-dot" role="tab" aria-controls="bb-{{ loop.index }}" aria-selected="{{ 'true' if loop.first else 'false' }}" aria-label="{{ c.title }}"><span></span></button>
           {% endfor %}
         </div>
@@ -67,9 +71,11 @@
           <h2 id="row-all-title">Todos os cursos</h2>
           {{ rail_controls("rail-all", dark=true) }}
         </div>
+        {# Cursos com `pinned: true` primeiro; os demais em ordem alfabética #}
+        {% set all_row = catalog|selectattr("pinned")|list + catalog|rejectattr("pinned")|list %}
         <ul class="rail rail-titles" id="rail-all">
-          {% for c in courses %}
-          <li>
+          {% for c in all_row %}
+          <li data-topics="{{ c.topic_slugs|join(' ') }}">
             <a class="title-card" href="{{ c.url }}">
               <img src="{{ c.thumb or c.cover }}" alt="" width="960" height="540" loading="lazy" decoding="async">
               {% if c.badge %}<span class="tc-badge{% if c.type != 'pago' %} is-green{% endif %}">{{ c.badge }}</span>{% endif %}
@@ -86,9 +92,23 @@
         </ul>
       </section>
 
+      {% if tp.names %}
+      <div class="wrap topic-filter-wrap" id="porTema">
+          <h2 class="topic-filter-title">Aulas por curso</h2>
+        <div class="topic-filter" role="group" aria-label="Filtrar cursos por tema" id="topicFilter">
+          <span class="topic-filter-label">Temas</span>
+          <button type="button" class="topic-chip" data-topic="" aria-pressed="true">Todos</button>
+          {% for t in tp.names|sort %}
+          <button type="button" class="topic-chip" data-topic="{{ t|slug }}" aria-pressed="false">{{ t }}</button>
+          {% endfor %}
+        </div>
+        <p class="topic-filter-empty" id="topicEmpty" hidden>Nenhum curso com esse tema.</p>
+      </div>
+      {% endif %}
+
       <!-- ============ EPISÓDIOS DOS CURSOS ABERTOS ============ -->
-      {% for c in courses if c.lessons %}
-      <section class="stream-row" aria-labelledby="row-ep-{{ c.slug }}">
+      {% for c in catalog if c.lessons %}
+      <section class="stream-row" aria-labelledby="row-ep-{{ c.slug }}" data-topics="{{ c.topic_slugs|join(' ') }}">
         <div class="wrap row-head">
           <h2 id="row-ep-{{ c.slug }}"><span class="row-kicker{% if c.members_only %} is-gold{% endif %}">{% if c.members_only %}Para membros do canal{% elif c.preview %}Aulas abertas + curso completo{% else %}Grátis · comece agora{% endif %}</span>{{ c.title }}</h2>
           {{ rail_controls("rail-ep-" ~ c.slug, dark=true) }}
@@ -128,6 +148,6 @@
       </section>
     </div>
 
-    <script type="application/json" id="streamData">{{ courses|selectattr("lessons")|map(attribute="stream_data")|list|tojson }}</script>
+    <script type="application/json" id="streamData">{{ catalog|selectattr("lessons")|map(attribute="stream_data")|list|tojson }}</script>
 {% endblock %}
 {% block scripts %}<script src="/assets/js/stream.js" defer></script>{% endblock %}

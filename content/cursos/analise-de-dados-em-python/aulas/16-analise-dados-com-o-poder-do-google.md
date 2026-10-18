@@ -4,13 +4,11 @@ video: https://www.youtube.com/watch?v=ynj9SNAKpog
 module: "Coleta de dados e grandes volumes"
 duration: "3:04"
 ---
-
 ## Sobre esta aula
 
-Faça parte do nosso laboratório de experimentação de conteúdo: <https://bit.ly/labpgdinamica>
+Nesta aula, você vai conhecer o **Google Colab**, um ambiente de notebooks que roda no navegador, sem instalar nada, e oferece GPUs gratuitas para treinar modelos de aprendizado de máquina. É uma ótima opção para estudar Python e análise de dados em qualquer computador.
 
-Nesse vídeo a Kizzy compartilha mais uma ferramenta muito útil para desenvolvedores: o Google Colab. Com essa ferramenta o Google disponibiliza GPUs para que você possa rodar seus modelos de aprendizado de máquina. Se você ainda não está estudando aprendizado de máquina, mas está estudando Python e gostaria de poder programar online, sem instalar nada, esse serviço do Google também é para você.
+## O que você vai aprender
 
-*Instagram: @dinamicaprogramacao @kizzy_terra @ hallpaz
-
-*Twitter: @pgdinamica @kizzyterra @hallpaz
+- O que é o Google Colab e como criar um notebook
+- Como usar GPUs no Colab

@@ -4,11 +4,11 @@ video: https://www.youtube.com/watch?v=oj5kGtpYdF0
 module: "Visualização e combinação de dados"
 duration: "15:31"
 ---
-
 ## Sobre esta aula
 
-Nesse vídeo, aprendemos a aglutinar dois conjuntos de dados que possuem colunas em comum. Aqui juntamos uma tabela extraída dos microdados do ENEM 2018 e a tabela com os dados de IDHM (índice de desenvolvimento humano municipal). Além disso iniciamos o estudo sobre gráficos de dispersão.
+Muitas perguntas só podem ser respondidas cruzando bases diferentes. Nesta aula, você vai **combinar dois conjuntos de dados** que têm colunas em comum: uma tabela extraída dos microdados do ENEM 2018 e os dados de IDHM (Índice de Desenvolvimento Humano Municipal). Com os dados unidos, começamos a estudar os gráficos de dispersão.
 
-*Instagram: @dinamicaprogramacao @kizzy_terra @ hallpaz
+## O que você vai aprender
 
-*Twitter: @pgdinamica @kizzyterra @hallpaz
+- Como juntar dois DataFrames por uma coluna em comum
+- Como construir um gráfico de dispersão

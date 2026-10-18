@@ -4,13 +4,6 @@ video: https://www.youtube.com/watch?v=1j_xv58SHEk
 module: "Visualização e combinação de dados"
 duration: "9:47"
 ---
-
 ## Sobre esta aula
 
-Nesse vídeo, em resposta ao comentário do Eduardo Silva, a Kizzy mostrou como podemos colocar os pontos em um gráfico do Matplotlib.
-
-Fale com a gente por e-mail: contato@programacaodinamica.com.br
-
-*Instagram: @dinamicaprogramacao @kizzy_terra @ hallpaz
-
-*Twitter: @pgdinamica @kizzyterra @hallpaz
+Uma dúvida comum: como destacar os pontos de um gráfico de linhas? Nesta aula curta, você vai aprender a adicionar **marcadores** aos gráficos do Matplotlib.

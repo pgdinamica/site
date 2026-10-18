@@ -4,15 +4,17 @@ video: https://www.youtube.com/watch?v=bPkoTw4ZCbY
 module: "Visualização e combinação de dados"
 duration: "17:59"
 ---
-
 ## Sobre esta aula
 
-Nesse vídeo, Kizzy explora o método plot da classe DataFrame do Pandas e continua utilizando o  matplotlib do Python, apresentado no vídeo anterior.
+O Pandas tem atalhos para criar gráficos direto de um DataFrame. Nesta aula, você vai explorar o método `plot` do DataFrame, combinando-o com o Matplotlib para ajustar cores, legendas e o layout do gráfico.
 
-*Instagram: @dinamicaprogramacao @kizzy_terra @ hallpaz
+## O que você vai aprender
 
-*Twitter: @pgdinamica @kizzyterra @hallpaz
+- Como usar o método `DataFrame.plot`
+- Como escolher mapas de cores (colormaps)
+- Como posicionar a legenda de um gráfico
 
-[Lista de colormaps](https://matplotlib.org/3.1.0/tutorials/colors/colormaps.html)
+## Material de apoio
 
-[Mais sobre os parâmetros da legenda do AxesSubplot](https://stackoverflow.com/questions/39803385/what-does-a-4-element-tuple-argument-for-bbox-to-anchor-mean-in-matplotlib/39806180#39806180)
+- [Lista de colormaps do Matplotlib](https://matplotlib.org/stable/tutorials/colors/colormaps.html)
+- [Como funciona o parâmetro `bbox_to_anchor` da legenda (Stack Overflow)](https://stackoverflow.com/questions/39803385/what-does-a-4-element-tuple-argument-for-bbox-to-anchor-mean-in-matplotlib/39806180#39806180)

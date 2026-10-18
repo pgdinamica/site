@@ -4,23 +4,17 @@ video: https://www.youtube.com/watch?v=ZcvFSEaRcTg
 module: "Primeiros passos com Pandas"
 duration: "20:29"
 ---
-
 ## Sobre esta aula
 
-Nesse vídeo, Kizzy avança na análise exploratória dos microdados do #ENEM olhando para as primeiras duas questões do questionário socioeconômico respondido pelos candidatos do ENEM de 2018.  O resultado ficou incrível!
+Nesta aula, a análise avança para o **questionário socioeconômico** respondido pelos candidatos do ENEM 2018, começando pelas duas primeiras questões. Para transformar códigos em respostas legíveis, você vai criar novas colunas no DataFrame a partir de um dicionário Python.
 
-Para fazer isso, utilizamos Python, claro, jupyter notebook, o pacote pandas e um dicionário Python.
+## O que você vai aprender
 
-O que você vai aprender de novo no quinto vídeo da série de análise de dados?
+- Como usar dicionários Python na análise de dados
+- Como inserir uma nova coluna em um DataFrame
+- Como criar essa coluna a partir de uma coluna existente e de um dicionário
+- Usos mais avançados do `groupby`
 
-- Dicionário Python
+## Material de apoio
 
-- Como inserir uma nova coluna em um DataFrame pandas
-
-- Como criar essa coluna a partir da informação de uma coluna existente e um dicionário correspondente
-
-- Aprofundar no uso do groupby
-
-Link mencionado no vídeo:
-
-[*O que é esse tal de NAN? Saiba mais em](https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html)
+- [Documentação do Pandas: dados ausentes (o que é `NaN`)](https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html)

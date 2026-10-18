@@ -19,6 +19,7 @@ import shutil
 import sys
 import threading
 import time
+import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -233,6 +234,12 @@ class Lesson(MetaFields):
         return bool(self.course.members_only) and not self.meta.get("open") and not self.is_locked
 
 
+def to_slug(text) -> str:
+    """'Inteligência Artificial' -> 'inteligencia-artificial'."""
+    text = unicodedata.normalize("NFKD", str(text)).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]+", "-", text).strip("-")
+
+
 @dataclass
 class Course(MetaFields):
     slug: str
@@ -260,6 +267,15 @@ class Course(MetaFields):
     @property
     def free_lessons(self):
         return [l for l in self.lessons if not l.is_locked]
+
+    @property
+    def sort_key(self):
+        """Título sem acentos e em minúsculas, para a ordem alfabética ("Mãos" antes de "Matemática")."""
+        return unicodedata.normalize("NFKD", str(self.title)).encode("ascii", "ignore").decode().lower()
+
+    @property
+    def topic_slugs(self):
+        return [to_slug(t) for t in (self.topics or [])]
 
     @property
     def open_lessons(self):
@@ -436,7 +452,7 @@ def build() -> int:
     env = Environment(loader=FileSystemLoader(TEMPLATES), autoescape=select_autoescape(["html", "xml"]),
                       trim_blocks=True, lstrip_blocks=True)
     env.filters.update(date_long=date_long, date_short=date_short, highlight=highlight, rfc822=rfc822,
-                       md=lambda t: render_markdown(str(t or "")))
+                       md=lambda t: render_markdown(str(t or "")), slug=to_slug)
     env.tests["contains_author"] = lambda speakers, author: author in (speakers or [])
     env.globals.update(site=site, authors=authors, courses=courses, press=press, posts=posts,
                        talks=talks, talk_photos=talk_photos, marcas=marcas, ads=ads, youtube_videos=youtube_videos,

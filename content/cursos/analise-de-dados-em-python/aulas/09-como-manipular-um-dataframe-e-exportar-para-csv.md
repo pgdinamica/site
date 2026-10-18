@@ -4,13 +4,11 @@ video: https://www.youtube.com/watch?v=L50fiScthSc
 module: "Visualização e combinação de dados"
 duration: "8:47"
 ---
-
 ## Sobre esta aula
 
-Temos muitas ferramentas para fazer análises de dados em Python e aqui no canal a cada vídeo desenvolvemos uma nova habilidade aplicando o conhecimento a uma pergunta prática acerca dos microdados do ENEM.
+Nesta aula, revisamos os métodos de DataFrame usados até aqui, como o `groupby`, e aprendemos a **salvar o resultado** de uma manipulação em um novo arquivo com o método `to_csv`. Assim, você pode reaproveitar os dados tratados em outras análises.
 
-Nesse vídeo, revisamos alguns métodos dos DataFrames do pandas utilizados em vídeos anteriores, tal como o groupby() além de aprender a exportar um novo dataset após manipular um DataFrame, utilizando o método to_csv().
+## O que você vai aprender
 
-*Instagram: @dinamicaprogramacao @kizzy_terra @ hallpaz
-
-*Twitter: @pgdinamica @kizzyterra @hallpaz
+- Revisão do `groupby` e da manipulação de DataFrames
+- Como exportar um DataFrame para CSV com `to_csv`

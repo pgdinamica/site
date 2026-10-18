@@ -136,3 +136,20 @@ li.is-locked .ep-play { display: none; }
 .ep-members { display: inline-flex; align-items: center; gap: 0.25rem; }
 .ep-members svg { width: 0.8rem; height: 0.8rem; }
 .ep-open { position: absolute; left: 0.5rem; top: 0.5rem; font-size: 0.68rem; font-weight: 700; padding: 0.18rem 0.5rem; border-radius: 6px; background: var(--emerald); color: #04170f; }
+
+/* ---------- Filtro por tema ---------- */
+.topic-filter-wrap { margin-top: clamp(2.4rem, 5vw, 3.4rem); margin-bottom: 0.4rem; padding-top: clamp(1.6rem, 3vw, 2.2rem); border-top: 1px solid rgba(255,255,255,0.08); }
+.topic-filter-title { color: #fff; font-size: clamp(1.15rem, 1rem + 0.6vw, 1.45rem); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.9rem; }
+.topic-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.topic-filter-label { font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-dark-muted); margin-right: 0.3rem; }
+.topic-chip { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--on-dark); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); padding: 0.45rem 0.95rem; border-radius: 999px; cursor: pointer; transition: background 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease); }
+.topic-chip:hover { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.1); }
+.topic-chip[aria-pressed="true"] { background: #fff; border-color: #fff; color: #070c17; }
+.topic-chip:focus-visible { outline: 2px solid var(--emerald-bright); outline-offset: 2px; }
+.topic-filter-empty { margin-top: 1rem; color: var(--on-dark-muted); }
+.stream-row[hidden], .rail > li[hidden] { display: none; }
+@media (max-width: 600px) {
+  .topic-filter { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
+  .topic-filter::-webkit-scrollbar { display: none; }
+  .topic-chip, .topic-filter-label { flex: none; }
+}

@@ -38,7 +38,8 @@
           {% set open_n = course.open_lessons|length %}
           <a class="open-strip reveal d3" href="#conteudo">
             <span class="open-strip-ic">{{ icon("unlock") }}</span>
-            <span><b>Aberto a todos:</b> o material de todas as {{ course.lessons|length }} aulas{% if open_n %} e {{ open_n }} vídeos completos{% endif %}. <u>Ver o que é aberto</u></span>
+            {% set videos_txt = open_n ~ (" vídeo completo" if open_n == 1 else " vídeos completos") %}
+            <span><b>Aberto a todos:</b> {% if course.open_material %}o material de todas as {{ course.lessons|length }} aulas{% if open_n %} e {{ videos_txt }}{% endif %}{% else %}{{ videos_txt }}{% endif %}. <u>Ver o que é aberto</u></span>
           </a>
           {% endif %}
           {% if course.perks %}
@@ -136,11 +137,11 @@
         <div class="access-legend reveal d2">
           <div class="access-item is-open">
             <span class="access-ic">{{ icon("unlock") }}</span>
-            <div><b>Aberto a todos</b><p>O roteiro, o notebook e a referência de <strong>todas as aulas</strong>, e o vídeo completo das aulas marcadas como <span class="ml-tag ml-tag-open">Aberta</span>.</p></div>
+            <div><b>Aberto a todos</b><p>{% if course.open_material %}O roteiro, o notebook e a referência de <strong>todas as aulas</strong>, e o vídeo completo das aulas marcadas como <span class="ml-tag ml-tag-open">Aberta</span>.{% else %}O vídeo completo das aulas marcadas como <span class="ml-tag ml-tag-open">Aberta</span>.{% endif %}</p></div>
           </div>
           <div class="access-item is-members">
             <span class="access-ic">{{ icon("lock") }}</span>
-            <div><b>Para membros do canal</b><p>As demais gravações, marcadas com o cadeado, ficam disponíveis para membros Espresso e Capuccino. <a href="{{ site.youtube_join }}" target="_blank" rel="noopener">Quero ser membro</a></p></div>
+            <div><b>Para membros do canal</b><p>As demais gravações, marcadas com o cadeado, ficam disponíveis para membros {{ course.members_tiers or "Espresso e Capuccino" }}. <a href="{{ site.youtube_join }}" target="_blank" rel="noopener">Quero ser membro</a></p></div>
           </div>
         </div>
         {% endif %}

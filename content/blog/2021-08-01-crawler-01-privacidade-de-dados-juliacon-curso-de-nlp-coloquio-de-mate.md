@@ -147,8 +147,8 @@ Lembrando que há um vídeo dedicado a [por que e como estudar algoritmos e estr
 
 **Continuamos o projeto Matemática Elementar para Computação com aulas sobre:**
 
-1. [Programação Linear](https://matematica.pgdinamica.com/algebra/016programacaolinear.html)
-2. [Introdução a matrizes e suas aplicações](https://matematica.pgdinamica.com/aritmetica/018matrizes.html)
+1. [Programação Linear](/cursos/matematica-elementar-para-computacao/aulas/programacao-linear/)
+2. [Introdução a matrizes e suas aplicações](/cursos/matematica-elementar-para-computacao/aulas/introducao-a-matrizes-e-aplicacoes/)
 
 #### Você também pode contribuir!
 

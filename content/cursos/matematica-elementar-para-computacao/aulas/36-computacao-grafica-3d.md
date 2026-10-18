@@ -4,19 +4,20 @@ module: "Aplicações na computação"
 video: https://www.youtube.com/watch?v=rEq17GCrGZE
 open: true            # vídeo aberto a todos
 ---
-### Como OBJETOS 3D são Representados no Computador?
+## Sobre esta aula
 
-Seja nos jogos de video game, filmes de animação, softwares de modelagem para arquitetura e engenharia , experiências de realidade aumentada e realidade virtual ou impressão 3D, estamos muito habituados a visualizar objetos 3D nas mais diversas aplicações. Mas você sabe o que é um objeto 3D e como criar objetos 3D no computador?
+Jogos, filmes de animação, softwares de arquitetura e engenharia, realidade aumentada e virtual, impressão 3D… estamos acostumados a ver objetos 3D em todo lugar. Mas o que é um objeto 3D e como representá-lo no computador? Nesta aula, você vai entender as principais formas de **representar objetos tridimensionais**.
 
-### Modelagem 3D da Terra com Python
+Como projeto, você pode construir um **modelo 3D da Terra** em Python: escrever o seu próprio arquivo de **malha poligonal** e aplicar um mapa como textura — um ótimo exemplo de matemática aplicada à programação.
 
-Neste “Python na Prática”, faremos um projeto de computação gráfica ao vivo! Vamos aprender uma forma de representação de modelos 3D como malhas poligonais. Nós vamos escrever nosso próprio arquivo com malhas poligonais de objetos do nosso interesse e, com isso, iremos construir um modelo 3D da Terra e aplicar um mapa como textura para visualizá-la! Não é incrível? Um excelente exemplo de aplicação da matemática para programação.
+## O que você vai aprender
 
-### A Próxima Fronteira do DEEP LEARNING
+- O que é um objeto 3D no computador
+- Representações de modelos 3D, como malhas poligonais
+- Como texturas são aplicadas a um modelo
 
-Existem muitas outras formas de representar modelos 3D no computador, se quiser aprender mais sobre outras representações de objetos 3D e ter uma introdução à ideia de machine learning na computação gráfica, assista a este vídeo da série Diário de Pesquisa:
+## Material de apoio
 
-## Vídeos relacionados
-
-- [Modelagem 3D da Terra com Python | Computação Gráfica | Python na Prática](https://www.youtube.com/watch?v=6RXmgUgB-AU)
-- [A Próxima Fronteira do DEEP LEARNING | Representações de Dados 3D | Diário de Pesquisa #15](https://www.youtube.com/watch?v=Ya6g_k5MDzc)
+- [Projeto: modelagem 3D da Terra com Python](https://www.youtube.com/watch?v=6RXmgUgB-AU)
+- [Vídeo: a próxima fronteira do deep learning — representações de dados 3D](https://www.youtube.com/watch?v=Ya6g_k5MDzc)
+- [Curso: Ray Tracing do Zero](/cursos/ray-tracing-do-zero/)

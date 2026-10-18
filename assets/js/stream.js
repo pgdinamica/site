@@ -104,3 +104,36 @@
   });
   if (items) document.getElementById("rowContinue").hidden = false;
 })();
+
+/* Filtro por tema: vale só para as fileiras de aulas abaixo dele (não para "Continuar assistindo"
+   nem para "Todos os cursos").
+   O tema fica no endereço (?tema=dados) para poder ser compartilhado. */
+(function () {
+  "use strict";
+  var bar = document.getElementById("topicFilter");
+  if (!bar) return;
+  var chips = Array.prototype.slice.call(bar.querySelectorAll(".topic-chip"));
+  var items = Array.prototype.slice.call(document.querySelectorAll(".stream-row[data-topics]"));
+  var empty = document.getElementById("topicEmpty");
+
+  function apply(topic, push) {
+    var shown = 0;
+    chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c.getAttribute("data-topic") === topic)); });
+    items.forEach(function (el) {
+      var ok = !topic || (" " + el.getAttribute("data-topics") + " ").indexOf(" " + topic + " ") >= 0;
+      el.hidden = !ok;
+      if (ok) shown++;
+    });
+    if (empty) empty.hidden = shown > 0;
+    if (push) {
+      var url = new URL(location.href);
+      if (topic) url.searchParams.set("tema", topic); else url.searchParams.delete("tema");
+      history.replaceState(null, "", url);
+    }
+  }
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () { apply(c.getAttribute("data-topic"), true); });
+  });
+  var initial = new URLSearchParams(location.search).get("tema") || "";
+  if (initial && chips.some(function (c) { return c.getAttribute("data-topic") === initial; })) apply(initial, false);
+})();

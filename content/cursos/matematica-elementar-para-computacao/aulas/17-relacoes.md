@@ -14,8 +14,6 @@ Poderíamos ir mais longe e definir uma relação cujo domínio seja composto pe
 
 E aí, você faz parte do seleto grupo nessa relação?
 
-> [Ver essa foto no Instagram](https://www.instagram.com/p/COlBcVjgspg/?utm_source=ig_embed&utm_campaign=loading) [Uma publicação compartilhada por Programação Dinâmica (@pgdinamica)](https://www.instagram.com/p/COlBcVjgspg/?utm_source=ig_embed&utm_campaign=loading)
-
 ## Nesta aula
 1. Relações
 2. Conjuntos discretos e contínuos

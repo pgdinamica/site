@@ -161,7 +161,7 @@ https://www.youtube.com/watch?v=dupUXsBKH74
 3. [Resolvendo questões de entrevistas técnicas do FACEBOOK](https://youtu.be/0HvJj3ZsOm4) | PROBLEMA TÉCNICO #02
 4. [Migrar para a ÁREA de DADOS? Como TRABALHAR com DADOS no mercado financeiro?](https://youtu.be/-bdM3FG3cnc)
 5. [QUEM VÊ CLOSE, NÃO VÊ CORRE #Shorts](https://youtu.be/3lvYttapLmQ)
-6. [Introdução a Matrizes e Aplicações | Matemática Elementar para Computação](https://matematica.pgdinamica.com/aritmetica/018matrizes.html) #18
+6. [Introdução a Matrizes e Aplicações | Matemática Elementar para Computação](/cursos/matematica-elementar-para-computacao/aulas/introducao-a-matrizes-e-aplicacoes/) #18
 7. [Linkedin ou Currículo? #Shorts](https://youtu.be/9rsb2yovb_s)
 
 ### Projeto Mentoria

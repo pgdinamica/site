@@ -48,7 +48,7 @@
           <div class="end-card">
             <p class="end-kicker">{{ icon("award") }} Gravação exclusiva para membros</p>
             <p class="end-next-title">{{ lesson.title }}</p>
-            <p class="gate-text">Disponível para membros do canal (Espresso e Capuccino). Para assistir aqui, entre na sua conta do YouTube neste navegador.</p>
+            <p class="gate-text">Disponível para membros do canal ({{ course.members_tiers or "Espresso e Capuccino" }}). Para assistir aqui, entre na sua conta do YouTube neste navegador.</p>
             <div class="end-actions">
               <button type="button" class="btn btn-primary" id="memberLoad">{{ icon("play") }} Sou membro, carregar a aula</button>
               <a class="btn btn-ghost on-dark" href="https://www.youtube.com/watch?v={{ lesson.video_id }}" target="_blank" rel="noopener">Assistir no YouTube</a>
@@ -136,7 +136,7 @@
     {% elif course.members_only %}
     <div class="side-upgrade side-members">
       <p class="side-upgrade-kicker">{{ icon("award") }} Para membros do canal</p>
-      <p class="side-upgrade-title">Gravações exclusivas para Espresso e Capuccino</p>
+      <p class="side-upgrade-title">Gravações exclusivas para {{ course.members_tiers or "Espresso e Capuccino" }}</p>
       <a class="btn btn-primary" href="{{ site.youtube_join }}" target="_blank" rel="noopener">Quero ser membro</a>
     </div>
     {% endif %}

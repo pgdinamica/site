@@ -6,6 +6,7 @@ badge: Exclusivo para Membros
 cover: /assets/img/cursos/matematica-elementar-para-computacao-square.jpg   # capa quadrada (cards)
 backdrop: /assets/img/cursos/matematica-elementar-para-computacao-backdrop.jpg   # capa horizontal 16:9 (destaque)
 thumb: /assets/img/cursos/matematica-elementar-para-computacao-thumb.jpg         # capa horizontal 16:9 (cards)
+topics: ["Matemática"]   # temas (filtros da página /cursos/)
 level: "Fundamentos"
 format: "Gravações das lives · sala de estudo"
 summary: A base matemática que sustenta a programação e a ciência de dados, sem medo.
@@ -13,6 +14,8 @@ price_label: Por assinatura
 instructors: [hallison-paz]
 
 members_only: true     # as gravações são exclusivas para membros do canal (exceto aulas com `open: true`)
+members_tiers: "Espresso e Capuccino"   # categorias de membro que dão acesso (aparece nos avisos)
+open_material: true    # roteiro, notebook e referência de todas as aulas são abertos (aparece nos avisos)
 checkout: https://www.youtube.com/programacaodinamica/join
 cta: Começar a estudar
 secondary:
