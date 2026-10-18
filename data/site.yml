@@ -13,9 +13,9 @@ youtube_join: https://www.youtube.com/programacaodinamica/join
 nav:
   # Seções da home
   - { label: Missão, href: "/#sobre", spy: sobre }
-  - { label: Canal, href: "/#canal", spy: canal }
+  - { label: Conteúdo, href: "/#canal", spy: canal }
   - { label: Serviços, href: "/#servicos", spy: servicos }
-  - { label: Mídia, href: "/#imprensa", spy: imprensa, key: imprensa }
+  - { label: Imprensa, href: "/#imprensa", spy: imprensa, key: imprensa }
   # Outras páginas
   - { label: Blog, href: "/blog/", key: blog }
   - { label: Cursos, href: "/cursos/", key: cursos }
