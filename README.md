@@ -68,7 +68,7 @@ repositório (dá para rodar de novo à mão em *Actions → Publicar site → R
 
 - O domínio vem de `url:` em `data/site.yml`; o build grava o arquivo `_site/CNAME` com ele.
 - Os links internos começam com `/`, então o site precisa ficar na raiz de um domínio
-  (não funciona em `programacaodinamica.github.io/site/`).
+  (não funciona em `pgdinamica.github.io/site/`).
 
 Para usar outra hospedagem de site estático (Netlify, Cloudflare Pages…):
 

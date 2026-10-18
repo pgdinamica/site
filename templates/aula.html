@@ -145,11 +145,12 @@
       <p class="side-module-title"><span>Módulo {{ loop.index }}</span>{{ name }}</p>
       <ol>
         {% for l in lessons %}
-        <li data-lesson="{{ l.slug }}" class="{% if l.slug == lesson.slug %}is-current{% endif %}{% if l.is_locked %} is-locked{% endif %}">
+        <li data-lesson="{{ l.slug }}" class="{% if l.slug == lesson.slug %}is-current{% endif %}{% if l.is_locked %} is-locked{% elif l.is_members %} is-members{% endif %}">
           <a href="{{ l.url }}"{% if l.slug == lesson.slug %} aria-current="page"{% endif %}>
-            <span class="side-check">{{ icon("lock") if l.is_locked else icon("check") }}</span>
+            <span class="side-check"{% if l.is_members %} title="Exclusiva para membros do canal"{% endif %}>{{ icon("lock") if (l.is_locked or l.is_members) else icon("check") }}</span>
             <span class="side-n">{{ l.number }}</span>
             <span class="side-title">{{ l.title }}</span>
+            {% if l.is_members %}<span class="sr-only">(exclusiva para membros)</span>{% elif course.members_only and l.video_id %}<span class="side-open">Aberta</span>{% endif %}
             {% if l.duration %}<span class="side-dur">{{ l.duration }}</span>{% endif %}
           </a>
         </li>

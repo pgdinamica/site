@@ -262,6 +262,11 @@ class Course(MetaFields):
         return [l for l in self.lessons if not l.is_locked]
 
     @property
+    def open_lessons(self):
+        """Aulas com vídeo aberto a todos (num curso para membros, as marcadas com `open: true`)."""
+        return [l for l in self.lessons if l.video_id and not l.is_locked and not l.is_members]
+
+    @property
     def stream_data(self):
         """Dados mínimos para a página de cursos (continuar assistindo, progresso)."""
         return {"slug": self.slug, "title": self.title, "url": self.url, "total": len(self.free_lessons),

@@ -139,7 +139,9 @@
 .pillar h3 { font-size: 1.15rem; margin-top: 0.7rem; }
 .pillar p { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem; }
 
-.c-audience { background: var(--paper); padding-top: 0; }
+.c-audience { background: var(--paper); }
+/* Logo depois de outra seção clara, encosta nela; depois do topo escuro, mantém o respiro */
+:is(.c-pains, .c-pillars) + .c-audience { padding-top: 0; }
 .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
 .audience-card { padding: 1.8rem; border-radius: var(--radius); border: 1px solid var(--paper-line); }
 .audience-card h3 { font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
@@ -399,3 +401,33 @@
 .compare-card li.no svg { color: var(--text-muted); }
 .compare-card li.is-plus { font-weight: 600; color: var(--text-strong); }
 @media (max-width: 760px) { .compare-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Curso para membros: o que é aberto x o que é exclusivo ---------- */
+.open-strip { display: inline-flex; align-items: center; gap: 0.7rem; margin-top: 1.4rem; padding: 0.6rem 1rem 0.6rem 0.6rem; border-radius: 14px; background: rgba(16,185,129,0.12); border: 1px solid rgba(52,211,153,0.35); color: var(--on-dark); font-size: 0.95rem; line-height: 1.4; max-width: 40rem; transition: background 0.25s var(--ease), border-color 0.25s var(--ease); }
+.open-strip:hover { background: rgba(16,185,129,0.2); border-color: var(--emerald-bright); }
+.open-strip b { color: #fff; }
+.open-strip u { color: var(--emerald-bright); text-underline-offset: 3px; white-space: nowrap; }
+.open-strip-ic { width: 34px; height: 34px; flex: none; border-radius: 10px; display: grid; place-items: center; background: var(--emerald); color: #04170f; }
+.open-strip-ic svg { width: 18px; height: 18px; }
+
+.access-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-top: 1.4rem; }
+.access-item { display: flex; gap: 0.8rem; align-items: flex-start; padding: 1rem 1.1rem; border-radius: var(--radius); border: 1px solid var(--paper-line); }
+.access-item b { font-family: var(--font-display); color: var(--text-strong); }
+.access-item p { margin-top: 0.25rem; font-size: 0.93rem; color: var(--text-muted); line-height: 1.5; }
+.access-item p a { color: #8a6d00; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.access-ic { width: 32px; height: 32px; flex: none; border-radius: 9px; display: grid; place-items: center; }
+.access-ic svg { width: 17px; height: 17px; }
+.access-item.is-open { background: var(--emerald-soft); border-color: rgba(16,185,129,0.25); }
+.access-item.is-open .access-ic { background: var(--emerald); color: #04170f; }
+.access-item.is-members { background: rgba(245,197,24,0.08); border-color: rgba(245,197,24,0.3); }
+.access-item.is-members .access-ic { background: var(--gold); color: #3a2c00; }
+@media (max-width: 760px) { .access-legend { grid-template-columns: 1fr; } }
+
+.ml-tag-open { background: var(--emerald-soft); color: #0a7a57; }
+.module-lessons li.is-members .ml-check { border-color: transparent; color: #c99a00; }
+.module-lessons li.is-members.is-done .ml-check { background: var(--emerald); color: #04170f; }
+
+/* Player: cadeado dourado nas aulas para membros e etiqueta nas abertas */
+.class-side li.is-members .side-check { border-color: transparent; color: var(--gold); }
+.class-side li.is-members.is-done .side-check { background: var(--emerald); border-color: var(--emerald); color: #04170f; }
+.side-open { flex: none; align-self: flex-start; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.1rem 0.4rem; border-radius: 5px; background: rgba(16,185,129,0.18); color: var(--emerald-bright); margin-top: 0.15rem; }

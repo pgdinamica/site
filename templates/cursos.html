@@ -99,8 +99,8 @@
             <a class="ep-card" href="{{ l.url }}">
               <span class="ep-thumb">
                 <img src="{{ l.thumb }}" alt="" width="320" height="180" loading="lazy" decoding="async">
-                {% if l.is_locked %}<span class="ep-lock">{{ icon("lock") }} Curso completo</span>{% elif l.is_members %}<span class="ep-members">Membros</span>{% endif %}
-                <span class="ep-play" aria-hidden="true">{{ icon("lock") if l.is_locked else icon("play") }}</span>
+                {% if l.is_locked %}<span class="ep-lock">{{ icon("lock") }} Curso completo</span>{% elif l.is_members %}<span class="ep-members">{{ icon("lock") }} Membros</span>{% elif c.members_only %}<span class="ep-open">Aberta</span>{% endif %}
+                <span class="ep-play" aria-hidden="true">{{ icon("lock") if (l.is_locked or l.is_members) else icon("play") }}</span>
                 {% if l.duration %}<span class="ep-dur">{{ l.duration }}</span>{% endif %}
                 <span class="ep-done" aria-hidden="true">{{ icon("check") }} Concluída</span>
               </span>

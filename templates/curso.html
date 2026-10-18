@@ -31,8 +31,16 @@
           <div class="hero-actions reveal d3">
             {{ cta_button() }}
             {% if course.preview and course.classroom_url %}<a class="btn btn-glass btn-lg" href="{{ course.classroom_url }}" data-resume-course="{{ course.slug }}">{{ icon("play") }} {{ course.preview_cta or "Assistir grátis" }}</a>{% endif %}
+            {% if course.members_only and course.open_lessons %}<a class="btn btn-glass btn-lg" href="{{ course.open_lessons[0].url }}">{{ icon("play") }} Assistir aulas abertas</a>{% endif %}
             {% if course.secondary %}<a class="btn btn-ghost on-dark btn-lg" href="{{ course.secondary.url }}" target="_blank" rel="noopener">{{ course.secondary.label }}</a>{% endif %}
           </div>
+          {% if course.members_only %}
+          {% set open_n = course.open_lessons|length %}
+          <a class="open-strip reveal d3" href="#conteudo">
+            <span class="open-strip-ic">{{ icon("unlock") }}</span>
+            <span><b>Aberto a todos:</b> o material de todas as {{ course.lessons|length }} aulas{% if open_n %} e {{ open_n }} vídeos completos{% endif %}. <u>Ver o que é aberto</u></span>
+          </a>
+          {% endif %}
           {% if course.perks %}
           <ul class="perks reveal d3">{% for p in course.perks %}<li>{{ icon("check") }}{{ p }}</li>{% endfor %}</ul>
           {% endif %}
@@ -123,15 +131,26 @@
     <section class="section c-modules" id="conteudo" aria-labelledby="modules-h">
       <div class="wrap c-narrow">
         <span class="eyebrow reveal">Conteúdo</span>
-        <h2 id="modules-h" class="reveal d1">{% if n_locked %}{{ course.free_lessons|length }} aulas abertas + {{ n_locked }} exclusivas do curso completo{% else %}{{ course.lessons|length }} aulas em {{ course.modules|length }} módulos{% endif %}</h2>
-        {% if course.members_only %}<p class="c-intro reveal d2">{{ icon("award") }} As gravações são exclusivas para membros do canal. O roteiro, o notebook e a referência de cada aula ficam abertos a todos.</p>{% endif %}
+        <h2 id="modules-h" class="reveal d1">{% if course.members_only %}{{ course.lessons|length }} aulas, {{ course.open_lessons|length }} com vídeo aberto a todos{% elif n_locked %}{{ course.free_lessons|length }} aulas abertas + {{ n_locked }} exclusivas do curso completo{% else %}{{ course.lessons|length }} aulas em {{ course.modules|length }} módulos{% endif %}</h2>
+        {% if course.members_only %}
+        <div class="access-legend reveal d2">
+          <div class="access-item is-open">
+            <span class="access-ic">{{ icon("unlock") }}</span>
+            <div><b>Aberto a todos</b><p>O roteiro, o notebook e a referência de <strong>todas as aulas</strong>, e o vídeo completo das aulas marcadas como <span class="ml-tag ml-tag-open">Aberta</span>.</p></div>
+          </div>
+          <div class="access-item is-members">
+            <span class="access-ic">{{ icon("lock") }}</span>
+            <div><b>Para membros do canal</b><p>As demais gravações, marcadas com o cadeado, ficam disponíveis para membros Espresso e Capuccino. <a href="{{ site.youtube_join }}" target="_blank" rel="noopener">Quero ser membro</a></p></div>
+          </div>
+        </div>
+        {% endif %}
         <div class="modules" data-progress-list="{{ course.slug }}">
           {% for name, lessons in course.modules %}
           <details class="module reveal"{% if loop.first %} open{% endif %}>
             <summary><span class="module-n">Módulo {{ loop.index }}</span><span class="module-title">{{ name }}</span><span class="module-count">{{ lessons|length }} aulas</span></summary>
             <ol class="module-lessons">
               {% for l in lessons %}
-              <li data-lesson="{{ l.slug }}"{% if l.is_locked %} class="is-locked"{% endif %}><a href="{{ l.url }}"><span class="ml-check">{{ icon("lock") if l.is_locked else icon("check") }}</span><span class="ml-n">{{ l.number }}</span><span class="ml-title">{{ l.title }}</span>{% if l.is_locked %}<span class="ml-tag">Curso completo</span>{% elif l.is_members %}<span class="ml-tag ml-tag-members">Membros</span>{% endif %}{% if l.duration %}<span class="ml-dur">{{ l.duration }}</span>{% endif %}</a></li>
+              <li data-lesson="{{ l.slug }}"{% if l.is_locked %} class="is-locked"{% elif l.is_members %} class="is-members"{% endif %}><a href="{{ l.url }}"><span class="ml-check">{{ icon("lock") if (l.is_locked or l.is_members) else icon("check") }}</span><span class="ml-n">{{ l.number }}</span><span class="ml-title">{{ l.title }}</span>{% if l.is_locked %}<span class="ml-tag">Curso completo</span>{% elif l.is_members %}<span class="ml-tag ml-tag-members">Membros</span>{% elif course.members_only and l.video_id %}<span class="ml-tag ml-tag-open">Aberta</span>{% endif %}{% if l.duration %}<span class="ml-dur">{{ l.duration }}</span>{% endif %}</a></li>
               {% endfor %}
             </ol>
           </details>

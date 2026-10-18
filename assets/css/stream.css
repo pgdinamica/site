@@ -133,3 +133,6 @@ li.is-locked .ep-thumb img { filter: grayscale(0.7) brightness(0.45) blur(1px); 
 .ep-lock svg { width: 1.5rem; height: 1.5rem; color: var(--emerald-bright); }
 li.is-locked .ep-play { display: none; }
 .ep-members { position: absolute; left: 0.5rem; top: 0.5rem; font-size: 0.68rem; font-weight: 700; padding: 0.18rem 0.5rem; border-radius: 6px; background: var(--gold); color: #3a2c00; }
+.ep-members { display: inline-flex; align-items: center; gap: 0.25rem; }
+.ep-members svg { width: 0.8rem; height: 0.8rem; }
+.ep-open { position: absolute; left: 0.5rem; top: 0.5rem; font-size: 0.68rem; font-weight: 700; padding: 0.18rem 0.5rem; border-radius: 6px; background: var(--emerald); color: #04170f; }
