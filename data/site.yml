@@ -12,13 +12,13 @@ youtube_join: https://www.youtube.com/programacaodinamica/join
 # Menu principal. `spy` = id da seção da home destacada ao rolar; `key` = página ativa.
 nav:
   # Seções da home
+  - { label: Missão, href: "/#sobre", spy: sobre }
   - { label: Canal, href: "/#canal", spy: canal }
   - { label: Serviços, href: "/#servicos", spy: servicos }
   - { label: Mídia, href: "/#imprensa", spy: imprensa, key: imprensa }
   # Outras páginas
-  - { label: Cursos, href: "/cursos/", key: cursos }
-  - { label: Palestras, href: "/palestras/", key: palestras }
   - { label: Blog, href: "/blog/", key: blog }
+  - { label: Cursos, href: "/cursos/", key: cursos }
 
 # Quantos itens aparecem nas seções da home.
 home:
