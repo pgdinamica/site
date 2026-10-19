@@ -132,3 +132,29 @@
   <button type="button" class="carousel-btn" data-dir="1" data-target="{{ target }}" aria-label="Próximos">{{ icon("arrow-right") }}</button>
 </div>
 {% endmacro %}
+
+{# ---------- Carrossel de posts incorporados (YouTube, Instagram, LinkedIn) ---------- #}
+{% macro embed_carousel(network, title, items, ratio) %}
+<section class="showcase showcase-{{ network }}" aria-labelledby="sc-{{ network }}">
+  <div class="wrap showcase-head">
+    <h2 id="sc-{{ network }}" class="reveal">{{ title }} <span class="showcase-count">{{ items|length }}</span></h2>
+    <div class="carousel-controls" aria-hidden="true">
+      <button type="button" class="carousel-btn" data-dir="-1" data-target="track-{{ network }}">{{ icon("arrow-left") }}</button>
+      <button type="button" class="carousel-btn" data-dir="1" data-target="track-{{ network }}">{{ icon("arrow-right") }}</button>
+    </div>
+  </div>
+  <ul class="carousel-track carousel-{{ ratio }}" id="track-{{ network }}" aria-label="{{ title }}">
+    {% for item in items %}
+    <li class="showcase-item">
+      <div class="showcase-embed">
+        <iframe src="{{ item.embed }}" title="{{ item.title or item.brand or title }}" loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      {% if item.brand or item.title %}
+      <p class="showcase-caption">{% if item.brand %}<b>{{ item.brand }}</b>{% endif %}{% if item.title %}<span>{{ item.title }}</span>{% endif %}</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endmacro %}

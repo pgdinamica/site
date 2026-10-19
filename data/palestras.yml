@@ -27,6 +27,22 @@ photos:
     kizzy-terra: { src: /assets/img/fotos/kizzy-forum-rnp.jpg, credit: "Fórum RNP 2026" }
     hallison-paz: { src: /assets/img/fotos/hallison-forum-rnp.jpg, credit: "Fórum RNP 2026" }
 
+# Posts sobre as palestras no Instagram e no LinkedIn (carrosséis na página /palestras/), do mais recente
+# para o mais antigo. A legenda mostra o perfil que publicou; `brand` e `title` são opcionais.
+posts:
+  - { url: "https://www.instagram.com/pgdinamica/p/DdAFoLtGhMx/" }
+  - { url: "https://www.instagram.com/casafirjan/p/DcE5jqNnPya/" }
+  - { url: "https://www.instagram.com/kizzy_terra/p/DXceeL5lMRK/" }
+  - { url: "https://www.instagram.com/fundacaoitau/reel/DNlzQApB9GV/" }
+  - { url: "https://www.instagram.com/pgdinamica/p/DK5Y1iMAX5z/" }
+  - { url: "https://www.instagram.com/pgdinamica/reel/DAd90fUuUH8/" }
+  - { url: "https://www.instagram.com/pgdinamica/p/C64il-agx5M/" }
+  - { url: "https://www.instagram.com/kizzy_terra/p/C6SRB0xNLRd/" }
+  - { url: "https://www.instagram.com/kizzy_terra/p/Cx6fFdev0gg/" }
+  - { url: "https://www.linkedin.com/posts/kizzyterra_m%C3%AAs-da-consci%C3%AAncia-negra-ugcPost-7400011676592386048-m0oy/", brand: "Shape Digital" }
+  - { url: "https://www.linkedin.com/posts/kizzyterra_a-cidade-das-empreendedoras-estava-repleta-ugcPost-7380776735199367168-w9VF/", brand: "Cidade das Empreendedoras" }
+  - { url: "https://www.linkedin.com/posts/brazilforum_o-%C3%BAltimo-painel-do-primeiro-dia-foi-o-regulando-activity-7339751168924946433-BGw_/", brand: "Brazil Forum" }
+
 items:
   - title: "Futuros (im) prováveis: Entre o que as máquinas preveem e o que a humanidade deseja"
     topic: "IA & Sociedade"

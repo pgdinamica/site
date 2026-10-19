@@ -29,6 +29,7 @@ outlets:
   "Nós, Mulheres da Periferia": { logo: /assets/img/imprensa/logos/nosmulheresdaperiferia-com-br.png, color: "#882d41" }
   "Revista piauí": { logo: /assets/img/imprensa/logos/piaui-folha-uol-com-br.png, color: "#9b644a" }
   "IMPA": { logo: /assets/img/imprensa/logos/impa-br.png, color: "#474747" }
+  "Fast Company Brasil": { logo: /assets/img/imprensa/logos/fastcompanybrasil-com.jpg, color: "#1a1a1a" }
   "GZH · Zero Hora": { logo: /assets/img/imprensa/logos/gauchazh-clicrbs-com-br.png, color: "#777777" }
 
 items:
@@ -44,6 +45,11 @@ items:
     url: "https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/noticias/2026/06/soberania-digital-e-impactos-da-ia-na-sociedade-estarao-em-debate-no-forum-rnp-2026"
     image: /assets/img/fotos/hallison-forum-rnp.jpg
     credit: "Fórum RNP 2026"
+  - outlet: "Fast Company Brasil"
+    date: "mai 2026"
+    title: "Fast Indica: Kizzy Terra prova que IA e ciência de dados cabem em linguagem acessível"
+    url: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7461148434658680832/"
+    people: [kizzy-terra]
   - outlet: "Diário Gaúcho"
     date: "mai 2026"
     title: "Referência em ciência de dados no país, Kizzy Terra é finalista do Prêmio YouTube Educação Digital"

@@ -66,7 +66,7 @@ def social_embed(network: str, url: str) -> str | None:
         vid = youtube_id(url)
         return f"https://www.youtube-nocookie.com/embed/{vid}?rel=0&modestbranding=1" if vid else None
     if network == "instagram":
-        m = re.search(r"instagram\.com/(p|reel|tv)/([\w-]+)", url)
+        m = re.search(r"instagram\.com/(?:[\w.]+/)?(p|reel|tv)/([\w-]+)", url)
         kind = "p" if m and m.group(1) == "tv" else (m.group(1) if m else "")  # IGTV antigo → post
         return f"https://www.instagram.com/{kind}/{m.group(2)}/embed" if m else None
     if network == "linkedin":
@@ -448,6 +448,18 @@ def build() -> int:
             if not item["embed"]:
                 raise BuildError(f"content/publicidade.md: não reconheci o link de {network}: {item.get('url')}")
         ads[network] = items
+    # Posts sobre as palestras (Instagram e LinkedIn, separados por rede).
+    # No Instagram, sem `brand`, o perfil que publicou vira a legenda.
+    talk_posts = {"instagram": [], "linkedin": []}
+    for item in talks_data.get("posts") or []:
+        url = str(item.get("url", ""))
+        network = "linkedin" if "linkedin.com" in url else "instagram"
+        item["embed"] = social_embed(network, url)
+        if not item["embed"]:
+            raise BuildError(f"data/palestras.yml: não reconheci o link de {network}: {url}")
+        handle = re.search(r"instagram\.com/([\w.]+)/(?:p|reel|tv)/", url)
+        item.setdefault("brand", f"@{handle.group(1)}" if handle else None)
+        talk_posts[network].append(item)
 
     env = Environment(loader=FileSystemLoader(TEMPLATES), autoescape=select_autoescape(["html", "xml"]),
                       trim_blocks=True, lstrip_blocks=True)
@@ -455,7 +467,7 @@ def build() -> int:
                        md=lambda t: render_markdown(str(t or "")), slug=to_slug)
     env.tests["contains_author"] = lambda speakers, author: author in (speakers or [])
     env.globals.update(site=site, authors=authors, courses=courses, press=press, posts=posts,
-                       talks=talks, talk_photos=talk_photos, marcas=marcas, ads=ads, youtube_videos=youtube_videos,
+                       talks=talks, talk_photos=talk_photos, talk_posts=talk_posts, marcas=marcas, ads=ads, youtube_videos=youtube_videos,
                        participacoes=participacoes,
                        year=dt.date.today().year, video_embed=lambda v, t="": Markup(video_embed(v, t)))
 

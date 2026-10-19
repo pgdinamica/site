@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "partials/macros.html" import icon %}
+{% from "partials/macros.html" import icon, embed_carousel %}
 {% block styles %}<link rel="stylesheet" href="/assets/css/pages.css">{% endblock %}
 {% block body_attrs %} class="talks-page"{% endblock %}
 {% block content %}
@@ -50,6 +50,17 @@
         </div>
       </div>
     </section>
+
+    {% if talk_posts.instagram or talk_posts.linkedin %}
+    <div class="showcases talk-posts">
+      <div class="wrap">
+        <span class="eyebrow reveal">Nas redes</span>
+        <h2 class="showcases-title reveal d1">Por onde passamos</h2>
+      </div>
+      {% if talk_posts.instagram %}{{ embed_carousel("instagram", "Instagram", talk_posts.instagram, "tall") }}{% endif %}
+      {% if talk_posts.linkedin %}{{ embed_carousel("linkedin", "LinkedIn", talk_posts.linkedin, "tall") }}{% endif %}
+    </div>
+    {% endif %}
 
     <section class="section speakers" aria-labelledby="speakers-title">
       <div class="wrap">
