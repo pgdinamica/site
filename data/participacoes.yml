@@ -74,3 +74,69 @@ items:
     title: "Itaú Festival de Produtos"
     subtitle: "Vieses e inteligência artificial"
     people: [kizzy-terra, hallison-paz]
+  - id: 52RABaL0DfI
+    kind: painel
+    label: "Entrevista"
+    title: "TV Cultura · Negros em Foco"
+    subtitle: "Presença negra na inteligência artificial"
+    people: [hallison-paz]
+  - id: R0NFKfZND_4
+    kind: podcast
+    label: "Podcast"
+    title: "FTD Educação · Resenha #17"
+    subtitle: "Imagens digitais e matemática"
+    people: [hallison-paz]
+  - id: LlViXGHjTpE
+    kind: keynote
+    label: "Palestra"
+    title: "Understanding DL 2024 · ICMC-USP"
+    subtitle: "Representação multirresolução de imagens com redes neurais"
+    people: [hallison-paz]
+  - id: _ZtQ0-tDwbY
+    kind: evento
+    label: "Evento"
+    title: "Google AI Developers LatAm"
+    subtitle: "Prototipando ideias com inteligência artificial"
+    people: [hallison-paz]
+  - id: V7Rwru7rjKg
+    kind: keynote
+    label: "Palestra"
+    title: "Webinar VISGRAF · IMPA"
+    subtitle: "Colocando um tijolo no metaverso"
+    people: [hallison-paz]
+  - id: m9X_PzJXMC4
+    kind: keynote
+    label: "Keynote"
+    title: "Python Brasil 2021"
+    subtitle: "Desafios da educação em IA no Brasil"
+    people: [hallison-paz]
+  - id: kd0V7JM7Q9g
+    kind: keynote
+    label: "Palestra"
+    title: "10ª SECComp · IF Sudeste MG"
+    subtitle: "Quem aprende como robô pode ser substituído por um robô"
+    people: [kizzy-terra, hallison-paz]
+  - id: 0MB-RDAl7a8
+    kind: podcast
+    label: "Podcast"
+    title: "Pizza de Dados #039"
+    subtitle: "Pizza Dinâmica"
+    people: [kizzy-terra, hallison-paz]
+  - id: NZ4KluZMEoU
+    kind: collab
+    label: "Live"
+    title: "Stack Talk · Bruno Germano"
+    subtitle: "Kizzy e Hallison do Programação Dinâmica"
+    people: [kizzy-terra, hallison-paz]
+  - id: hpsbLoZkLPI
+    kind: collab
+    label: "Live"
+    title: "Física e Afins"
+    subtitle: "Programação para todos ft. Programação Dinâmica"
+    people: [kizzy-terra, hallison-paz]
+  - id: 31mAFbYx5vM
+    kind: collab
+    label: "Entrevista"
+    title: "Edward Física"
+    subtitle: "Por dentro do IME: engenharia, rotina e trajetória"
+    people: [hallison-paz]

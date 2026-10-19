@@ -17,7 +17,7 @@ stats:
   - { value: "IME", label: "Engenharia de Computação" }
   - { value: "+11 anos", label: "de experiência na área de dados" }
 links:
-  - { label: LinkedIn, url: "https://www.linkedin.com/in/kizzyterra" }
+  - { label: LinkedIn, url: "https://www.linkedin.com/in/kizzyterra" , primary: true }
   - { label: Instagram, url: "https://instagram.com/kizzy_terra" }
   - { label: X / Twitter, url: "https://twitter.com/kizzy_terra" }
 experience:

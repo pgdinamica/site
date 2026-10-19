@@ -15,12 +15,12 @@
           <h1 id="profile-name" class="reveal d1">{{ author.name }}</h1>
           <p class="profile-tagline reveal d2">{{ author.tagline }}</p>
           <div class="profile-actions reveal d3">
-            <a class="btn btn-primary" href="mailto:{{ author.email or site.email }}" aria-label="Email" title="Email">{{ icon("mail") }}<span class="btn-label">Email</span></a>
             {% for link in author.links or [] %}
             {% set u = link.url|lower %}
             {% set ic = link.icon or ("linkedin" if "linkedin" in u else "instagram" if "instagram" in u else "x" if ("twitter.com" in u or "x.com" in u) else "twitch" if "twitch" in u else "github" if "github" in u else "youtube" if "youtube" in u else "link") %}
-            <a class="btn btn-ghost on-dark" href="{{ link.url }}" target="_blank" rel="noopener" aria-label="{{ link.label }}" title="{{ link.label }}">{{ icon(ic) }}<span class="btn-label">{{ link.label }}</span></a>
+            <a class="btn {{ 'btn-primary' if link.primary else 'btn-ghost on-dark' }}" href="{{ link.url }}" target="_blank" rel="noopener" aria-label="{{ link.label }}" title="{{ link.label }}">{{ icon(ic) }}<span class="btn-label">{{ link.label }}</span></a>
             {% endfor %}
+            <a class="btn btn-ghost on-dark" href="mailto:{{ author.email or site.email }}" aria-label="Email" title="Email">{{ icon("mail") }}<span class="btn-label">Email</span></a>
           </div>
           {% if author.stats %}
           <dl class="profile-stats reveal d3">

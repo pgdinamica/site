@@ -16,6 +16,7 @@ stats:
   - { value: "IMPA", label: "doutor em Matemática" }
   - { value: "+15 anos", label: "de experiência em Computação" }
 links:
+  - { label: Site pessoal, url: "https://hallpaz.github.io/", icon: globe , primary: true }
   - { label: LinkedIn, url: "https://www.linkedin.com/in/hallisonpaz" }
   - { label: Twitch, url: "https://www.twitch.tv/hallpaz" }
   - { label: Instagram, url: "https://instagram.com/hallpaz" }
