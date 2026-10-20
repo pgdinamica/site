@@ -43,7 +43,7 @@ Se você nos escrever por email, usamos o seu endereço e a sua mensagem apenas 
 
 ## Seus direitos
 
-A LGPD garante a você, entre outros, o direito de saber se tratamos dados seus, de acessá-los, corrigi-los e pedir a sua eliminação. Como o site não coleta dados pessoais diretamente, a maior parte das informações fica sob o seu controle, no seu navegador. Para qualquer dúvida ou pedido sobre privacidade, escreva para [{email}](mailto:{email}).
+A LGPD garante a você, entre outros, o direito de saber se tratamos dados seus, de acessá-los, corrigi-los e pedir a sua eliminação. Como o site não coleta dados pessoais diretamente, a maior parte das informações fica sob o seu controle, no seu navegador. Para qualquer dúvida ou pedido sobre privacidade, escreva para [comercial@pgdinamica.com](mailto:comercial@pgdinamica.com).
 
 ## Mudanças nesta política
 
