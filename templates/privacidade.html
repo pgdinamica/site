@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% set header_solid = true %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/blog.css">{% endblock %}
+{% block content %}
+    <article class="post legal-page">
+      <header class="post-head">
+        <h1 class="post-title">{{ legal.title }}</h1>
+        <p class="post-dek">Atualizado em {{ legal.updated }}</p>
+      </header>
+      <div class="prose">
+        {{ legal.body }}
+      </div>
+    </article>
+{% endblock %}

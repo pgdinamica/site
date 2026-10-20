@@ -499,6 +499,10 @@ def build() -> int:
                "image": ((talk_photos.get("hero") or [{}])[0]).get("src")})
     render("publicidade.html", "/publicidade/", page={"active": "servicos", "title": "Publicidade",
                "description": "Vitrine de publicidade do Programação Dinâmica: formatos, audiência e marcas que já trabalharam com a gente."})
+    legal_meta, legal_body = read_markdown(CONTENT / "privacidade.md")
+    legal = dict(legal_meta, body=render_markdown(legal_body.replace("{email}", site["email"])))
+    render("privacidade.html", "/privacidade/", legal=legal,
+           page={"title": legal["title"], "description": legal.get("description")})
     render("blog.html", "/blog/", page={"active": "blog", "title": "Blog"})
     for i, post in enumerate(posts):
         newer = posts[i - 1] if i > 0 else None

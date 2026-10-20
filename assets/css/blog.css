@@ -442,3 +442,7 @@ html[data-blog-theme="dark"] .blog-body .author-pill { background: var(--paper-2
 .reader-size input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--paper); border: 2px solid var(--emerald); }
 .reader-size:focus-within { border-color: var(--emerald); }
 @media (max-width: 600px) { .reader-size input[type="range"] { width: 92px; } }
+
+/* Página de privacidade: cabeçalho alinhado ao texto */
+.legal-page .post-head { max-width: 680px; margin-inline: auto; padding-bottom: 0; }
+.legal-page .post-dek { color: var(--text-muted); font-size: 0.95rem; margin: 0; }
