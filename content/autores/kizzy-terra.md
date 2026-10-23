@@ -15,7 +15,7 @@ expertise:
 stats:
   - { value: "PUC-SP", label: "doutorado em andamento" }
   - { value: "IME", label: "Engenharia de Computação" }
-  - { value: "+11 anos", label: "de experiência na área de dados" }
+  - { value: "+14 anos", label: "de experiência na área de dados" }
 links:
   - { label: LinkedIn, url: "https://www.linkedin.com/in/kizzyterra" , primary: true }
   - { label: Instagram, url: "https://instagram.com/kizzy_terra" }
@@ -45,7 +45,7 @@ award_photo:
   alt: "Kizzy Terra segurando o troféu do Prêmio Pensadores de Futuros 2026"
   caption: "Prêmio Pensadores de Futuros 2026"
 ---
-Kizzy Terra é cientista de dados sênior, com mais de 11 anos de experiência na área de dados, em projetos de banco de dados, manipulação e visualização de dados, programação em Python e machine learning. É co-fundadora do **Programação Dinâmica**, canal de educação em tecnologia que já ultrapassou 9 milhões de visualizações no YouTube.
+Kizzy Terra é cientista de dados, com mais de 14 anos de experiência na área de dados, em projetos de banco de dados, manipulação e visualização de dados, programação em Python e machine learning. É co-fundadora do **Programação Dinâmica**, canal de educação em tecnologia que já ultrapassou 9 milhões de visualizações no YouTube.
 
 Formou-se em Engenharia de Computação pelo Instituto Militar de Engenharia (IME), fez mestrado em Modelagem Matemática da Informação na Escola de Matemática Aplicada da FGV e é doutoranda em Tecnologias da Inteligência e Design Digital na PUC-SP.
 
