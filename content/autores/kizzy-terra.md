@@ -49,6 +49,7 @@ Kizzy Terra é cientista de dados, com mais de 14 anos de experiência na área 
 
 Formou-se em Engenharia de Computação pelo Instituto Militar de Engenharia (IME), fez mestrado em Modelagem Matemática da Informação na Escola de Matemática Aplicada da FGV e é doutoranda em Tecnologias da Inteligência e Design Digital na PUC-SP.
 
-Com experiência nos setores público e privado, contribuiu com projetos de pesquisa no Instituto de Pesquisa Econômica Aplicada (IPEA) e no Instituto Brasileiro de Economia (IBRE/FGV), foi cientista de dados sênior na Cyberlabs, liderou a criação de um time de Data-Driven Marketing e lecionou no MBA de Jornalismo de Dados do IDP.
+Com experiência nos setores público e privado, contribuiu com projetos de pesquisa no Instituto de Pesquisa Econômica Aplicada (IPEA) e no Instituto Brasileiro de Economia (IBRE/FGV), foi cientista de dados sênior na Cyberlabs, onde liderou a criação de um time de Data-Driven Marketing, e lecionou no MBA de Jornalismo de Dados do IDP e na graduação do Inteli.
 
-No Programação Dinâmica, ensina ciência de dados, SQL e análise de dados com uma didática que simplifica sem empobrecer — e discute os impactos sociais da tecnologia, da privacidade de dados à ética na inteligência artificial.
+Atualmente, tem se dedicado à pesquisa e ao ensino das competências essenciais para profissionais de tecnologia na era da Inteligência Artificial, sendo uma voz ativa na ponte entre a academia e a inovação prática.
+
