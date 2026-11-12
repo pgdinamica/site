@@ -1,0 +1,38 @@
+# Produtos indicados no blog (links de afiliado).
+#
+# No texto do post, coloque o marcador SOZINHO numa linha, onde o card deve aparecer:
+#
+#     [[produto: livro-entendendo-algoritmos]]               ← card compacto (ex.: no fim do texto)
+#     [[produto: livro-entendendo-algoritmos | destaque]]    ← card grande (texto sobre o produto)
+#
+# O build já cuida das boas práticas: os links saem com rel="sponsored nofollow", o card diz
+# "Link de afiliado" e o fim do post ganha o aviso "Como Associado da Amazon…".
+#
+# Campos:
+#   title        nome do produto (obrigatório)
+#   link         link de afiliado — o do SiteStripe ou amzn.to (obrigatório). Se colar o link
+#                comum da Amazon, o build acrescenta a tag definida em `amazon_tag:` (data/site.yml).
+#   image        foto do produto: de preferência uma foto SUA (as regras do programa não permitem
+#                baixar e hospedar as fotos da Amazon) em assets/img/produtos/, ou o endereço da
+#                imagem gerada pelo SiteStripe.
+#   kind         sem foto? mostra um ícone do tipo: livro, filme, jogo, eletronico ou produto
+#   description  uma ou duas frases: por que você indica
+#   button       texto do botão (padrão: "Ver na Amazon")
+#   store        nome da loja (padrão: detectado pelo link)
+#
+# Não coloque preço: ele muda e o programa só permite exibir preço atualizado automaticamente.
+#
+# Exemplo:
+#
+# livro-entendendo-algoritmos:
+#   title: "Entendendo Algoritmos — Aditya Bhargava"
+#   link: https://amzn.to/XXXXXXX
+#   image: /assets/img/produtos/entendendo-algoritmos.jpg
+#   description: "O livro que a gente indica para quem quer aprender algoritmos sem sofrimento."
+
+livro-bigtech-morozov:
+  title: "Big Tech: A ascensão dos dados e a morte da política"
+  link: https://link.amazon/B0gyBjMdV
+  kind: livro
+  # image: /assets/img/produtos/entendendo-algoritmos.jpg
+  description: "Uma leitura sobre como a internet e plataformas tecnológicas baseadas em dados pessoais podem servir de ferramenta contrária à democracia, dependendo da maneira como são usadas."

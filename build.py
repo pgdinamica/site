@@ -190,11 +190,17 @@ class Post(MetaFields):
     author: Author
     html: Markup
     minutes: int
+    folder: Path | None = None          # pasta do post (content/blog/<ano>/<post>/), com as imagens
+    stores: list = field(default_factory=list)   # lojas com link de afiliado no texto (ex.: ["Amazon"])
 
 
     @property
     def url(self):
         return f"/blog/{self.slug}/"
+
+    @property
+    def affiliate(self):
+        return bool(self.stores)
 
     @property
     def kicker(self):
@@ -306,6 +312,123 @@ class Course(MetaFields):
         return groups
 
 
+# ---------------------------------------------------------------- blog: pastas e caminhos relativos
+
+def post_sources():
+    """Posts do blog: `<ano>/<post>/index.md` (pasta com as imagens) ou um `.md` solto (formato antigo).
+
+    Pastas e arquivos começando com '_' são rascunhos e ficam de fora.
+    """
+    blog = CONTENT / "blog"
+    for path in sorted(blog.rglob("*.md")):
+        parts = path.relative_to(blog).parts
+        if any(part.startswith("_") for part in parts) or path.stem.upper() == "README":
+            continue
+        if path.name == "index.md":
+            yield path, path.parent.name, path.parent
+        elif not (path.parent / "index.md").exists():   # .md avulso dentro da pasta de outro post: ignora
+            yield path, path.stem, None
+
+
+_RELATIVE_REF = re.compile(r'(<(?:img|a|source|video|audio)\b[^>]*?\s(?:src|href|poster))="(?![a-z][a-z0-9+.-]*:|/|#)([^"]+)"')
+
+
+def absolutize(html: str, base_url: str, folder: Path, path: Path) -> str:
+    """Caminhos relativos (`![](grafico.png)`) passam a apontar para /blog/<post>/grafico.png."""
+    def fix(m):
+        target = m.group(2)
+        local = target.split("#")[0].split("?")[0]
+        if not (folder / local).is_file():
+            raise BuildError(f"{rel(path)}: o arquivo '{local}' não está na pasta do post ({rel(folder)}/).")
+        return f'{m.group(1)}="{base_url}{target}"'
+    return _RELATIVE_REF.sub(fix, html)
+
+
+# ---------------------------------------------------------------- produtos (links de afiliado)
+
+AFFILIATE_REL = "sponsored nofollow noopener"
+_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{}</svg>'
+PRODUCT_ICONS = {   # `kind:` em data/produtos.yml — usado quando o produto não tem `image`
+    "livro": '<path d="M4 19.5V5a2 2 0 0 1 2-2h13v15H6.5A2.5 2.5 0 0 0 4 20.5 2.5 2.5 0 0 0 6.5 23H19v-5"/><path d="M8 7h7M8 10.5h5"/>',
+    "filme": '<rect x="2.5" y="8" width="19" height="13" rx="1.5"/><path d="m2.5 8 17-4.6.6 2.2L3.1 10.2M7.5 6.6l2.6 3M13 5.1l2.6 3"/><path d="m10 12.5 4.5 2.5-4.5 2.5z"/>',
+    "jogo": '<path d="M6.5 7h11a4.5 4.5 0 0 1 4.4 5.4l-.9 4.4a2.6 2.6 0 0 1-4.4 1.3L14.4 16H9.6l-2.2 2.1A2.6 2.6 0 0 1 3 16.8l-.9-4.4A4.5 4.5 0 0 1 6.5 7Z"/><path d="M7.5 10v3.5M5.75 11.75h3.5"/><circle cx="15.5" cy="11" r=".6" fill="currentColor"/><circle cx="17.5" cy="13" r=".6" fill="currentColor"/>',
+    "eletronico": '<rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20M9 19l.5-4h5l.5 4"/>',
+    "produto": '<path d="M5 8h14l-1.2 12.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/>',
+}
+_PRODUCT_TAG = re.compile(r"<p>\s*\[\[\s*produto\s*:\s*([\w-]+)\s*(?:\|\s*([\w-]+)\s*)?\]\]\s*</p>")
+
+
+def load_products(site: dict) -> dict:
+    path = DATA / "produtos.yml"
+    if not path.exists():
+        return {}
+    items = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    tag = site.get("amazon_tag")
+    for pid, item in items.items():
+        for f in ("title", "link"):
+            if not item.get(f):
+                raise BuildError(f"data/produtos.yml: o produto '{pid}' precisa de `{f}`.")
+        link = str(item["link"]).strip()
+        if not link.startswith(("http://", "https://")):
+            raise BuildError(f"data/produtos.yml: o link de '{pid}' deve começar com https://")
+        host = urlparse(link).netloc.lower()
+        short = host in ("amzn.to", "a.co", "link.amazon")       # encurtadores: a tag já vem no link
+        is_amazon = short or host.endswith(".amazon") or "amazon." in host
+        item.setdefault("store", "Amazon" if is_amazon else "loja")
+        if is_amazon and not short and "tag=" not in link:
+            if tag:   # link copiado direto da página do produto: acrescenta a tag de associado
+                link += ("&" if "?" in link else "?") + f"tag={tag}"
+            else:
+                print(f"⚠ data/produtos.yml: o link de '{pid}' não tem a sua tag de associado (tag=…). "
+                      "Use o link do SiteStripe/amzn.to ou defina `amazon_tag:` em data/site.yml.", file=sys.stderr)
+        item["link"] = link
+        item.setdefault("button", f"Ver na {item['store']}")
+        kind = item.get("kind")
+        if kind and kind not in PRODUCT_ICONS:
+            raise BuildError(f"data/produtos.yml: tipo '{kind}' de '{pid}' não existe. Use um de: {', '.join(PRODUCT_ICONS)}")
+    return items
+
+
+def product_card(item: dict, style: str) -> str:
+    href, rel_ = escape(item["link"]), AFFILIATE_REL
+    a = f'href="{href}" target="_blank" rel="{rel_}"'
+    img = ""
+    if item.get("image"):
+        img = (f'<a class="produto-img" {a} tabindex="-1" aria-hidden="true">'
+               f'<img src="{escape(item["image"])}" alt="" loading="lazy" decoding="async"></a>')
+    elif item.get("kind"):
+        img = (f'<a class="produto-img produto-icone produto-{item["kind"]}" {a} tabindex="-1" aria-hidden="true">'
+               + _SVG.format(PRODUCT_ICONS[item["kind"]]) + '</a>')
+    desc = f'<p class="produto-desc">{escape(item["description"])}</p>' if item.get("description") else ""
+    return (f'<aside class="produto produto-{style}" aria-label="Produto indicado (link de afiliado)">{img}'
+            f'<div class="produto-info"><p class="produto-selo">Link de afiliado · {escape(item["store"])}</p>'
+            f'<p class="produto-nome"><a {a}>{escape(item["title"])}</a></p>{desc}'
+            f'<a class="produto-btn" {a}>{escape(item["button"])} <span aria-hidden="true">→</span></a>'
+            '</div></aside>')
+
+
+def expand_products(html: str, products: dict, path: Path) -> tuple[str, list]:
+    """`[[produto: id]]` (card compacto) ou `[[produto: id | destaque]]`, sozinho numa linha, vira um card."""
+    stores: list = []
+
+    def card(m):
+        pid, style = m.group(1), (m.group(2) or "compacto")
+        if pid not in products:
+            known = ", ".join(sorted(products)) or "nenhum — crie data/produtos.yml"
+            raise BuildError(f"{rel(path)}: produto '{pid}' não existe em data/produtos.yml. Disponíveis: {known}")
+        if style not in ("compacto", "destaque"):
+            raise BuildError(f"{rel(path)}: estilo '{style}' do produto '{pid}' não existe (use compacto ou destaque).")
+        item = products[pid]
+        if item["store"] not in stores:
+            stores.append(item["store"])
+        return product_card(item, style)
+
+    html = _PRODUCT_TAG.sub(card, html)
+    if re.search(r"<p>(?:(?!</p>).)*\[\[\s*produto", html, re.S):
+        raise BuildError(f"{rel(path)}: o marcador [[produto: …]] precisa ficar sozinho numa linha, com linha em branco antes e depois.")
+    return html, stores
+
+
 def load_authors() -> dict[str, Author]:
     authors = {}
     for path in md_files(CONTENT / "autores"):
@@ -315,9 +438,9 @@ def load_authors() -> dict[str, Author]:
     return authors
 
 
-def load_posts(authors) -> list[Post]:
+def load_posts(authors, products=None) -> list[Post]:
     posts = []
-    for path in md_files(CONTENT / "blog"):
+    for path, name, folder in post_sources():
         meta, body = read_markdown(path)
         require(meta, path, "title", "date", "author")
         if meta.get("draft"):
@@ -328,10 +451,18 @@ def load_posts(authors) -> list[Post]:
             raise BuildError(f"{rel(path)}: autor '{meta['author']}' não existe. Use um de: {known}")
         html = render_markdown(body)
         words = len(plain_text(html).split())
-        slug = re.sub(r"^\d{4}-\d{2}-\d{2}-", "", path.stem)
+        slug = re.sub(r"^\d{4}-\d{2}-\d{2}-", "", name)
         meta.setdefault("description", plain_text(html)[:180])
-        posts.append(Post(slug, meta, as_date(meta["date"], path), author, html,
-                          max(1, round(words / WORDS_PER_MINUTE))))
+        if folder:
+            html = absolutize(html, f"/blog/{slug}/", folder, path)
+            cover = meta.get("cover")
+            if cover and not re.match(r"[a-z][a-z0-9+.-]*:|/", str(cover)):
+                if not (folder / str(cover)).is_file():
+                    raise BuildError(f"{rel(path)}: a capa '{cover}' não está na pasta do post ({rel(folder)}/).")
+                meta["cover"] = f"/blog/{slug}/{cover}"
+        html, stores = expand_products(html, products or {}, path)
+        posts.append(Post(slug, meta, as_date(meta["date"], path), author, Markup(html),
+                          max(1, round(words / WORDS_PER_MINUTE)), folder, stores))
     posts.sort(key=lambda p: (p.date, p.slug), reverse=True)
     slugs = [p.slug for p in posts]
     dupes = {s for s in slugs if slugs.count(s) > 1}
@@ -423,7 +554,7 @@ def build() -> int:
     ads_meta, ads_body = read_markdown(CONTENT / "publicidade.md")
     ads = {**ads_meta, "intro": render_markdown(ads_body)}
     authors = load_authors()
-    posts = load_posts(authors)
+    posts = load_posts(authors, load_products(site))
     courses = load_courses(authors)
     outlets = press.get("outlets") or {}
     for item in press["items"]:
@@ -477,6 +608,10 @@ def build() -> int:
     else:
         OUT.mkdir()
     shutil.copytree(ASSETS, OUT / "assets")
+    for post in posts:   # imagens e outros arquivos da pasta do post vão para /blog/<post>/
+        if post.folder:
+            shutil.copytree(post.folder, OUT / "blog" / post.slug, dirs_exist_ok=True,
+                            ignore=lambda d, names: [n for n in names if n.endswith(".md") or n.startswith((".", "_"))])
     # Domínio próprio no GitHub Pages (vem de `url:` em data/site.yml)
     (OUT / "CNAME").write_text(urlparse(site["url"]).netloc + "\n", encoding="utf-8")
     pages: list[str] = []

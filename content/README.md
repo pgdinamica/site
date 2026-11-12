@@ -12,7 +12,11 @@ rodando: ele atualiza o site sozinho a cada arquivo salvo (veja o `README.md` na
 
 ```
 content/
-├── blog/            ← um arquivo por publicação
+├── blog/            ← uma pasta por ano e, dentro dela, uma pasta por publicação
+│   └── 2026/
+│       └── titulo-curto/
+│           ├── index.md    ← o texto
+│           └── capa.jpg    ← imagens do texto, na mesma pasta
 ├── autores/         ← um arquivo por autor (vira a página de perfil)
 ├── cursos/          ← um arquivo por curso pago; uma pasta por curso aberto
 │   └── analise-de-dados-em-python/
@@ -25,8 +29,9 @@ content/
 
 ## 1. Publicar no blog
 
-Crie `content/blog/AAAA-MM-DD-titulo-curto.md`. A data no nome do arquivo é só organização; o
-endereço da página será `/blog/titulo-curto/`.
+Crie a pasta `content/blog/AAAA/titulo-curto/` e, dentro dela, o arquivo `index.md`. O nome da
+pasta vira o endereço da página: `/blog/titulo-curto/` (o ano é só organização e **não** entra no
+endereço). Coloque as imagens do texto na mesma pasta.
 
 ```markdown
 ---
@@ -35,7 +40,7 @@ date: 2026-10-20
 author: kizzy-terra              # nome do arquivo em content/autores/ (sem .md)
 description: "Linha fina: uma ou duas frases que aparecem abaixo do título e nas listas."
 chapeu: "Carreira"               # opcional — o rótulo acima do título
-cover: /assets/blog/meu-texto/capa.jpg   # opcional — imagem de capa
+cover: capa.jpg                  # opcional — imagem de capa (arquivo na pasta do texto)
 tags: [carreira, dados]          # opcional
 draft: true                      # opcional — enquanto estiver true, o texto não é publicado
 ---
@@ -45,17 +50,45 @@ Primeiro parágrafo do texto.
 
 Texto com **negrito**, *itálico* e [um link](https://exemplo.com).
 
-![Descrição da imagem](/assets/blog/meu-texto/grafico.png)
+![Descrição da imagem](grafico.png)
 
 https://www.youtube.com/watch?v=XXXXXXXXXXX
 ```
 
 - **Vídeo do YouTube:** cole o link **sozinho numa linha** — ele vira um player.
-- **Imagens:** coloque os arquivos em `assets/blog/<nome-do-texto>/` e use o caminho começando
-  com `/assets/…`.
+- **Imagens:** coloque os arquivos na pasta do texto e use só o nome (`![…](grafico.png)`).
+  Se o arquivo não existir, o build avisa. Outros arquivos (PDF, notebook…) funcionam igual.
+- **Rascunhos:** além de `draft: true`, uma pasta começando com `_` (`_ideia-nova/`) fica de fora.
+- **Produto com link de afiliado:** veja a seção abaixo.
 - **Código:** use três crases (```` ```python ````) antes e depois do bloco.
 - Os nomes **Kizzy Terra**, **Hallison Paz** e **Programação Dinâmica** são destacados
   automaticamente apenas nas notícias da imprensa, não nos textos do blog.
+
+### Produtos indicados (links de afiliado da Amazon)
+
+Cadastre o produto uma vez em `data/produtos.yml` (o arquivo explica cada campo):
+
+```yaml
+livro-entendendo-algoritmos:
+  title: "Entendendo Algoritmos — Aditya Bhargava"
+  link: https://amzn.to/XXXXXXX            # link de afiliado (SiteStripe)
+  image: /assets/img/produtos/entendendo-algoritmos.jpg
+  description: "O livro que a gente indica para quem quer aprender algoritmos sem sofrimento."
+```
+
+E, no texto, coloque o marcador **sozinho numa linha**, onde o card deve aparecer:
+
+```markdown
+[[produto: livro-entendendo-algoritmos]]               ← card compacto (ex.: no fim do texto)
+[[produto: livro-entendendo-algoritmos | destaque]]    ← card grande, para textos sobre o produto
+```
+
+Sem foto própria? Use `kind: livro` (ou `filme`, `jogo`, `eletronico`, `produto`) e o card mostra um ícone do tipo no lugar da imagem.
+
+O mesmo produto pode aparecer em vários textos. O build cuida das boas práticas sozinho: os links
+saem com `rel="sponsored nofollow"` (o que o Google pede para links pagos/de afiliado), o card
+mostra o selo **Link de afiliado · Amazon** e o fim do texto ganha o aviso *"Como Associado da
+Amazon, o Programação Dinâmica recebe por compras qualificadas"*. Não coloque preço no card.
 
 ## 2. Perfil de autor (página profissional)
 
