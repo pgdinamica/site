@@ -68,8 +68,8 @@ syllabus_title: 4 etapas, do primeiro print à arquitetura de sistemas
 syllabus:
   - { label: "Níveis 0 e 1", title: "O despertar da lógica", text: "Instalação do Python e do VS Code, controle de fluxo, repetições, tipos agregados e algoritmos." }
   - { label: "Nível 2", title: "Boas práticas e reuso de código", text: "Funções, módulos, arquivos, ambientes virtuais (venv) e pip." }
-  - { label: "Nível 3", title: "Arquitetura de sistemas (POO)", text: "Classes, atributos, métodos, herança e polimorfismo, aplicados no projeto Starship." }
-  - { label: "Nível 4", title: "A fronteira: tópicos especiais e IA", tag: "Em breve, incluso", text: "Tópicos avançados e programação assistida por IA. Quem entra agora recebe sem pagar a mais." }
+  - { label: "Nível 3", title: "Programação Orientada a Objetos", text: "Classes, atributos, métodos, herança e polimorfismo, aplicados no projeto Starship." }
+  - { label: "Nível 4", title: "Programação assistida por IA", tag: "Em breve, incluso", text: "Tópicos avançados e programação assistida por IA. Quem entra agora recebe sem pagar a mais." }
 
 teacher_label: Seu professor
 instructor_message: >-
