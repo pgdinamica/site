@@ -8,6 +8,9 @@ description: >-
 email: pgdinamica@brunch.ag
 youtube_subscribe: https://www.youtube.com/programacaodinamica?sub_confirmation=1
 youtube_join: https://www.youtube.com/programacaodinamica/join
+# Tag de associado da Amazon (ex.: pgdinamica-20). Com ela, links comuns da Amazon em
+# data/produtos.yml ganham a tag automaticamente. Deixe comentado para não usar.
+amazon_tag: hallpaz-20
 
 # Menu principal. `spy` = id da seção da home destacada ao rolar; `key` = página ativa.
 nav:

@@ -38,9 +38,9 @@ Abra <http://localhost:8000>. A cada arquivo salvo em `content/`, `data/`, `temp
 
 ```
 content/       Conteúdo em Markdown: blog, autores, cursos (e aulas), publicidade
-data/          Dados em YAML: menu e contato, imprensa, palestras, marcas
+data/          Dados em YAML: menu e contato, imprensa, palestras, marcas, produtos (afiliados)
 templates/     Layout das páginas (Jinja2) — header e footer são compartilhados
-assets/        CSS, JavaScript, imagens (assets/blog/ guarda as imagens dos posts)
+assets/        CSS, JavaScript, imagens (as imagens dos posts ficam na pasta de cada post)
 build.py       Gerador do site
 _site/         Site gerado (não versionado)
 ```
@@ -50,7 +50,7 @@ _site/         Site gerado (não versionado)
 | Endereço                         | Origem                                      |
 |----------------------------------|---------------------------------------------|
 | `/`                              | `templates/home.html`                       |
-| `/blog/` e `/blog/<texto>/`      | `content/blog/*.md`                         |
+| `/blog/` e `/blog/<texto>/`      | `content/blog/<ano>/<texto>/index.md`       |
 | `/autores/<nome>/`               | `content/autores/*.md`                      |
 | `/cursos/<curso>/`               | `content/cursos/*.md` ou `*/curso.md`       |
 | `/cursos/<curso>/aulas/<aula>/`  | `content/cursos/<curso>/aulas/*.md`         |

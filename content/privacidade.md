@@ -1,7 +1,7 @@
 ---
 title: Privacidade e cookies
 description: "Como o site do Programação Dinâmica trata os seus dados: o que fica no seu navegador, o que serviços de terceiros recebem e como entrar em contato."
-updated: 20 de outubro de 2026
+updated: 12 de novembro de 2026
 ---
 Este site é do **Programação Dinâmica**, projeto de educação em tecnologia de Kizzy Terra e Hallison Paz. Aqui explicamos, de forma direta, que dados são tratados quando você navega por ele, em linha com a Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018).
 
@@ -10,6 +10,7 @@ Este site é do **Programação Dinâmica**, projeto de educação em tecnologia
 - **Não usamos ferramentas de análise nem de publicidade** (como Google Analytics ou pixels de redes sociais) e não criamos cookies próprios.
 - **Guardamos algumas preferências só no seu navegador**, para o site funcionar do jeito que você escolheu. Esses dados não são enviados para nós.
 - **Alguns conteúdos vêm de outros serviços** (YouTube, Instagram, LinkedIn e Google Fonts), que podem registrar dados de acesso e usar cookies próprios, segundo as políticas deles.
+- **Alguns textos do blog têm links de afiliado da Amazon**, sempre identificados. A Amazon só recebe dados se você clicar num deles.
 
 ## O que fica guardado no seu navegador
 
@@ -32,6 +33,10 @@ Para mostrar vídeos, posts e fontes, algumas páginas carregam conteúdo direta
 - **Google Fonts**: as fontes do site são carregadas dos servidores do Google.
 
 Não controlamos os dados coletados por esses serviços. Para saber mais, consulte as políticas de privacidade do [Google](https://policies.google.com/privacy?hl=pt-BR), da [Meta](https://privacycenter.instagram.com/policy) e do [LinkedIn](https://br.linkedin.com/legal/privacy-policy). Você pode bloquear cookies de terceiros nas configurações do seu navegador; nesse caso, alguns conteúdos incorporados podem não aparecer.
+
+## Links de afiliado
+
+O Programação Dinâmica participa do Programa de Associados da Amazon. Alguns textos do blog trazem links de afiliado, identificados com o selo "Link de afiliado": se você comprar por eles, recebemos uma comissão, sem custo extra para você. Esses links não carregam nada da Amazon enquanto você lê o texto; só ao clicar num deles a Amazon registra que a visita veio do nosso site e pode gravar cookies próprios para atribuir a compra, segundo a [política de privacidade da Amazon](https://www.amazon.com.br/gp/help/customer/display.html?nodeId=201909010). Nós não recebemos seus dados pessoais nem sabemos o que você comprou, apenas relatórios com o total de cliques e vendas.
 
 ## Links para outros sites
 
