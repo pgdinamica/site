@@ -17,7 +17,7 @@ instructors: [kizzy-terra]
 cta: Quero começar a praticar hoje
 
 # ---- PREENCHER ANTES DE PUBLICAR (campos vazios ficam escondidos) ----
-checkout: ""                 # link do checkout na Kiwify
+checkout: https://pay.kiwify.com.br/sCvYhvo   # link do checkout na Kiwify
 installments: ""             # ex.: "ou 12x de R$ XX"
 payment_methods: ""          # ex.: "cartão, Pix e boleto"
 social_proof: ""             # frase com número real
