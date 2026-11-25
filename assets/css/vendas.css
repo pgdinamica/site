@@ -68,3 +68,6 @@
 .code-example { max-width: 620px; margin: 2.5rem auto 0; }
 .code-example > p { margin: 0; font: 0.88rem var(--font-mono); color: var(--emerald-bright); border-top: 1px solid var(--ink-line); padding-top: 0.8rem; }
 .sales-page .module .module-tag { color: var(--ink); background: var(--gold); }
+
+/* Página de vendas: cabeçalho só com o logo, sem menu nem botões (menos distração) */
+.sales-page .site-header .nav-links, .sales-page .site-header .nav-cta { display: none; }
