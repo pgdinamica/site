@@ -1003,3 +1003,8 @@ h1, h2, h3, h4 {
   .home-page .outlet-marquee { margin-bottom: 1.2rem; }
   .home-page .press-more { margin-top: 1.4rem; }
 }
+
+[data-until][hidden], [data-after][hidden] { display: none !important; }   /* preços de oferta (oferta.js) */
+
+/* Ícone sem tamanho próprio acompanha o texto (evita setas gigantes). `:where` não vence nenhuma outra regra. */
+:where(svg:not([width])) { width: 1.1em; height: 1.1em; flex: none; vertical-align: -0.15em; }

@@ -419,6 +419,7 @@ def build() -> int:
     talks, talk_photos = talks_data["items"], talks_data.get("photos") or {}
     marcas = load_yaml("marcas.yml")
     youtube_videos = with_thumbs(load_yaml("youtube.yml")["items"], "videos/vid-")
+    empresas = load_yaml("empresas.yml")
     participacoes = with_thumbs(load_yaml("participacoes.yml")["items"], "events/ev-")
     ads_meta, ads_body = read_markdown(CONTENT / "publicidade.md")
     ads = {**ads_meta, "intro": render_markdown(ads_body)}
@@ -468,7 +469,7 @@ def build() -> int:
     env.tests["contains_author"] = lambda speakers, author: author in (speakers or [])
     env.globals.update(site=site, authors=authors, courses=courses, press=press, posts=posts,
                        talks=talks, talk_photos=talk_photos, talk_posts=talk_posts, marcas=marcas, ads=ads, youtube_videos=youtube_videos,
-                       participacoes=participacoes,
+                       participacoes=participacoes, empresas=empresas,
                        year=dt.date.today().year, video_embed=lambda v, t="": Markup(video_embed(v, t)))
 
     if OUT.exists():
@@ -503,6 +504,8 @@ def build() -> int:
     legal = dict(legal_meta, body=render_markdown(legal_body.replace("{email}", site["email"])))
     render("privacidade.html", "/privacidade/", legal=legal,
            page={"title": legal["title"], "description": legal.get("description")})
+    render("empresas.html", "/empresas/", page={"active": "servicos", "title": "Para empresas",
+               "description": "Treinamentos in-company e palestras sobre dados e inteligência artificial para empresas, com Kizzy Terra e Hallison Paz."})
     render("blog.html", "/blog/", page={"active": "blog", "title": "Blog"})
     for i, post in enumerate(posts):
         newer = posts[i - 1] if i > 0 else None
@@ -518,7 +521,7 @@ def build() -> int:
                      "image": author.photo, "type": "profile"})
     render("cursos.html", "/cursos/", page={"active": "cursos", "title": "Cursos"})
     for course in courses:
-        render("curso.html", course.url, course=course,
+        render(course.meta.get("template") or "curso.html", course.url, course=course,
                page={"active": "cursos", "title": course.title, "description": course.summary,
                      "image": course.cover})
         for i, lesson in enumerate(course.lessons):

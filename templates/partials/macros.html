@@ -120,7 +120,7 @@
     <h3><a href="{{ course.url }}">{{ course.title }}</a></h3>
     <p>{{ course.summary }}</p>
     <div class="course-foot">
-      <span class="price{% if course.type == 'gratuito' %} free{% endif %}">{{ course.price_label }}</span>
+      <span class="price{% if course.type == 'gratuito' %} free{% endif %}">{% if course.meta.get("offer") %}<span data-until="{{ course.meta.offer.deadline }}">{{ course.meta.offer.price }}</span><span data-after="{{ course.meta.offer.deadline }}" hidden>{{ course.price_label }}</span>{% else %}{{ course.price_label }}{% endif %}</span>
       <a class="course-link" href="{{ course.url }}">{{ "Começar" if course.type == "gratuito" else "Ver curso" }} {{ icon("arrow-right") }}</a>
     </div>
   </div>

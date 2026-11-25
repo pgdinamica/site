@@ -20,14 +20,15 @@
   <meta property="og:image" content="{{ img if img.startswith('http') else site.url ~ img }}">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
   <link rel="alternate" type="application/rss+xml" title="Blog do {{ site.name }}" href="/blog/feed.xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   {% block fonts %}{% endblock %}
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=3">
   {% block styles %}{% endblock %}
 </head>
 <body{% block body_attrs %}{% endblock %}>
@@ -41,6 +42,7 @@
   {% block footer %}{% include "partials/footer.html" %}{% endblock %}
   <script src="/assets/js/main.js" defer></script>
   <script src="/assets/js/carousel.js" defer></script>
+  <script src="/assets/js/oferta.js" defer></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

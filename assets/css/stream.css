@@ -152,3 +152,13 @@ li.is-locked .ep-play { display: none; }
   .topic-filter::-webkit-scrollbar { display: none; }
   .topic-chip, .topic-filter-label { flex: none; }
 }
+
+/* Oferta no destaque do topo (some sozinha no fim do prazo) */
+.bb-offer { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin: 1rem 0 0.2rem; color: #fff; }
+.bb-offer[hidden] { display: none; }
+.bb-offer-tag { background: #f5c518; color: #0a1120; font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.bb-offer p { margin: 0; }
+.bb-offer b { font: 700 2rem var(--font-display); }
+.bb-offer s { opacity: 0.65; margin-left: 0.4rem; }
+.bb-offer-time { font-size: 0.95rem; }
+.bb-offer-time span { font-family: var(--font-mono); color: #f5c518; }
