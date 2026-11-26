@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import icon %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/pages.css?v=2"><link rel="stylesheet" href="/assets/css/vendas.css?v=5">{% endblock %}
+{% block body_attrs %} class="course-page sales-page"{% endblock %}
+{% set m = course.meta %}
+{% set o = m.offer or {} %}
+{% set teacher = course.instructors[0] %}
+{% macro buy(label, cls="btn-lg") -%}
+<a class="btn btn-primary {{ cls }}" href="#oferta">{{ label }} {{ icon("arrow-right") }}</a>
+{%- endmacro %}
+{% macro heading(eyebrow, title, intro="") -%}
+<div class="section-head"><span class="eyebrow reveal">{{ eyebrow }}</span><h2 class="reveal d1">{{ title }}</h2>{% if intro %}<p class="reveal d2">{{ intro }}</p>{% endif %}</div>
+{%- endmacro %}
+
+{% block content %}
+    <section class="course-hero has-backdrop" aria-labelledby="course-title">
+      <img class="course-hero-backdrop" src="{{ course.backdrop }}" alt="" width="1920" height="1080" decoding="async">
+      <div class="course-hero-shade" aria-hidden="true"></div>
+      <div class="wrap course-hero-inner">
+        <div class="course-hero-copy">
+          <p class="course-hero-kicker reveal">{{ course.title }} {{ course.edition }} · com {{ teacher.name }}</p>
+          <h1 id="course-title" class="reveal d1">{{ m.headline }} <span class="accent">{{ m.headline_accent }}</span></h1>
+          <p class="lead reveal d2">{{ m.subheadline }}</p>
+          <div class="hero-actions reveal d3">
+            {{ buy(m.cta) }}
+            <a class="btn btn-glass btn-lg" href="{{ m.hero_link.href }}">{{ icon("play") }} {{ m.hero_link.label }}</a>
+          </div>
+          <ul class="perks reveal d3">{% for p in m.perks %}<li>{{ icon("check") }}{{ p }}</li>{% endfor %}</ul>
+          {% if m.social_proof %}<p class="sales-proof">{{ m.social_proof }}</p>{% endif %}
+        </div>
+        <div class="course-hero-art" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <div class="sales-awards"><div class="wrap"><p>{{ m.proof.text|safe }}</p><ul>{% for a in m.proof.get("items") or teacher.awards[:3] %}<li>{{ icon("award") }}{{ a }}</li>{% endfor %}</ul></div></div>
+
+    {% set pains_html %}
+    <section class="section c-pains" aria-labelledby="pains-h">
+      <div class="wrap c-pains-grid">
+        <div>
+          <span class="eyebrow reveal">{{ m.pains.eyebrow or "Talvez você se reconheça" }}</span>
+          <h2 id="pains-h" class="reveal d1">{{ m.pains.title }}</h2>
+        </div>
+        <div>
+          <ul class="pain-list">{% for p in m.pains["items"] %}<li class="reveal">{{ p }}</li>{% endfor %}</ul>
+          <div class="c-answer reveal d2">{{ m.pains.answer|md }}</div>
+        </div>
+      </div>
+    </section>
+    {% endset %}
+    {% if not m.method_first %}{{ pains_html }}{% endif %}
+
+    <section class="section c-pillars" id="demo">
+      <div class="wrap">
+        {{ heading(m.method.eyebrow or "O método", m.method.title, m.method.intro) }}
+        <div class="pillar-grid">
+          {% for p in m.method["items"] %}<article class="pillar reveal"><span class="pillar-n">{{ "%02d"|format(loop.index) }}</span><h3>{{ p.title }}</h3><p>{{ p.text }}</p></article>{% endfor %}
+        </div>
+        {% if m.method.demo_title %}
+        <div class="sales-demo reveal">
+          <div>
+            <h3><mark>{{ m.method.demo_title }}</mark></h3>
+            <p>{{ m.method.demo_text }}</p>
+            <a class="btn btn-primary btn-lg" href="{{ m.demo_url }}" target="_blank" rel="noopener">Abrir a demo grátis {{ icon("arrow-right") }}</a>
+          </div>
+          <figure class="lab-mock" aria-label="Exemplo de exercício no Lab SQL">
+            <figcaption><span>Lab SQL · exercício 3.2</span><span class="lab-run">▶ Executar</span></figcaption>
+<pre><code><b>SELECT</b> categoria,
+       <b>COUNT</b>(*) <b>AS</b> total
+<b>FROM</b> tabela
+<b>GROUP BY</b> categoria
+<b>ORDER BY</b> total <b>DESC</b>;</code></pre>
+            <p>{{ icon("check") }} Resposta correta. Próximo exercício →</p>
+          </figure>
+        </div>
+          {% endif %}
+        {% if m.method.code %}
+        <figure class="lab-mock code-example reveal"><figcaption><span>{{ m.method.code.file }}</span><span class="lab-run">python</span></figcaption>
+<pre><code>{{ m.method.code.source }}</code></pre>
+          <p>{{ m.method.code.output }}</p></figure>
+        {% endif %}
+      </div>
+    </section>
+
+    {% if m.method_first %}{{ pains_html }}{% endif %}
+
+    <section class="section" id="conteudo">
+      <div class="wrap {{ 'sales-two' if m.outcomes else 'c-narrow' }}">
+        {% if m.outcomes %}
+        <div>
+          {{ heading("O que você leva daqui", "Ao final, você vai conseguir:") }}
+          <ul class="sales-list yes">{% for t in m.outcomes %}<li class="reveal">{{ icon("check") }}<span>{{ t }}</span></li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+        <div>
+          {{ heading(m.syllabus_eyebrow or "Conteúdo", m.syllabus_title or "Os módulos", m.syllabus_intro or "") }}
+          <div class="modules">
+            {% for s in m.syllabus %}<details class="module reveal"{% if loop.first %} open{% endif %}><summary><span class="module-n">{{ s.label or "Módulo " ~ loop.index }}</span><span class="module-title">{{ s.title }}</span>{% if s.tag %}<span class="module-tag">{{ s.tag }}</span>{% endif %}</summary><p class="module-text">{{ s.text }}</p></details>{% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% if m.testimonials %}
+    <section class="section c-pillars">
+      <div class="wrap">
+        {{ heading("Quem já estudou", "O que dizem os alunos") }}
+        <div class="pillar-grid">{% for t in m.testimonials %}<blockquote class="pillar"><p>“{{ t.text }}”</p><h3>{{ t.name }}</h3></blockquote>{% endfor %}</div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% for inst in course.instructors %}
+    <section class="section c-instructor" aria-labelledby="inst-h">
+      <div class="wrap instructor-card reveal">
+        <a class="instructor-photo" href="{{ inst.url }}" tabindex="-1" aria-hidden="true"><img src="{{ inst.photo }}" alt="" width="900" height="1100" loading="lazy"></a>
+        <div>
+          <span class="eyebrow">{{ m.teacher_label }}</span>
+          <h2 id="inst-h"><a href="{{ inst.url }}">{{ m.instructor_title or inst.name }}</a></h2>
+          <p class="instructor-role">{{ inst.role }}</p>
+          {{ m.instructor_message|md }}
+          {% if inst.awards %}<ul class="chips">{% for a in inst.awards[:3] %}<li>{{ a }}</li>{% endfor %}</ul>{% endif %}
+          <a class="founder-link" href="{{ inst.url }}">Conheça a trajetória completa {{ icon("arrow-right") }}</a>
+        </div>
+      </div>
+    </section>
+    {% endfor %}
+
+    <section class="section c-pricing sales-offer" id="oferta" aria-labelledby="offer-h">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="offer-grid">
+        <div>
+          <span class="eyebrow on-dark">Tudo o que você recebe</span>
+          <h2 id="offer-h">Entrando hoje, você leva:</h2>
+          <ul class="offer-list">
+            {% for i in m.receive %}<li>{{ icon("check") }}<div><h3>{{ i.title }}</h3><p>{{ i.text }}</p></div></li>{% endfor %}
+          </ul>
+          {% if o.bonus and o.bonus.show %}
+          <aside class="sales-bonus" data-until="{{ o.bonus.deadline }}"><span>{{ o.bonus.badge }}</span><h3>{{ o.bonus.title }}</h3><p>{{ o.bonus.text }}</p></aside>
+          {% endif %}
+        </div>
+        <div class="pricing-card">
+          {% if m.offer %}
+          <h2><span data-until="{{ o.deadline }}">Preço da Black</span><span data-after="{{ o.deadline }}" hidden>Investimento</span></h2>
+          <div class="sales-count" data-until="{{ o.deadline }}" data-countdown="{{ o.deadline }}" data-boxes role="timer">{% for u in ["dias","horas","min","seg"] %}<div><b>--</b><span>{{ u }}</span></div>{% endfor %}</div>
+          <p class="sales-after" data-until="{{ o.deadline }}">Depois da Black: <s>{{ o.price_after }}</s></p>
+          <p class="pricing-price" data-until="{{ o.deadline }}">{{ o.price }}</p>
+          <p class="pricing-price" data-after="{{ o.deadline }}" hidden>{{ o.price_after }}</p>
+          {% else %}
+          <h2>{{ m.price_title }}</h2>
+          <p class="pricing-price">{{ course.price_label }}</p>
+          {% endif %}
+          {% if m.installments %}<p class="pricing-inst" data-until="{{ o.deadline }}">{{ m.installments }}</p>{% endif %}
+          {% if m.offer %}<p class="pricing-note" data-until="{{ o.deadline }}">Esta é a última vez que o {{ course.title }} {{ course.edition }} sai por este preço.</p>{% else %}<p class="pricing-note">{{ m.price_note }}</p>{% endif %}
+          {% if m.checkout %}
+          <a class="btn btn-primary btn-lg" href="{{ m.checkout }}" target="_blank" rel="noopener">{% if m.offer %}<span data-until="{{ o.deadline }}">Quero garantir os {{ o.price }}</span><span data-after="{{ o.deadline }}" hidden>{{ m.cta }}</span>{% else %}{{ m.cta }}{% endif %}</a>
+          {% else %}
+          <span class="btn btn-primary btn-lg is-disabled" aria-disabled="true">Link de compra em breve</span>
+          {% endif %}
+          <p class="pricing-guarantee">{{ icon("check") }} 7 dias de garantia: não gostou, recebe 100% de volta.</p>
+          <p class="pricing-note">Pagamento seguro{% if m.platform %} pela {{ m.platform }}{% endif %}{% if m.payment_methods %} · {{ m.payment_methods }}{% endif %}</p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section sales-guarantee">
+      <div class="wrap">
+        <b>7 dias</b>
+        <div><h2>O risco é todo nosso</h2><p>{{ m.guarantee_text }}</p></div>
+      </div>
+    </section>
+
+    {% if m.careers %}
+    <section class="section c-careers">
+      <div class="wrap">
+        {{ heading("Para quem trabalha ou quer trabalhar com dados", m.careers.title) }}
+        <div class="pillar-grid">{% for c in m.careers["items"] %}<article class="pillar reveal"><h3>{{ c.title }}</h3><p>{{ c.text }}</p></article>{% endfor %}</div>
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="section c-audience" aria-label="Para quem é o curso">
+      <div class="wrap audience-grid">
+        <article class="audience-card yes reveal"><h3>É para você se…</h3><ul class="sales-list">{% for t in m.fit.para_voce %}<li>{{ t }}</li>{% endfor %}</ul></article>
+        <article class="audience-card no reveal d1"><h3>Não é para você se…</h3><ul class="sales-list">{% for t in m.fit.nao_para_voce %}<li>{{ t|safe }}</li>{% endfor %}</ul></article>
+      </div>
+    </section>
+
+    <section class="section c-faq" aria-labelledby="faq-h">
+      <div class="wrap c-narrow">
+        <span class="eyebrow reveal">Dúvidas</span>
+        <h2 id="faq-h" class="reveal d1">Perguntas frequentes</h2>
+        <div class="faq">{% for f in course.faq %}<details class="faq-item"{% if f.offer_only %} data-until="{{ o.deadline }}"{% endif %}><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>{% endfor %}</div>
+      </div>
+    </section>
+
+    <section class="section c-pricing sales-final">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <h2>{{ m.final.title }}</h2>
+        <p>{{ m.final.text }}{% if m.offer %}<span data-until="{{ o.deadline }}"> Esta é a última vez que o {{ course.title }} {{ course.edition }} sai por {{ o.price }}.</span>{% endif %}</p>
+        {{ buy(m.cta) }}
+        {% if m.offer %}<p class="sales-small" data-until="{{ o.deadline }}">Oferta válida até {{ o.deadline_text }}.</p>{% endif %}
+        {% if m.company %}<p class="sales-small">{{ m.company }}</p>{% endif %}
+      </div>
+    </section>
+
+    {% if m.offer %}
+    <div class="sales-bar" data-until="{{ o.deadline }}">
+      <span><b>Última vez a {{ o.price }}.</b> <span class="sales-bar-text">Termina {{ o.deadline_text }}.</span> <span class="sales-bar-count" data-countdown="{{ o.deadline }}"></span></span>
+      <a class="btn btn-primary" href="#oferta">Ver a oferta</a>
+    </div>
+    {% endif %}
+{% endblock %}

@@ -579,3 +579,49 @@
 
   .talks-page .page-cta { padding: 1.2rem; }
 }
+
+/* Página /empresas/: trilhas com foto e setas no tamanho do texto */
+.b2b-page .format-card p a svg, .b2b-page .talks-more a svg, .track-more svg { display: inline-block; width: 1em; height: 1em; vertical-align: -0.12em; }
+.b2b-page .format-card p a { color: #047857; font-weight: 600; }
+.track-card { display: flex; flex-direction: column; padding: 0; overflow: hidden; color: inherit; }
+.track-card img { width: 100%; aspect-ratio: 16 / 9; height: auto; object-fit: cover; }
+.track-body { display: flex; flex-direction: column; flex: 1; padding: 1.1rem 1.2rem 1.2rem; }
+.track-more { margin-top: auto; padding-top: 0.9rem; color: #047857; font-weight: 600; font-size: 0.92rem; }
+/* Palestras em /empresas/: convite à esquerda, temas à direita */
+.b2b-talks { background: var(--ink); color: var(--on-dark-muted); }
+.b2b-talks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
+.b2b-talks h2 { color: #fff; margin: 0.8rem 0 1rem; }
+.b2b-talks figure { margin: 1.5rem 0; }
+.b2b-talks figure img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 42% 50%; border-radius: var(--radius); }
+.b2b-talks figcaption { font-size: 0.75rem; margin-top: 0.4rem; }
+.b2b-talks-label { color: #fff; font-size: 1.1rem; margin-bottom: 0.4rem; }
+.b2b-topics { list-style: none; padding: 0; margin: 0; }
+.b2b-topics li { padding: 1.05rem 0; border-bottom: 1px solid var(--ink-line); }
+.b2b-topics span { color: var(--gold); font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.b2b-topics p { color: var(--on-dark); font-family: var(--font-display); font-size: 1.05rem; margin-top: 0.25rem; }
+.b2b-talks .talks-more { margin-top: 1.4rem; }
+.b2b-talks .talks-more a { color: var(--emerald-bright); font-weight: 600; }
+/* Quem ensina, com foto */
+.who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.who-card { display: flex; gap: 1.4rem; align-items: flex-start; }
+.who-card > img { width: 150px; height: 188px; flex: none; object-fit: cover; object-position: 50% 20%; border-radius: var(--radius-sm); }
+@media (max-width: 960px) { .b2b-talks-grid, .who-grid { grid-template-columns: 1fr; gap: 2rem; } }
+@media (max-width: 600px) { .who-card { flex-direction: column; } }
+
+/* /empresas/: cada seção com um fundo e um formato próprios */
+.b2b-offers { background: var(--paper); }
+.b2b-offers .format-card { border-top: 4px solid var(--emerald); box-shadow: var(--shadow-md); }
+.b2b-offers .format-card .ic { background: var(--emerald); color: #04170f; }
+.b2b-tracks { background: var(--paper-3); }
+.b2b-tracks .track-card { background: var(--paper); border: 0; box-shadow: var(--shadow-sm); }
+.b2b-steps { background: linear-gradient(135deg, #047857, #065f46); color: #fff; }
+.b2b-steps .eyebrow { color: #fff; } .b2b-steps .eyebrow::before { background: #fff; }
+.b2b-steps .section-head h2 { color: #fff; }
+.b2b-timeline { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.b2b-timeline li { position: relative; text-align: center; }
+.b2b-timeline li:not(:last-child)::after { content: ""; position: absolute; top: 28px; left: calc(50% + 40px); width: calc(100% - 56px); border-top: 2px dashed rgba(255,255,255,0.45); }
+.step-n { display: grid; place-items: center; width: 56px; height: 56px; margin: 0 auto 1rem; border-radius: 50%; background: var(--gold); color: var(--ink); font: 700 1.35rem var(--font-display); }
+.b2b-timeline h3 { color: #fff; font-size: 1.1rem; } .b2b-timeline p { margin-top: 0.5rem; color: rgba(255,255,255,0.86); font-size: 0.95rem; }
+.b2b-who { background: var(--paper-2); } .b2b-who .who-card { background: var(--paper); box-shadow: var(--shadow-sm); border: 0; }
+.b2b-faq { background: var(--paper); }
+@media (max-width: 760px) { .b2b-timeline { grid-template-columns: 1fr; } .b2b-timeline li::after { display: none; } }

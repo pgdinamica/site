@@ -1,0 +1,34 @@
+# Página /empresas/ — treinamentos in-company e palestras para empresas.
+# Sem preços e sem depoimentos (por decisão). O contato é o e-mail de `site.email`.
+hero:
+  eyebrow: "Para empresas"
+  title: "Capacitação em dados e IA para o seu time, com a didática do Programação Dinâmica"
+  lead: "Treinamentos in-company e palestras sob medida, conduzidos por Kizzy Terra e Hallison Paz: pesquisa, prática de mercado e uma forma de ensinar que simplifica sem empobrecer."
+
+offers:
+  - { icon: book, title: "Treinamentos in-company", text: "Turmas fechadas para o seu time, remotas ou presenciais, com trilhas montadas a partir do diagnóstico da sua equipe e dos problemas reais da empresa." }
+  - { icon: mic, title: "Palestras e keynotes", text: "Para eventos internos, semanas de tecnologia, encontros de liderança e ações de diversidade, de 1 a 4 horas, em formato de palestra, painel ou mediação." }
+  - { icon: play, title: "Letramento em IA", text: "Para quem não é da área técnica: como a IA funciona, onde ela erra, vieses, riscos e como usá-la com responsabilidade no trabalho." }
+  - { icon: link, title: "Mentoria e consultoria", text: "Acompanhamento de times e lideranças em projetos de dados e IA, como continuidade natural dos treinamentos." }
+
+# Trilhas: cada item liga a um curso do site (slug da pasta ou arquivo em content/cursos/).
+tracks:
+  - { slug: python-do-jeito-certo, for: "Quem está começando a programar" }
+  - { slug: sql-para-analise-de-dados, for: "Times de negócio e de dados" }
+  - { slug: analise-de-dados-em-python, for: "Analistas e cientistas de dados" }
+  - { slug: visualizacao-de-dados, for: "Comunicação de resultados" }
+  - { slug: introducao-ao-aprendizado-de-maquina, for: "Quem quer entrar em machine learning" }
+  - { slug: deep-learning-com-pytorch, for: "Times técnicos de IA" }
+  - { slug: processamento-de-imagens, for: "Visão computacional" }
+  - { slug: matematica-elementar-para-computacao, for: "Base matemática para programar" }
+
+steps:
+  - { title: "Conversa de diagnóstico", text: "Entendemos o seu time, o nível atual e o que precisa mudar." }
+  - { title: "Proposta sob medida", text: "Trilha, carga horária e formato desenhados para o seu contexto." }
+  - { title: "Entrega", text: "Aulas ao vivo com prática, exercícios e material de apoio." }
+  - { title: "Acompanhamento", text: "Tira-dúvidas e próximos passos para o aprendizado continuar." }
+
+faq:
+  - { q: "Os treinamentos são remotos ou presenciais?", a: "Os dois. Fazemos turmas online ao vivo e encontros presenciais, conforme a necessidade da empresa." }
+  - { q: "Dá para adaptar o conteúdo aos nossos dados e casos?", a: "Sim. Esse é o ponto da modalidade in-company: a trilha parte dos problemas reais da sua equipe." }
+  - { q: "Quanto tempo leva para receber uma proposta?", a: "Retornamos o contato em até 2 dias úteis, com uma conversa de diagnóstico sem custo." }

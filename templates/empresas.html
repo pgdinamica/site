@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import icon %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/pages.css?v=4">{% endblock %}
+{% set subject = "Proposta para a minha empresa — Programação Dinâmica"|urlencode %}
+{% block body_attrs %} class="b2b-page"{% endblock %}
+{% block content %}
+    <section class="page-hero" aria-labelledby="b2b-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap page-hero-inner">
+        <span class="eyebrow on-dark reveal">{{ empresas.hero.eyebrow }}</span>
+        <h1 id="b2b-title" class="reveal d1">{{ empresas.hero.title }}</h1>
+        <p class="page-lead reveal d2">{{ empresas.hero.lead }}</p>
+        <div class="hero-actions reveal d3">
+          <a class="btn btn-primary btn-lg" href="mailto:{{ site.email }}?subject={{ subject }}">Solicitar proposta</a>
+          <a class="btn btn-ghost on-dark btn-lg" href="#trilhas">Ver trilhas</a>
+        </div>
+        <dl class="ads-audience reveal d3">
+          {% for a in ads.audience or [] %}<div><dd>{{ a.value }}</dd><dt>{{ a.label }}</dt></div>{% endfor %}
+        </dl>
+      </div>
+    </section>
+
+    <section class="section b2b-offers" aria-labelledby="offers-title">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow reveal">O que oferecemos</span>
+          <h2 id="offers-title" class="reveal d1">Do treinamento à palestra, no formato da sua empresa</h2>
+        </div>
+        <div class="formats-grid">
+          {% for f in empresas.offers %}
+          <article class="format-card reveal{% if loop.index0 %} d{{ loop.index0 }}{% endif %}">
+            <span class="ic">{{ icon(f.icon) }}</span>
+            <h3>{{ f.title }}</h3>
+            <p>{{ f.text }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="section b2b-tracks" id="trilhas" aria-labelledby="tracks-title">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow reveal">Trilhas</span>
+          <h2 id="tracks-title" class="reveal d1">Conteúdos que já ensinamos a milhares de pessoas</h2>
+          <p class="reveal d2">As trilhas partem dos nossos cursos e são adaptadas ao nível e aos casos do seu time.</p>
+        </div>
+        <div class="formats-grid">
+          {% for t in empresas.tracks %}
+          {% set c = courses|selectattr("slug", "equalto", t.slug)|first %}
+          {% if c %}
+          <a class="format-card track-card reveal{% if loop.index0 % 4 %} d{{ loop.index0 % 4 }}{% endif %}" href="{{ c.url }}">
+            <img src="{{ c.meta.get('thumb') or c.meta.get('cover') }}" alt="" width="1280" height="720" loading="lazy">
+            <span class="track-body"><h3>{{ c.title }}</h3><p>{{ t["for"] }}</p><span class="track-more">Ver o curso {{ icon("arrow-right") }}</span></span>
+          </a>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="section b2b-steps" aria-labelledby="steps-title">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow reveal">Como funciona</span>
+          <h2 id="steps-title" class="reveal d1">Da primeira conversa ao time treinado</h2>
+        </div>
+        <ol class="b2b-timeline">
+          {% for s in empresas.steps %}
+          <li class="reveal{% if loop.index0 %} d{{ loop.index0 }}{% endif %}">
+            <span class="step-n">{{ loop.index }}</span>
+            <h3>{{ s.title }}</h3>
+            <p>{{ s.text }}</p>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section b2b-talks" aria-labelledby="talks-b2b-title">
+      <div class="wrap b2b-talks-grid">
+        <div class="b2b-talks-intro">
+          <span class="eyebrow on-dark reveal">Palestras</span>
+          <h2 id="talks-b2b-title" class="reveal d1">Leve a gente para o evento da sua empresa</h2>
+          <p class="reveal d2">Kizzy e Hallison palestram em semanas de tecnologia, eventos internos e encontros de liderança. Escolha um dos temas ao lado ou conte o que você precisa, e adaptamos a conversa ao seu público.</p>
+          {% set ph = (talk_photos.get("hero") or [])|first %}
+          {% if ph %}<figure class="reveal d2"><img src="{{ ph.src }}" alt="{{ ph.alt }}" loading="lazy">{% if ph.credit %}<figcaption>Foto: {{ ph.credit }}</figcaption>{% endif %}</figure>{% endif %}
+          <a class="btn btn-primary btn-lg reveal d3" href="mailto:{{ site.email }}?subject={{ 'Convite para palestra'|urlencode }}">Convidar para uma palestra {{ icon("arrow-right") }}</a>
+        </div>
+        <div>
+          <h3 class="b2b-talks-label">Alguns temas que já apresentamos</h3>
+          <ul class="b2b-topics">{% for t in talks[:6] %}<li class="reveal"><span>{{ t.topic }}</span><p>{{ t.title }}</p></li>{% endfor %}</ul>
+          <p class="talks-more"><a href="/palestras/">Ver todas as palestras e participações {{ icon("arrow-right") }}</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section b2b-who" aria-labelledby="who-title">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow reveal">Quem ensina</span>
+          <h2 id="who-title" class="reveal d1">Ciência, prática e didática</h2>
+        </div>
+        <div class="who-grid">
+          {% for a in authors.values() %}
+          <article class="format-card who-card reveal{% if loop.index0 %} d{{ loop.index0 }}{% endif %}">
+            <img src="{{ a.photo }}" alt="Foto de {{ a.name }}" loading="lazy">
+            <div><h3>{{ a.name }}</h3>
+            <p><b>{{ a.role }}</b></p>
+            <p>{{ a.tagline }}</p>
+            <p><a href="{{ a.url }}">Ver perfil {{ icon("arrow-right") }}</a></p></div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="section b2b-faq" aria-labelledby="faq-title">
+      <div class="wrap" style="max-width: 760px">
+        <div class="section-head center">
+          <span class="eyebrow reveal">Dúvidas</span>
+          <h2 id="faq-title" class="reveal d1">Perguntas frequentes</h2>
+        </div>
+        {% for f in empresas.faq %}
+        <details class="reveal" style="border-bottom: 1px solid var(--paper-line); padding: 1rem 0">
+          <summary style="cursor: pointer; font-weight: 600; color: var(--text-strong)">{{ f.q }}</summary>
+          <p style="margin-top: 0.6rem; color: var(--text-muted)">{{ f.a }}</p>
+        </details>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="section page-cta-section">
+      <div class="wrap">
+        <div class="services-cta page-cta reveal">
+          <p>Conte o que o seu time precisa e voltamos em até 2 dias úteis.</p>
+          <a class="btn btn-primary btn-quote" href="mailto:{{ site.email }}?subject={{ subject }}"><span>Solicitar proposta</span><span class="btn-quote-email">{{ site.email }}</span></a>
+        </div>
+      </div>
+    </section>
+{% endblock %}
