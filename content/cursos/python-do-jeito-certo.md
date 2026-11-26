@@ -24,33 +24,34 @@ payment_methods: ""
 testimonials: []             # - { text: "...", name: "..." }
 company: ""
 
-headline: Aprenda Python entendendo cada linha,
-headline_accent: não decorando comandos.
-subheadline: Do zero à orientação a objetos, com a base de quem domina engenharia da computação. Para quem nunca programou e para quem sabe o básico, mas trava na hora de criar algo do zero.
+headline: Aprenda a pensar como um programador e domine Python
+headline_accent: com a base de um Engenheiro de Software.
+subheadline: Do zero à lógica avançada. Entenda como as coisas funcionam “por baixo dos panos” e pare de se sentir perdido em tutoriais. Uma metodologia prática desenvolvida por Hallison Paz.
 hero_link: { href: "#conteudo", label: "Ver a trilha" }
 perks: [ "Do zero, sem pré-requisitos", "2 anos de acesso", "Certificado", "7 dias de garantia" ]
 social_proof: "+1.000 alunos já aprenderam Python com o Hallison Paz."
 proof:
   text: "Seu professor, Hallison Paz:"
-  items: [ "Doutor em Matemática pelo IMPA", "Pesquisador na École Polytechnique", "Mais de 15 anos programando" ]
+  items: [ "Doutor em Matemática pelo IMPA", "Pesquisador na École Polytechnique", "Ex-Meta", "Mais de 15 anos programando" ]
 
+method_first: true            # "Por que..." vem antes de "existe jeito errado?"
 pains:
-  title: "Se alguma destas situações já aconteceu com você, este curso é para você:"
+  eyebrow: Você já se sentiu assim?
+  title: "Mas, afinal, existe jeito errado?"
   items:
     - "“Tenho dificuldade de começar sozinho.”"
     - "“Não sei qual o melhor caminho a seguir.”"
     - "“Já aprendi algumas coisas, mas não me sinto confiante para criar nada do zero.”"
-    - "“Copio código de tutorial e funciona, mas não sei explicar por quê.”"
-  answer: "**O problema não é você.** É aprender comandos soltos sem entender a lógica por trás deles. Assim, você fica eterno iniciante: sabe repetir, mas não sabe criar."
+  answer: "**Sim, existe um jeito errado de aprender:** é aquele que faz você se sentir um eterno iniciante, sem desenvolver autonomia. O Python do Jeito Certo é a ponte para você finalmente sentir que o código está sob o seu controle."
 
 method:
   eyebrow: O jeito certo
-  title: "Primeiro o porquê. Depois o como."
-  intro: "Com a IA escrevendo cada vez mais código, saber decompor um problema e pensar com lógica é o que diferencia quem programa de quem só copia."
+  title: "Por que Python do Jeito Certo?"
+  intro: "Aprender a programar não é decorar comandos ou copiar tutoriais. Nosso objetivo é mudar sua perspectiva através de 3 pilares."
   items:
-    - { title: "Entendimento, não decoreba", text: "Você entende a lógica de cada linha que escreve. Quando algo quebra, sabe onde procurar." }
-    - { title: "Fundamentos de engenharia", text: "Uma base que serve para Python e para qualquer outra linguagem que você aprender depois." }
-    - { title: "Projeto de verdade", text: "Você termina construindo o Starship, um projeto com orientação a objetos, e não só exercícios soltos." }
+    - { title: "Entendimento, não decoreba", text: "Entenda a lógica por trás de cada linha para não depender de “receitas prontas”." }
+    - { title: "Fundamentos de engenharia", text: "Uma base tão sólida que você será capaz de aplicar esse conhecimento em qualquer outra linguagem." }
+    - { title: "Valor real", text: "Aprenda o que o mercado exige, focando em resolver problemas de forma eficiente." }
   code:
     file: nivel_2/funcoes.py
     source: |
@@ -65,16 +66,21 @@ method:
 
 syllabus_eyebrow: A trilha
 syllabus_title: "O que você vai aprender, nível por nível"
+syllabus_intro: "Uma trilha pensada para quem quer sair do “copia e cola” e entender a engenharia por trás do software."
 syllabus:
-  - { label: "Níveis 0 e 1", title: "O despertar da lógica", text: "Instalação do Python e do VS Code, controle de fluxo, repetições, tipos agregados e algoritmos." }
-  - { label: "Nível 2", title: "Boas práticas e reuso de código", text: "Funções, módulos, arquivos, ambientes virtuais (venv) e pip." }
-  - { label: "Nível 3", title: "Programação Orientada a Objetos", text: "Classes, atributos, métodos, herança e polimorfismo, aplicados no projeto Starship." }
-  - { label: "Nível 4", title: "Programação assistida por IA", tag: "Em breve, incluso", text: "Tópicos avançados e programação assistida por IA. Quem entra agora recebe sem pagar a mais." }
+  - { label: "Níveis 0 e 1", title: "O despertar da lógica", text: "Aqui você constrói o pensamento computacional. Da instalação do Python e do VS Code, passando pelo controle de fluxo, repetições e tipos agregados, você aprenderá a decompor problemas reais em algoritmos eficientes, indo além do “aprender a sintaxe” da linguagem." }
+  - { label: "Nível 2", title: "Boas práticas e reuso de código", text: "Você aprenderá a organizar projetos como um profissional: criação de funções reutilizáveis, módulos, manipulação de arquivos, ambientes virtuais (venv) e gestão de bibliotecas com pip. É aqui que seu código deixa de ser um “rascunho” e vira software." }
+  - { label: "Nível 3", title: "Arquitetura de sistemas (POO)", text: "O divisor de águas. Domine a Programação Orientada a Objetos (POO) com profundidade matemática e técnica. De classes, atributos e métodos até herança e polimorfismo, você aplicará tudo em projetos como o Starship." }
+  - { label: "Nível 4", title: "A fronteira (tópicos especiais e IA)", tag: "Em breve, incluso", text: "Onde a base encontra a produtividade máxima. Aprenda tópicos avançados e como usar a programação assistida por IA para acelerar seu desenvolvimento sem se tornar refém da ferramenta. Quem entra agora recebe sem pagar a mais." }
 
-teacher_label: Seu professor
-instructor_message: >-
-  Pesquisador em IA na École Polytechnique, na França, e doutor em Matemática pelo IMPA, programa há
-  mais de 15 anos em várias linguagens e paradigmas. É cofundador do Programação Dinâmica, com Kizzy Terra.
+teacher_label: Quem será o seu professor?
+instructor_title: Olá, eu sou o Hallison Paz
+instructor_message: |
+  Minha trajetória não foi construída apenas com código, mas com **ciência e prática de ponta**. Eu sou Engenheiro de Computação pelo **Instituto Militar de Engenharia** e **Doutor em Matemática pelo IMPA**. Tive o privilégio de ser pesquisador na **Meta (Reality Labs Research)** nos EUA e na **Hand Talk by Sorenson**, onde ajudei a desenvolver tecnologias de IA inovadoras, como avatares humanos fotorrealistas e modelos de tradução para língua de sinais.
+
+  **Por que isso importa para você?**
+
+  Com **mais de 15 anos de experiência** em variadas linguagens e paradigmas, eu vi de perto o que separa o código amador do código de elite. No **Python do Jeito Certo**, eu não te entrego apenas aulas; eu te entrego a metodologia prática que usei para evoluir ao ponto de chegar aos laboratórios de tecnologia mais avançados do mundo. **Minha missão é** simplificar essa jornada para você, garantindo **que sua base seja inabalável**.
 
 receive:
   - { title: "Curso completo, liberado na hora", text: "Aulas gravadas e editadas dos níveis 0 a 3, para assistir no seu ritmo." }

@@ -1,13 +1,13 @@
 ---
 title: Privacidade e cookies
 description: "Como o site do Programação Dinâmica trata os seus dados: o que fica no seu navegador, o que serviços de terceiros recebem e como entrar em contato."
-updated: 12 de novembro de 2026
+updated: 26 de novembro de 2026
 ---
 Este site é do **Programação Dinâmica**, projeto de educação em tecnologia de Kizzy Terra e Hallison Paz. Aqui explicamos, de forma direta, que dados são tratados quando você navega por ele, em linha com a Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018).
 
 ## Resumo
 
-- **Não usamos ferramentas de análise nem de publicidade** (como Google Analytics ou pixels de redes sociais) e não criamos cookies próprios.
+- **Usamos ferramentas do Google para medir o uso do site** (Google Tag Manager e ferramentas carregadas por ele, como o Google Analytics), que podem gravar cookies.
 - **Guardamos algumas preferências só no seu navegador**, para o site funcionar do jeito que você escolheu. Esses dados não são enviados para nós.
 - **Alguns conteúdos vêm de outros serviços** (YouTube, Instagram, LinkedIn e Google Fonts), que podem registrar dados de acesso e usar cookies próprios, segundo as políticas deles.
 - **Alguns textos do blog têm links de afiliado da Amazon**, sempre identificados. A Amazon só recebe dados se você clicar num deles.
@@ -23,6 +23,10 @@ Usamos o armazenamento local do navegador (`localStorage`) apenas para preferên
 | Progresso nos cursos abertos | Mostrar "Continuar assistindo" e as aulas já vistas |
 
 Essas informações ficam apenas no seu dispositivo, não identificam você e não são enviadas a nenhum servidor. Você pode apagá-las a qualquer momento limpando os dados de navegação do site nas configurações do seu navegador.
+
+## Medição de uso
+
+Usamos o **Google Tag Manager** para carregar ferramentas de medição, como o Google Analytics. Elas nos ajudam a entender como o site é usado, por exemplo quais páginas são mais visitadas. Para isso, o Google pode gravar cookies e receber dados de navegação, como páginas visitadas, data e hora, tipo de dispositivo e navegador e localização aproximada. Veja [como o Google usa esses dados](https://policies.google.com/technologies/partner-sites?hl=pt-BR). Você pode bloquear ou apagar cookies no seu navegador, ou instalar o [complemento de desativação do Google Analytics](https://tools.google.com/dlpage/gaoptout?hl=pt-BR).
 
 ## Conteúdos de outros serviços
 
@@ -48,7 +52,7 @@ Se você nos escrever por email, usamos o seu endereço e a sua mensagem apenas 
 
 ## Seus direitos
 
-A LGPD garante a você, entre outros, o direito de saber se tratamos dados seus, de acessá-los, corrigi-los e pedir a sua eliminação. Como o site não coleta dados pessoais diretamente, a maior parte das informações fica sob o seu controle, no seu navegador. Para qualquer dúvida ou pedido sobre privacidade, escreva para [comercial@pgdinamica.com](mailto:comercial@pgdinamica.com).
+A LGPD garante a você, entre outros, o direito de saber se tratamos dados seus, de acessá-los, corrigi-los e pedir a sua eliminação. Suas preferências ficam no seu navegador, sob o seu controle. Para qualquer dúvida ou pedido sobre privacidade, escreva para [comercial@pgdinamica.com](mailto:comercial@pgdinamica.com).
 
 ## Mudanças nesta política
 

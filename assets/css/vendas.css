@@ -71,3 +71,9 @@
 
 /* Página de vendas: cabeçalho só com o logo, sem menu nem botões (menos distração) */
 .sales-page .site-header .nav-links, .sales-page .site-header .nav-cta { display: none; }
+
+/* Apresentação em vários parágrafos */
+.sales-page .instructor-card > div > p:not(.instructor-role) + p { margin-top: 0.8rem; }
+
+/* destaques no texto do professor */
+.sales-page .instructor-card > div > p strong { color: var(--ink, #0b1c34); font-weight: 700; }

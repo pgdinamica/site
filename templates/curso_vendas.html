@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% from "partials/macros.html" import icon %}
-{% block styles %}<link rel="stylesheet" href="/assets/css/pages.css?v=2"><link rel="stylesheet" href="/assets/css/vendas.css?v=3">{% endblock %}
+{% block styles %}<link rel="stylesheet" href="/assets/css/pages.css?v=2"><link rel="stylesheet" href="/assets/css/vendas.css?v=5">{% endblock %}
 {% block body_attrs %} class="course-page sales-page"{% endblock %}
 {% set m = course.meta %}
 {% set o = m.offer or {} %}
@@ -34,10 +34,11 @@
 
     <div class="sales-awards"><div class="wrap"><p>{{ m.proof.text|safe }}</p><ul>{% for a in m.proof.get("items") or teacher.awards[:3] %}<li>{{ icon("award") }}{{ a }}</li>{% endfor %}</ul></div></div>
 
+    {% set pains_html %}
     <section class="section c-pains" aria-labelledby="pains-h">
       <div class="wrap c-pains-grid">
         <div>
-          <span class="eyebrow reveal">Talvez você se reconheça</span>
+          <span class="eyebrow reveal">{{ m.pains.eyebrow or "Talvez você se reconheça" }}</span>
           <h2 id="pains-h" class="reveal d1">{{ m.pains.title }}</h2>
         </div>
         <div>
@@ -46,6 +47,8 @@
         </div>
       </div>
     </section>
+    {% endset %}
+    {% if not m.method_first %}{{ pains_html }}{% endif %}
 
     <section class="section c-pillars" id="demo">
       <div class="wrap">
@@ -79,6 +82,8 @@
       </div>
     </section>
 
+    {% if m.method_first %}{{ pains_html }}{% endif %}
+
     <section class="section" id="conteudo">
       <div class="wrap {{ 'sales-two' if m.outcomes else 'c-narrow' }}">
         {% if m.outcomes %}
@@ -88,7 +93,7 @@
         </div>
         {% endif %}
         <div>
-          {{ heading(m.syllabus_eyebrow or "Conteúdo", m.syllabus_title or "Os módulos") }}
+          {{ heading(m.syllabus_eyebrow or "Conteúdo", m.syllabus_title or "Os módulos", m.syllabus_intro or "") }}
           <div class="modules">
             {% for s in m.syllabus %}<details class="module reveal"{% if loop.first %} open{% endif %}><summary><span class="module-n">{{ s.label or "Módulo " ~ loop.index }}</span><span class="module-title">{{ s.title }}</span>{% if s.tag %}<span class="module-tag">{{ s.tag }}</span>{% endif %}</summary><p class="module-text">{{ s.text }}</p></details>{% endfor %}
           </div>
@@ -111,9 +116,9 @@
         <a class="instructor-photo" href="{{ inst.url }}" tabindex="-1" aria-hidden="true"><img src="{{ inst.photo }}" alt="" width="900" height="1100" loading="lazy"></a>
         <div>
           <span class="eyebrow">{{ m.teacher_label }}</span>
-          <h2 id="inst-h"><a href="{{ inst.url }}">{{ inst.name }}</a></h2>
+          <h2 id="inst-h"><a href="{{ inst.url }}">{{ m.instructor_title or inst.name }}</a></h2>
           <p class="instructor-role">{{ inst.role }}</p>
-          <p>{{ m.instructor_message }}</p>
+          {{ m.instructor_message|md }}
           {% if inst.awards %}<ul class="chips">{% for a in inst.awards[:3] %}<li>{{ a }}</li>{% endfor %}</ul>{% endif %}
           <a class="founder-link" href="{{ inst.url }}">Conheça a trajetória completa {{ icon("arrow-right") }}</a>
         </div>
