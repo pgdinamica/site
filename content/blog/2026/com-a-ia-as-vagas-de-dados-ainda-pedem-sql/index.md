@@ -3,7 +3,7 @@ title: "Com a IA, as vagas de dados ainda pedem SQL?"
 subtitle: "O que três vagas reais mostram sobre o mercado de dados"
 description: "Mesmo com o ChatGPT e o Gemini, SQL segue no topo das vagas de dados. Olhei vagas reais da Accenture, do BTG e da Nio para ver o que elas pedem."
 author: kizzy-terra
-date: 2026-11-27
+date: 2026-11-26
 cover: banner-sql.jpg
 youtube_id: H2WQ_GOLp_o
 tags: [sql, análise de dados, carreira em dados, inteligência artificial, youtube]
