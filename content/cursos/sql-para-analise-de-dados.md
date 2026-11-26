@@ -94,8 +94,8 @@ instructor_message: >-
 
 receive:
   - { title: "Lab SQL, liberado na hora", text: "Seu laboratório de prática, com exercícios corrigidos automaticamente." }
-  - { title: "Curso completo para começar hoje", text: "Todas as aulas e o material, do primeiro SELECT às subconsultas." }
-  - { title: "Aulas novas em janeiro e fevereiro de 2027", text: "Chegam na sua área de membros sem custo extra." }
+  - { title: "Versão 2.0 completa para começar hoje", text: "É a versão disponível por enquanto: todas as aulas e o material, do primeiro SELECT às subconsultas." }
+  - { title: "Aulas novas da versão 3.0 em janeiro e fevereiro de 2027", text: "Chegam na sua área de membros sem custo extra." }
   - { title: "3 encontros ao vivo com a Kizzy Terra", text: "1 em dezembro e 2 em janeiro, para tirar dúvidas e ir além." }
   - { title: "Certificado de conclusão", text: "Em seu nome, para colocar no currículo e no LinkedIn." }
   - { title: "1 ano de acesso a tudo", text: "Aulas, material e Lab, no seu ritmo." }
@@ -121,7 +121,7 @@ fit:
 faq:
   - { q: "Nunca escrevi uma linha de código. Consigo acompanhar?", a: "Sim. O curso começa explicando o que é um banco de dados, antes da primeira consulta. E o Lab tira do caminho a parte que mais faz iniciante desistir: instalar e configurar." }
   - { q: "Preciso instalar alguma coisa?", a: "Não. Tudo roda no navegador. Funciona no computador que você já tem." }
-  - { q: "Quando eu começo?", a: "Hoje. O acesso ao curso chega por e-mail logo depois da compra, e a senha do Lab fica na área de membros da Kiwify. As aulas novas entram na área de membros em janeiro e fevereiro de 2027." }
+  - { q: "Quando eu começo?", a: "Hoje, pela versão 2.0, que é a disponível por enquanto. O acesso ao curso chega por e-mail logo depois da compra, e a senha do Lab fica na área de membros da Kiwify. As aulas novas da versão 3.0 entram na área de membros em janeiro e fevereiro de 2027." }
   - { q: "Tenho pouco tempo. Vou dar conta?", a: "As aulas são gravadas e o Lab abre quando você quiser, inclusive para um exercício rápido no intervalo. Você tem 1 ano de acesso para estudar no seu ritmo." }
   - { q: "Tem certificado?", a: "Sim. Ao concluir o curso, você recebe um certificado em seu nome." }
   - { q: "Por quanto tempo tenho acesso?", a: "1 ano a partir da compra, para aulas, material e Lab." }

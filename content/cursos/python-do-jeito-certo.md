@@ -64,7 +64,7 @@ method:
     output: ">>> 8.333333333333334"
 
 syllabus_eyebrow: A trilha
-syllabus_title: 4 etapas, do primeiro print à arquitetura de sistemas
+syllabus_title: "O que você vai aprender, nível por nível"
 syllabus:
   - { label: "Níveis 0 e 1", title: "O despertar da lógica", text: "Instalação do Python e do VS Code, controle de fluxo, repetições, tipos agregados e algoritmos." }
   - { label: "Nível 2", title: "Boas práticas e reuso de código", text: "Funções, módulos, arquivos, ambientes virtuais (venv) e pip." }
@@ -80,7 +80,6 @@ receive:
   - { title: "Curso completo, liberado na hora", text: "Aulas gravadas e editadas dos níveis 0 a 3, para assistir no seu ritmo." }
   - { title: "Nível 4 quando for lançado", text: "Tópicos especiais e programação com IA, sem custo extra." }
   - { title: "Dúvidas respondidas pelo Hallison Paz", text: "Pergunte em qualquer aula." }
-  - { title: "Encontros ao vivo", text: "Para tirar dúvidas em grupo." }
   - { title: "Códigos-fonte, materiais e exercícios", text: "Tudo na área de membros, com referências extras." }
   - { title: "Certificado e 2 anos de acesso", text: "Incluindo as atualizações do curso nesse período." }
 
@@ -102,7 +101,7 @@ fit:
 faq:
   - { q: "Nunca programei. É para mim?", a: "Sim. O curso começa do zero, com a instalação das ferramentas." }
   - { q: "Já sei o básico. Vale a pena?", a: "Sim. As aulas iniciais têm um resumo em texto: leia e decida se precisa do vídeo. Assim você avança rápido até onde está o que ainda não sabe." }
-  - { q: "O curso é ao vivo?", a: "As aulas são gravadas, para você assistir no seu ritmo. Além delas, há encontros ao vivo para tirar dúvidas." }
+  - { q: "O curso é ao vivo?", a: "As aulas são gravadas, para você assistir no seu ritmo. Para tirar dúvidas, pergunte em qualquer aula." }
   - { q: "Quando sai o Nível 4?", a: "Ele ainda está em construção. Quem compra agora recebe o Nível 4 sem pagar a mais." }
   - { q: "Por quanto tempo terei acesso?", a: "2 anos, incluindo as atualizações do curso nesse período." }
   - { q: "Tem certificado?", a: "Sim, emitido na área de membros ao concluir o curso." }
