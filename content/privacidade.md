@@ -1,28 +1,36 @@
 ---
 title: Privacidade e cookies
 description: "Como o site do Programação Dinâmica trata os seus dados: o que fica no seu navegador, o que serviços de terceiros recebem e como entrar em contato."
-updated: 26 de novembro de 2026
+updated: 27 de novembro de 2026
 ---
 Este site é do **Programação Dinâmica**, projeto de educação em tecnologia de Kizzy Terra e Hallison Paz. Aqui explicamos, de forma direta, que dados são tratados quando você navega por ele, em linha com a Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018).
 
 ## Resumo
 
 - **Usamos ferramentas do Google para medir o uso do site** (Google Tag Manager e ferramentas carregadas por ele, como o Google Analytics), que podem gravar cookies.
-- **Guardamos algumas preferências só no seu navegador**, para o site funcionar do jeito que você escolheu. Esses dados não são enviados para nós.
+- **Guardamos algumas preferências só no seu navegador**, para o site funcionar do jeito que você escolheu. Essas preferências não são enviadas para nós.
+- **Registramos a origem da visita**, para saber por qual canal cada venda chegou. Essa informação segue para a Kiwify quando você abre um link de compra dela.
 - **Alguns conteúdos vêm de outros serviços** (YouTube, Instagram, LinkedIn e Google Fonts), que podem registrar dados de acesso e usar cookies próprios, segundo as políticas deles.
 - **Alguns textos do blog têm links de afiliado da Amazon**, sempre identificados. A Amazon só recebe dados se você clicar num deles.
 
 ## O que fica guardado no seu navegador
 
-Usamos o armazenamento local do navegador (`localStorage`) apenas para preferências e conveniências:
+Usamos o armazenamento local do navegador (`localStorage`) para preferências, conveniências e para lembrar a origem da visita:
 
 | O quê | Para quê |
 |---|---|
 | Tema claro ou escuro do blog | Manter o tema que você escolheu |
 | Tamanho do texto dos posts | Manter o tamanho de leitura que você ajustou |
 | Progresso nos cursos abertos | Mostrar "Continuar assistindo" e as aulas já vistas |
+| Origem da visita | Saber por qual canal uma compra chegou (veja abaixo) |
 
-Essas informações ficam apenas no seu dispositivo, não identificam você e não são enviadas a nenhum servidor. Você pode apagá-las a qualquer momento limpando os dados de navegação do site nas configurações do seu navegador.
+Com exceção da origem da visita, explicada abaixo, essas informações ficam apenas no seu dispositivo e não são enviadas a nenhum servidor. Você pode apagá-las a qualquer momento limpando os dados de navegação do site nas configurações do seu navegador.
+
+## Origem da visita e links de compra
+
+Para entender quais canais de divulgação levam às vendas, guardamos no seu navegador a **origem da visita**: os parâmetros de campanha presentes no endereço (como `utm_source` e `utm_campaign`) ou, se não houver, o nome do site de onde você veio (como `youtube.com`). Consideramos esse registro por até 30 dias; um novo link de campanha pode substituí-lo.
+
+Nos links de compra da **Kiwify**, acrescentamos ao endereço essa origem e a página do nosso site em que o link está. Se não houver uma origem registrada, o link indica acesso direto. Assim, ao abrir o checkout, a Kiwify recebe essas informações e pode associá-las à compra, que aparece para nós com o canal correspondente. O tratamento dos dados pela Kiwify segue a política de privacidade dela.
 
 ## Medição de uso
 
